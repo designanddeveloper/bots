@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_documentation element="u_ibm_allgroups" label="ibm-allgroups" language="en" table="u_ldap_import_guest">
+        <sys_documentation action="INSERT_OR_UPDATE">
+            <element>u_ibm_allgroups</element>
+            <help/>
+            <hint/>
+            <label>ibm-allgroups</label>
+            <language>en</language>
+            <name>u_ldap_import_guest</name>
+            <plural>ibm-allgroups</plural>
+            <sys_class_name>sys_documentation</sys_class_name>
+            <sys_created_by>sphelan</sys_created_by>
+            <sys_created_on>2018-04-08 17:35:25</sys_created_on>
+            <sys_customer_update>false</sys_customer_update>
+            <sys_id>8b8235abdb969300f4fdf456bf9619ae</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>ibm-allgroups</sys_name>
+            <sys_package display_value="BOTS - New" source="x_63474_bots">fca917c14f111300cb281b818110c713</sys_package>
+            <sys_policy/>
+            <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+            <sys_scope display_value="BOTS - New">fca917c14f111300cb281b818110c713</sys_scope>
+            <sys_update_name>sys_documentation_u_ldap_import_guest_u_ibm_allgroups_en</sys_update_name>
+            <sys_updated_by>sphelan</sys_updated_by>
+            <sys_updated_on>2018-04-08 17:35:25</sys_updated_on>
+            <u_field_explanation/>
+            <url/>
+            <url_target/>
+        </sys_documentation>
+    </sys_documentation>
+</record_update>

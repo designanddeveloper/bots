@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[function($scope, spMacro, spUtil, $uibModal, $http) {
+	
+	//angular.module('Adingv1', []).controller('MainController', [ '$scope', function($scope) {
+		
+		//*******************************************************************
+		//********* this is for UI Page, for Portal-widget use same code but use $scope.page.g_form instead of just g_form **************
+		//*************** dont modify any part of the code jsut use the InitVars function to modify your req manually *******************
+		//********** 1) This code also picks up values for table headers, varaibles etc from default value of item variable (you can)****
+		//********** 2) modify just the InitVars function after cloning this UI page/widget
+		//indicate the selected filed index (starts from 1)
+		$scope.setecled_index = 3; //u_index
+		$scope.TableInfos=[]; //Master table
+		$scope.fld_vals =[];  //catalog variables mapped
+		//Please define the header { label: 'selected'} is required, please append it at end
+			$scope.headers = [{ label: 'Quanity'},{ label: 'Cost Per Unit'},{ label: 'Item Description'},{ label: 'selected'}];
+				//***********************************************************************
+				$scope.ShowId = function(t1)
+				{
+					//alert(1);		//(this.field_val);		//this.(false); do something to hide columns
+				};
+				//please eneter the req values like mapping
+				//map the ctalaog variables to $scope.fld_vals which is an array
+				$scope.InitVars = function(){
+					$scope.status="loading";
+					//table column headers ** selected is imp, mention its index in (for use via variable item $scope.setecled_index u_tbl_lbl)
+					$scope.headers = [{ label: 'Quanity'},{ label: 'Cost Per Unit'},{ label: 'Item Description'},{ label: 'selected'}];
+						$scope.getValsCnt = 4 ; //mention the number of vals, if total cols are 3 then mention 4 i.e. +1
+						//indicate the selected filed index (starts from 1)
+						$scope.setecled_index =  $scope.getValsCnt -1; //u_index
+						$scope.html_output = "html_output"; //mention the table output variable
+						$scope.json_output = "cat_table"; // this is required, mention the jason output variable, used by wf
+						///map valuse if there are more
+						$scope.fld_vals[0]= $scope.page.g_form.getValue('quanity');
+						$scope.fld_vals[1]= $scope.page.g_form.getValue('costperunit');
+						$scope.fld_vals[2]= $scope.page.g_form.getValue('itemdescription'); //g_form.getDigetValuesplayValue
+						///map valuse if there are more
+						
+						
+					}
+					
+					//////////////////////////////////////
+					$scope.index=1;
+					//////////////////////////////////////////////
+					$scope.status;//="";=4;
+					$scope.header ="<th>Quanity</th><th>Cost Per Unit</th><th>Item Description</th>";
+					//Declaring the table array with null values
+					//$scope.TableInfos =[{field1:"Aileen Mottern",field2:"1",field3:"HR"},{field1:"Shila Mottern",field2:"2",field3:"IT"}];
+						
+						//$scope.data.impacted_user = $scope.page.$scope.page.g_form.getDisplayValue('u_first_name');
+						/////////////////////////////////////////////////////////
+						$scope.$watch(function () {
+							//return $scope.page.g_form.getValue('u_first_name');
+						});
+						//////////////////////////////////////////////////////////
+						$scope.$on("field.change", function(evt, parms) {
+							//if (parms.field.name == 'location')
+							//alert(parms.newValue); //$scope.page.$scope.page.g_form.getValue('u_first_name');
+							
+						});
+						
+						//changed values used to edit cells
+						$scope.textChanged = function() {
+							$scope.submit1();
+						};
+						
+						//submit writing output to jason and multiline text
+						$scope.submit1 = function(){
+							var jsonop = JSON.stringify( $scope.TableInfos);
+							$scope.page.g_form.setValue($scope.json_output,jsonop);
+							var jsonop = JSON.stringify($scope.headers);
+							var obj = JSON.parse(jsonop);
+							var sHTML = "<table><tr>";//$scope.status +"\n";
+							for (var i=0; i< obj.length-1; i++)
+								sHTML += "<td>"+ obj[i].label + "</td>";
+							sHTML += "</tr>";//"\n"
+							var jsonop = JSON.stringify($scope.TableInfos);
+							var obj = JSON.parse(jsonop)
+							var fld="field";
+							//alert(jsonop);
+							if (jsonop == "" || jsonop == undefined) return;
+								for (var i=0 ; i< obj.length; i++)
+								{
+								//sHTML += +(i+1)+". ";
+								sHTML += "<tr>";
+								for (var j=0;j<$scope.getValsCnt-1;j++)
+									{
+									fld ="field"+(j+1);
+									if (obj[i][fld] != undefined)
+										sHTML += "<td>" + obj[i][fld] +"</td>";
+								}
+								sHTML +="</tr>";
+							}
+							sHTML +="</table>";
+							$scope.page.g_form.setValue($scope.html_output, sHTML);
+							////////////////////////////////////////////////////////////
+						};
+						////////////////////////////////////////////////////////////
+						
+						
+						//checking null, validations and duplicates
+						$scope.ReqNDup =  function(){
+							//Checking null values
+							for (var i=0;i<$scope.getValsCnt-1;i++)
+								{
+								if ($scope.fld_vals[i] == ""  )
+									{
+									//$scope.page.g_form.addErrorMessage("Fields are required");
+									alert("Device Type and Serial#/Tag# is required");
+									return false;
+								}
+							}
+							//checking validaition failed values
+							var tempStr="";
+							for(var i=0; i< $scope.getValsCnt-1;i++)
+								tempStr += '"'+ 'field'+(i+1) + '":"' + $scope.fld_vals[i] +'",';
+							var jsonop_dup = JSON.stringify( $scope.TableInfos);
+							jsonop_dup = jsonop_dup.toUpperCase();
+							tempStr = tempStr.toUpperCase();
+							var indexof = jsonop_dup.indexOf(tempStr);
+							if (indexof>1)
+								{
+								alert("Duplicate record");
+								return false;
+							}
+							//////////////////////////////////////////
+							return true;
+						};
+						
+						/////////////////////////////////////////////////////////
+						$scope.addNew = function(TableInfos){
+							//map variables
+							$scope.InitVars();
+							$scope.status="loading";
+							//checking mandatory and valid entries
+							if (!$scope.ReqNDup()) return;
+								var arrval= "";
+							//alert($scope.getValsCnt); index start from 0, ignoring the last split
+							var item = {};
+								for(var i=0; i< $scope.getValsCnt-1;i++)
+									{
+									item ["field"+(1+i)] = $scope.fld_vals[i] ;
+									if (i==1){
+										var serialnum = $scope.fld_vals[i];
+									}
+								}
+								try{
+									$scope.TableInfos.push(item);
+									////////////////////////////////////////
+								} catch(e)
+								{alert(e);}
+									
+									$scope.PD = {};
+										$scope.submit1();
+										$scope.status="loaded";
+										$scope.usermessage="Item saved to your request submission form";
+									};
+									//////////////////////////////////////////////
+									$scope.howmanyrows = function(){
+										var masterlist=document.getElementById("manyrows").value;
+										masterlist = masterlist.replace(/(\r\n|\n|\r)/gm,",");  //replace linebreaks with a ,
+										masterlist = masterlist.replace(/,,/g, ","); // replace any double ,, with just a ,
+										
+										masterlist = masterlist.split(',');
+										//alert(masterlist.length);
+										if (masterlist.length > 10)
+											{
+											document.getElementById("hideintial").style.display='inline';
+										}
+										else
+											{
+											document.getElementById("hideintial").style.display='none';
+										}
+									};
+									
+									/////////////////////////////////////////////
+									
+									$scope.remove = function(){
+										var newDataList=[];
+										$scope.selectedAll = false;
+										angular.forEach($scope.TableInfos, function(selected){
+											//alert(selected.selected);
+											if(!selected.selected){
+												newDataList.push(selected);
+											}
+										});
+										$scope.TableInfos = newDataList;
+										//setvalues in the textbox
+										$scope.submit1();
+									};
+									
+									$scope.checkAll = function () {
+										if (!$scope.selectedAll) {
+											$scope.selectedAll = true;
+										} else {
+											$scope.selectedAll = false;
+										}
+										angular.forEach($scope.TableInfos, function (TableInfos) {
+											TableInfos.selected = $scope.selectedAll;
+										});
+									};
+									
+									
+								}]]></client_script>
+        <controller_as>c</controller_as>
+        <css/>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id/>
+        <internal>false</internal>
+        <link/>
+        <name>a.ngTable.BOTS</name>
+        <option_schema>[{"displayValue":"Task","name":"table_name","default_value":"incident","section":"other","label":"Table name","type":"string","value":"task"},{"name":"title","default_value":"My Cases","section":"other","label":"Title","type":"string"},{"name":"encoded_query","section":"other","label":"Encoded Query","type":"string"},{"hint":"default","name":"view","section":"other","default_value":"default","label":"View","type":"string"}]</option_schema>
+        <public>true</public>
+        <roles/>
+        <script><![CDATA[(function() {  /* populate the 'data' object */  /* e.g., data.table = $sp.getValue('table'); */})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>sphelan</sys_created_by>
+        <sys_created_on>2018-04-10 15:03:41</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>2d7d054b6fd513805cdc1cccbb3ee4ba</sys_id>
+        <sys_mod_count>7</sys_mod_count>
+        <sys_name>a.ngTable.BOTS</sys_name>
+        <sys_package display_value="BOTS - New" source="x_63474_bots">fca917c14f111300cb281b818110c713</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="BOTS - New">fca917c14f111300cb281b818110c713</sys_scope>
+        <sys_update_name>sp_widget_2d7d054b6fd513805cdc1cccbb3ee4ba</sys_update_name>
+        <sys_updated_by>dyak</sys_updated_by>
+        <sys_updated_on>2018-05-17 15:21:57</sys_updated_on>
+        <template><![CDATA[<div>
+<div>
+<html ng-app="Adingv1" >
+  <head>
+	  <script src= "https://ajax.googleapis.com/ajax/libs/angularjs/1.2.9/angular.min.js"></script>
+    </head>
+  <body ng-controller="MainController" class="form-control">
+	<div class="container">
+        <div class="row">
+            <div class="col-md-11">
+              
+                         
+                <div class="panel panel-default">
+                    <div class="panel-body">
+	<div class="form-group">
+     <div style="width:60%;float:left;">
+      <h4>Request Item List</h4><span style="font-weight:bold;color:red;">{{usermessage}}</span> <!--{{status}}--> 
+      </div>
+       <div style="width:40%;float:right;">
+		 <input type="button"  ng-click="addNew(TableInfos)" class="btn btn-primary addnew pull-right" value="Add Item To List" style="margin:3px;"/> 
+   
+	     <input ng-hide="!TableInfos.length" type="button" class="btn btn-danger pull-right" ng-click="remove()" value="Remove Selected" style="margin:3px;"/>
+      </div>
+						</div>
+<table class="table table-striped table-bordered">
+  <thead>
+    <tr>
+		<th>&nbsp;<!--<input type="checkbox" ng-model="selectedAll" ng-click="checkAll()" />--></th>
+		<th ng-repeat="header in headers" ng-model="header" ng-if="header.label != 'selected'">{{header.label}}</th>
+	  </tr>
+	</thead>
+   <tbody>
+   	   <tr ng-repeat="TableInfo in TableInfos">
+	<td><input type="checkbox" ng-model="TableInfo.selected" /></td>
+		   
+   <td ng-repeat="($index,field_val) in TableInfo" >
+	   
+	<input type="input" class="form-control" ng-model="field_val" ng-hide="$index == setecled_index" ng-disabled="true" ng-blur="ShowId($index)" />
+	   
+    </td>  
+		  
+    </tr>
+  </tbody>
+</table>    
+
+  <div class="form-group">
+       <input ng-hide="!tableInfos.length" type="button" class="btn btn-danger pull-right" ng-click="remove()" value="Remove"/>
+  </div>
+<!-- script -->
+
+						  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </body>
+					
+</html>
+</div>
+</div>]]></template>
+    </sp_widget>
+</record_update>

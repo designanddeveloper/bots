@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[function($uibModal, $scope, $interval, spUtil, $window) {
+  /* widget controller */
+  var c = this;
+
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.p-3 {&#13;
+    padding: 1rem!important;&#13;
+}&#13;
+&#13;
+.mb-5, .my-5 {&#13;
+    margin-bottom: 3rem!important;&#13;
+}&#13;
+.shadow {&#13;
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;&#13;
+}&#13;
+.card {&#13;
+    position: relative;&#13;
+    display: -webkit-box;&#13;
+    display: -ms-flexbox;&#13;
+    display: flex;&#13;
+    -webkit-box-orient: vertical;&#13;
+    -webkit-box-direction: normal;&#13;
+    -ms-flex-direction: column;&#13;
+    flex-direction: column;&#13;
+    min-width: 0;&#13;
+    word-wrap: break-word;&#13;
+    background-color: #fff;&#13;
+    background-clip: border-box;&#13;
+    border: 1px solid rgba(0,0,0,.125);&#13;
+    border-radius: .25rem;&#13;
+}&#13;
+&#13;
+.card-body {&#13;
+    -webkit-box-flex: 1;&#13;
+    -ms-flex: 1 1 auto;&#13;
+    flex: 1 1 auto;&#13;
+    padding: 1.25rem;&#13;
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id/>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>BOTS Related List</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+	/* populate the 'data' object */
+	/* e.g., data.table = $sp.getValue('table'); */
+
+	var items = [];
+	
+	data.removeanitem = '';
+	data.addanitem = '';
+	data.theitemtoremove ='';
+	data.theitemid = '';
+	data.record = '';
+	
+	var forme = new GlideRecord('incident');
+	forme.addQuery('parent',$sp.getParameter('sys_id'));
+		forme.orderBy('number');
+		forme.query();
+		while(forme.next()) {
+		var item = {};
+			item.sysid = forme.sys_id.toString();
+			item.number = forme.number.getDisplayValue();
+			item.sys_class_name = forme.sys_class_name.getDisplayValue();
+			
+			item.description = forme.short_description.getDisplayValue();
+
+			items.push(item);
+		}
+	var forme = new GlideRecord('ticket');
+	forme.addQuery('parent',$sp.getParameter('sys_id'));
+		forme.orderBy('number');
+		forme.query();
+		while(forme.next()) {
+		var item = {};
+			item.sysid = forme.sys_id.toString();
+			item.number = forme.number.getDisplayValue();
+			item.sys_class_name = forme.sys_class_name.getDisplayValue();
+			
+			item.description = forme.short_description.getDisplayValue();
+
+			items.push(item);
+		}
+		data.items = items;
+		
+		data.action = '';
+		data.actionitem = '';
+		
+	})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>sphelan</sys_created_by>
+        <sys_created_on>2019-04-17 12:56:09</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>40bf547edbf43b40965bd5ab5e961985</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>BOTS Related List</sys_name>
+        <sys_package display_value="BOTS - New" source="x_63474_bots">fca917c14f111300cb281b818110c713</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="BOTS - New">fca917c14f111300cb281b818110c713</sys_scope>
+        <sys_update_name>sp_widget_40bf547edbf43b40965bd5ab5e961985</sys_update_name>
+        <sys_updated_by>sphelan</sys_updated_by>
+        <sys_updated_on>2019-04-17 13:01:35</sys_updated_on>
+        <template><![CDATA[<div class="panel panel-default b" style="margin-top:40px;border:2px #ddd solid;">
+  <div class="panel-heading">
+    <h4 class="panel-title" style="text-align:center;"><fa ng-if="::options.glyph.length" name="{{::options.glyph}}" class="m-r-sm"/>Related Items</h4>
+  </div>
+  
+  <div class="panel-body">
+
+  <div ng-if="data.items.length > 0">   
+<div class="card shadow p-3 mb-5" ng-repeat="item in data.items">
+  <div class="card-body">
+    <h5 class="card-title">{{item.sys_class_name}} {{item.number}}</h5>
+    <p class="card-text" ng-bind-html="item.description"></p> 
+<span class="card-link pull-right">
+    <a href="?id=form&table=task&sys_id={{item.sysid}}" target="_parent">View / Update Item</a>
+    </span>
+  </div>
+</div>
+
+    <div>
+    
+    </div>
+  </div>    
+    
+   <div ng-if="data.items.length == 0" style="margin-top:20px;">  
+      <strong>This request has no related items</strong>
+  </div>
+    
+</div>
+]]></template>
+    </sp_widget>
+</record_update>

@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[function($scope, $sce, $location, spUtil, spMacro, $rootScope, $uibModal, $http, $window, $timeout) {
+	/* widget controller */
+	var c = this;
+	
+	
+	if (c.data.target != '')
+		{
+		setTimeout(function(){
+			
+			document.getElementById('x040ae4656ffd97c05cdc1cccbb3ee4ef').style.display="inline";
+			
+			document.getElementById('x840ae4656ffd97c05cdc1cccbb3ee4f4').style.display="none";
+			document.getElementById('x400ae4656ffd97c05cdc1cccbb3ee4f1').style.display="none";
+			document.getElementById('x0c0ae4656ffd97c05cdc1cccbb3ee4f2').style.display="none";
+			
+			/*
+			document.getElementById('r2').style.display="none";
+			document.getElementById('r3').style.display="none";
+			document.getElementById('r4').style.display="none";
+			*/
+		}, 500);
+	}
+	
+	
+	$scope.opentheirlist = function(budgetowner) {
+		var personname = c.data.budgetownerlist;
+		var userid = c.data.budgetowneridlist;
+		
+		c.data.title = personname[budgetowner];
+		
+		c.data.person = userid[budgetowner];
+		var filter = 'assigned_to='+userid[budgetowner]+'^state=2';
+		
+		//alert(c.data.filter +"|"+ filter);
+		
+		if (c.data.filter != filter)
+			{
+			
+			$location.url('?id=leadership&table=x_63474_bots_bots_requests&filter='+filter+'&target_page_id=bots_form&view=At_BudgetOwner');
+		}
+		else
+			{
+			document.getElementById('x040ae4656ffd97c05cdc1cccbb3ee4ef').style.display="inline";
+			
+			document.getElementById('x840ae4656ffd97c05cdc1cccbb3ee4f4').style.display="none";
+			document.getElementById('x400ae4656ffd97c05cdc1cccbb3ee4f1').style.display="none";
+			document.getElementById('x0c0ae4656ffd97c05cdc1cccbb3ee4f2').style.display="none";
+			
+				/*
+			document.getElementById('r2').style.display="none";
+			document.getElementById('r3').style.display="none";
+			document.getElementById('r4').style.display="none";
+			*/
+		}
+		
+	}
+	/*
+	//OPEN THE POPUP AND SET THE INTIAL TAB BASED ON YOUR CURRENT OS SELECTED
+	$scope.opentheirlist = function(budgetowner) {
+		var personname = c.data.budgetownerlist;
+		var userid = c.data.budgetowneridlist;
+		
+		c.data.title = personname[budgetowner];
+		c.data.person = userid[budgetowner];
+		
+		var filter = "active=true^assigned_to="+userid[budgetowner];
+		c.data.tableoption = {"table": "x_63474_bots_bots_requests", "sp_page": "a8d454236f95938051281ecbbb3ee4b4","filter": filter};
+			
+			//OK, NOW OPEN IT
+			c.modalInstance = $uibModal.open({
+				templateUrl: 'budgetownerlist.html',
+				scope: $scope,
+				size:"lg"//,
+				//backdrop:'static',
+				//keyboard:false
+			});
+		}
+		
+		
+		//CLOSE THE POPUP
+		$scope.closeModal = function() {
+			c.modalInstance.close();
+		}
+ 		*/
+		
+	}]]></client_script>
+        <controller_as>c</controller_as>
+        <css/>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id/>
+        <internal>false</internal>
+        <link/>
+        <name>Budget Owner Outstanding</name>
+        <option_schema>[{"displayValue":"Task","name":"table_name","default_value":"incident","section":"other","label":"Table name","type":"string","value":"task"},{"name":"title","default_value":"My Cases","section":"other","label":"Title","type":"string"},{"name":"encoded_query","section":"other","label":"Encoded Query","type":"string"},{"hint":"default","name":"view","section":"other","default_value":"default","label":"View","type":"string"}]</option_schema>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+	/* populate the 'data' object */
+	/* e.g., data.table = $sp.getValue('table'); */
+	
+		data.target = $sp.getParameter('target_page_id') || '';
+		data.filter = $sp.getParameter('filter') || '';
+	
+		var outstandingapprovals = [];
+		var budgetownerlist = [];
+		var budgetowneridlist = [];
+		
+		var count = new GlideAggregate('x_63474_bots_bots_requests');
+		count.addQuery('active=true^state=2');
+		count.addQuery('assigned_to','!=','');
+		count.addAggregate('COUNT','assigned_to');
+		count.query();
+		while(count.next()){
+			var outstandingapproval = {};
+				outstandingapproval.assigned_to = count.assigned_to.getDisplayValue();
+				outstandingapproval.assigned_to_id = count.assigned_to.toString();
+				outstandingapproval.assigned_toCount = count.getAggregate('COUNT','assigned_to');
+				
+				budgetownerlist.push(count.assigned_to.getDisplayValue());
+				budgetowneridlist.push(count.assigned_to.toString());
+				outstandingapprovals.push(outstandingapproval);
+			}
+			data.budgetownerlist = budgetownerlist;
+			data.budgetowneridlist = budgetowneridlist;
+			data.outstandingapprovals = outstandingapprovals;
+			
+		})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>sphelan</sys_created_by>
+        <sys_created_on>2018-04-25 15:01:09</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>318c92fb6f2593c051281ecbbb3ee4ab</sys_id>
+        <sys_mod_count>108</sys_mod_count>
+        <sys_name>Budget Owner Outstanding</sys_name>
+        <sys_package display_value="BOTS - New" source="x_63474_bots">fca917c14f111300cb281b818110c713</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="BOTS - New">fca917c14f111300cb281b818110c713</sys_scope>
+        <sys_update_name>sp_widget_318c92fb6f2593c051281ecbbb3ee4ab</sys_update_name>
+        <sys_updated_by>dyak</sys_updated_by>
+        <sys_updated_on>2018-05-07 17:30:24</sys_updated_on>
+        <template><![CDATA[<div class="panel panel-default b">
+<div class="panel-heading" style="padding-left:10px;padding-right:0px;">
+   <h2 class="panel-title" style="font-weight:bold;">Pending Budget Owner Approval</h2>
+</div>
+<div class="panel-body" style="margin: 0px !important;padding: 0px !important; text-align:center;">
+
+  <table class="table table-striped">
+<tr>
+<th style='border-bottom:2px solid black;vertical-align:bottom;'>Budget Owner</th>
+<th style='border-bottom:2px solid black;text-align:center;vertical-align:bottom;'>Open Count</th>
+</tr>
+   <tr ng-repeat="outstandingapproval in data.outstandingapprovals as results track by outstandingapproval.assigned_to">  
+	<td nowrap="nowrap" style='border-bottom:1px dotted grey;padding-top:3px;padding-bottom:3px;'>
+      <a ng-click="opentheirlist($index)" href="javascript:void(0)">{{outstandingapproval.assigned_to}}</a>
+      
+     </td>
+	<td nowrap="nowrap" style='border-bottom:1px dotted grey;padding-top:3px;padding-bottom:3px;text-align:center;'>
+      {{outstandingapproval.assigned_toCount}}
+     </td>
+</tr>  
+</table>
+  
+</div>]]></template>
+    </sp_widget>
+</record_update>

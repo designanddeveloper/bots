@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_ng_template">
+    <sp_ng_template action="INSERT_OR_UPDATE">
+        <id>UserDetails</id>
+        <sp_widget display_value="Any Open BOTS Issues">c92384686f31d3c05cdc1cccbb3ee4af</sp_widget>
+        <sys_class_name>sp_ng_template</sys_class_name>
+        <sys_created_by>sphelan</sys_created_by>
+        <sys_created_on>2018-10-16 23:56:33</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>ac8b5cc00f112b003264918172050e86</sys_id>
+        <sys_mod_count>17</sys_mod_count>
+        <sys_name>UserDetails</sys_name>
+        <sys_package display_value="BOTS - New" source="x_63474_bots">fca917c14f111300cb281b818110c713</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="BOTS - New">fca917c14f111300cb281b818110c713</sys_scope>
+        <sys_update_name>sp_ng_template_ac8b5cc00f112b003264918172050e86</sys_update_name>
+        <sys_updated_by>sphelan</sys_updated_by>
+        <sys_updated_on>2018-10-17 01:32:18</sys_updated_on>
+        <template><![CDATA[<div>
+   <div ng-if="data.userExists">
+      <div class="panel panel-default">
+         <div class="panel-heading">
+            <h4 class="panel-title">{{data.name}}</h4>
+         </div>
+         <div class="panel-body wrapper">
+            <table class="table">
+               <tr>
+                  <td><i style="color:#098E52;font-size:18px;cursor:default;margin-right:5px;" class="fa fa-envelope ng-scope"></i>{{data.email}}</td>
+               </tr>
+               <tr>
+                  <td><i style="color:#f0ad4e;font-size:18px;cursor:default;margin-right:5px;" class="fa fa-phone ng-scope"></i>{{data.phone}}</td>
+               </tr>
+               <tr>
+                  <td>{{data.title}}</td>
+               </tr>
+               <tr>
+                  <td>{{data.department}}</td>
+               </tr>
+            </table>
+           <h5>User is a member of {{data.groupcount}} groups:</h5>
+           <div style="max-height: 400px;overflow-y: scroll;"><ul>
+             <li ng-repeat="group in data.groups">{{group.name}}</li>
+             </ul></div>
+         </div>
+      </div>
+   </div>
+   <div ng-if="!data.userExists" >
+      <div class="panel panel-default">
+         <div class="panel-heading">
+            <h4 class="panel-title">${User not found}</h4>
+         </div>
+         <div class="panel-body wrapper">
+            <p>${This user does not exist}</p>
+            <p>${Suggestions}:</p>
+            <ul>
+               <li>${Contact your portal administrator}</li>
+            </ul>
+         </div>
+      </div>
+   </div>
+  <div class="panel-footer text-right"> 
+  <button class="btn btn-primary" ng-click="closeUserInfo()">Close</button> 
+ </div>
+</div>]]></template>
+    </sp_ng_template>
+</record_update>

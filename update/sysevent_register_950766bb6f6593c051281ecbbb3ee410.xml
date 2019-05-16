@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sysevent_register">
+    <sysevent_register action="INSERT_OR_UPDATE">
+        <description>fire when leadership approved adhoc requests</description>
+        <event_name>x_63474_bots.travel.budget.leader.adhoc.</event_name>
+        <fired_by>workflow- BOTS travel Request</fired_by>
+        <queue/>
+        <suffix>travel.budget.leader.adhoc.approval</suffix>
+        <sys_class_name>sysevent_register</sys_class_name>
+        <sys_created_by>sdepally</sys_created_by>
+        <sys_created_on>2018-04-25 15:46:07</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>950766bb6f6593c051281ecbbb3ee410</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>x_63474_bots.travel.budget.leader.adhoc.</sys_name>
+        <sys_package display_value="BOTS - New" source="x_63474_bots">fca917c14f111300cb281b818110c713</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="BOTS - New">fca917c14f111300cb281b818110c713</sys_scope>
+        <sys_update_name>sysevent_register_950766bb6f6593c051281ecbbb3ee410</sys_update_name>
+        <sys_updated_by>sdepally</sys_updated_by>
+        <sys_updated_on>2018-04-25 22:32:12</sys_updated_on>
+        <table>x_63474_bots_bots_travel</table>
+    </sysevent_register>
+</record_update>

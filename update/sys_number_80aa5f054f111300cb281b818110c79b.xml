@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_number">
+    <sys_number action="INSERT_OR_UPDATE">
+        <category display_value="" name="x_63474_bots_bots_requests">x_63474_bots_bots_requests</category>
+        <maximum_digits>7</maximum_digits>
+        <number>1000</number>
+        <prefix>BOTS</prefix>
+        <sys_class_name>sys_number</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2018-04-04 20:12:36</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>80aa5f054f111300cb281b818110c79b</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>BOTS</sys_name>
+        <sys_package display_value="BOTS - New" source="x_63474_bots">fca917c14f111300cb281b818110c713</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="BOTS - New">fca917c14f111300cb281b818110c713</sys_scope>
+        <sys_update_name>sys_number_80aa5f054f111300cb281b818110c79b</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2018-04-04 20:12:36</sys_updated_on>
+    </sys_number>
+</record_update>

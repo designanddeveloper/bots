@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="announcement">
+    <announcement action="INSERT_OR_UPDATE">
+        <active>false</active>
+        <click_target/>
+        <details/>
+        <details_link_text/>
+        <details_page/>
+        <details_url/>
+        <dismiss_options>dismissible</dismiss_options>
+        <display_first>false</display_first>
+        <display_style display_value="Normal">704dedd6e7d4030075c2a117c2f6a91b</display_style>
+        <from>2018-05-23 21:10:45</from>
+        <glyph>slideshare</glyph>
+        <glyph_alt_text/>
+        <name>BOTS Welcome</name>
+        <public>true</public>
+        <roles/>
+        <sn_communities_announcement_type/>
+        <sn_communities_forums/>
+        <sn_communities_notification>false</sn_communities_notification>
+        <sn_communities_notification_sent>false</sn_communities_notification_sent>
+        <sn_communities_portals>5b49418bdb4aa200b1f6f78eaf96195f</sn_communities_portals>
+        <sn_communities_selected_forums/>
+        <summary>If you need any help please review the User Guide.</summary>
+        <sys_class_name>announcement</sys_class_name>
+        <sys_created_by>sphelan</sys_created_by>
+        <sys_created_on>2018-05-23 21:12:45</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>f08d73bc6f9e5b005cdc1cccbb3ee445</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>BOTS Welcome</sys_name>
+        <sys_package display_value="BOTS - New" source="x_63474_bots">fca917c14f111300cb281b818110c713</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="BOTS - New">fca917c14f111300cb281b818110c713</sys_scope>
+        <sys_update_name>announcement_f08d73bc6f9e5b005cdc1cccbb3ee445</sys_update_name>
+        <sys_updated_by>sphelan</sys_updated_by>
+        <sys_updated_on>2018-05-23 21:13:52</sys_updated_on>
+        <title>Welcome To The New Business Office Ticket System</title>
+        <to>2018-05-26 21:10:50</to>
+        <type>67eaf134e7a3320075c2a117c2f6a9d2,52fa79f8e763320075c2a117c2f6a991</type>
+    </announcement>
+    <sys_translated_text action="delete_multiple" query="documentkey=f08d73bc6f9e5b005cdc1cccbb3ee445"/>
+</record_update>

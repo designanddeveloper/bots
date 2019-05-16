@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_63474_bots.SupplyRequestFunctions</api_name>
+        <client_callable>true</client_callable>
+        <description/>
+        <name>SupplyRequestFunctions</name>
+        <script><![CDATA[var SupplyRequestFunctions  = Class.create ( ) ;
+SupplyRequestFunctions.prototype = Object.extendsObject(global.AbstractAjaxProcessor , {
+	
+	
+	RequestTotal : function ( ) {
+		var requesttotal = '';
+		var getitems = new GlideRecord('x_63474_bots_bots_supply_item');
+		getitems.addQuery('u_request',this.getParameter('request'));
+		getitems.query();
+		while(getitems.next()) {
+			var cost = getitems.price;
+			cost = cost.split(';');
+			var itemtotal=cost[1];
+			requesttotal = requesttotal + itemtotal;
+		}
+		
+		return requesttotal.toFixed(2);
+		
+	} ,
+	
+	TotalItems : function ( ) {
+		//var totalitems = 0;
+		var getitems = new GlideRecord('x_63474_bots_bots_supply_item');
+		getitems.addQuery('u_request',this.getParameter('request'));
+		getitems.query();
+		//while(getitems.next()) {
+			//	totalitems=totalitems+1;
+			//}
+			return getitems.getRowCount();
+			
+		} ,
+		
+		NextItemNumber : function ( ) {
+			
+			var num = this.getParameter('requestnumber');
+			var str,totalrecords;
+			var item = new GlideRecord('x_63474_bots_bots_supply_item');
+			item.addQuery('u_request',this.getParameter('request'));
+			item.orderByDesc('sys_created_on');   //get recent created record
+			item.query();
+			if(item.next()){
+				//gs.addInfoMessage(item.u_number.toString());
+				str = parseInt(item.u_number.toString().substring(14,17))+1;
+				//gs.addInfoMessage(str+'str');
+				return item.u_request.u_number + '-' +str;
+			}
+			else{
+				return this.getParameter('requestnumber') + '-'+item.getRowCount()+1;
+				//gs.addInfoMessage(totalrecords+'total');
+			}
+			
+		} ,
+		
+		requestisfor : function ( ) {
+			
+			var requestforperson = '';
+			var createdfor = new GlideRecord('x_63474_bots_bots_requests');
+			createdfor.addQuery('sys_id',this.getParameter('request'));
+			createdfor.query();
+			while(createdfor.next()) {
+				requestforperson = createdfor.requested_for;
+			}
+			
+			return requestforperson;
+		},
+	parentdetails : function ( ) {
+			
+			var sys_id = '';
+			var state = '';
+			var number = '';
+			var createdfor = new GlideRecord('x_63474_bots_bots_requests');
+			createdfor.addQuery('sys_id',this.getParameter('request'));
+			createdfor.query();
+			while(createdfor.next()) {
+				sys_id = createdfor.sys_id;
+				state = createdfor.state;
+				number = createdfor.number;
+			}
+			
+			return sys_id+"|"+state+"|"+number;
+		},
+	shippingaddress : function ( ) {
+			
+			var address = '\nCollege Park MD 20740';
+			var createdfor = new GlideRecord('sys_user');
+			createdfor.addQuery('sys_id',this.getParameter('requestedfor'));
+			createdfor.query();
+			while(createdfor.next()) {
+				address = createdfor.street + address;
+			}
+			
+			return address;
+		},
+
+	_privateFunction : function ( ) { // this function is not client callable
+		
+	}
+	
+} ) ;]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2018-04-04 23:38:00</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>7178c89d4f511300cb281b818110c72e</sys_id>
+        <sys_mod_count>9</sys_mod_count>
+        <sys_name>SupplyRequestFunctions</sys_name>
+        <sys_package display_value="BOTS - New" source="x_63474_bots">fca917c14f111300cb281b818110c713</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="BOTS - New">fca917c14f111300cb281b818110c713</sys_scope>
+        <sys_update_name>sys_script_include_7178c89d4f511300cb281b818110c72e</sys_update_name>
+        <sys_updated_by>sphelan</sys_updated_by>
+        <sys_updated_on>2018-05-18 00:44:50</sys_updated_on>
+    </sys_script_include>
+</record_update>

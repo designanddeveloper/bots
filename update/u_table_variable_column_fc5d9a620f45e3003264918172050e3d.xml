@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="u_table_variable_column">
+    <u_table_variable_column action="INSERT_OR_UPDATE">
+        <sys_class_name>u_table_variable_column</sys_class_name>
+        <sys_created_by>sphelan</sys_created_by>
+        <sys_created_on>2018-10-12 17:31:07</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>fc5d9a620f45e3003264918172050e3d</sys_id>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_name>Cost Of Item</sys_name>
+        <sys_package display_value="BOTS - New" source="x_63474_bots">fca917c14f111300cb281b818110c713</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="BOTS - New">fca917c14f111300cb281b818110c713</sys_scope>
+        <sys_update_name>u_table_variable_column_fc5d9a620f45e3003264918172050e3d</sys_update_name>
+        <sys_updated_by>sphelan</sys_updated_by>
+        <sys_updated_on>2018-10-12 18:05:39</sys_updated_on>
+        <u_choice_script/>
+        <u_default_value>0.00</u_default_value>
+        <u_display_field/>
+        <u_hide_on_load>false</u_hide_on_load>
+        <u_label>Cost Of Item</u_label>
+        <u_mandatory>false</u_mandatory>
+        <u_max/>
+        <u_min/>
+        <u_name>cost</u_name>
+        <u_onchange_script><![CDATA[var columnID = $scope.getColumnID("cost");
+var rows = $scope.data.table_options.row_count;
+var rowID = locals.rowID;
+
+//alert(rowID +" of " + rows);
+
+var userinput = $scope.table_data[rowID].fields[columnID].value;
+
+numStr = userinput.replace('$','');
+if (userinput != numStr)
+	{
+	$scope.setColumnValue(rowID,columnID,numStr);
+}
+
+if (numStr.indexOf('.')<0)
+	{
+	numStr = numStr+".00";
+	if (numStr == '.00')
+		{
+		numStr = '0.00';
+	}
+	$scope.setColumnValue(rowID,columnID,numStr);
+}
+
+var regex  = /^\d+(?:\.\d{0,2})$/;
+	if (!regex.test(numStr))
+		{
+		alert('Please veriy the cost you just entered');
+	}
+	else
+		{
+		var newtotal = 0;
+		var QuanitycolumnID = $scope.getColumnID("quanity");
+		for (i=0;i<rows;i++)
+			{
+			newtotal = newtotal + $scope.table_data[i].fields[columnID].value * $scope.table_data[i].fields[QuanitycolumnID].value;
+		}
+		newtotal = newtotal.toFixed(2);
+		$scope.page.g_form.setValue('total_cost', newtotal);
+			
+		if (newtotal != '0.00')
+		{
+			//alert('lock it');
+		$scope.page.g_form.setReadOnly('total_cost', true);
+	}
+	else
+		{
+			//alert('open it');
+		$scope.page.g_form.setReadOnly('total_cost', false);
+	}
+		
+	}]]></u_onchange_script>
+        <u_order>20</u_order>
+        <u_reference_qualifier/>
+        <u_reference_table/>
+        <u_search_fields/>
+        <u_table_variable display_value="BOTS Purchase Request Items">d40c56220f45e3003264918172050e69</u_table_variable>
+        <u_type>text</u_type>
+        <u_value_field/>
+    </u_table_variable_column>
+</record_update>

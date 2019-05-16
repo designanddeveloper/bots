@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[function($scope) {
+  /* widget controller */
+  var c = this;
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css/>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list>ref_sp_instance_table.table,title,sys_update_name,sys_updated_on,sys_updated_by,sys_mod_count,sp_widget</field_list>
+        <has_preview>true</has_preview>
+        <id/>
+        <internal>false</internal>
+        <link/>
+        <name>BOTS Requests Single Counts V2</name>
+        <option_schema>[{"displayValue":"Task","name":"table_name","default_value":"incident","section":"other","label":"Table name","type":"string","value":"task"},{"name":"title","default_value":"My Cases","section":"other","label":"Title","type":"string"},{"name":"encoded_query","section":"other","label":"Encoded Query","type":"string"},{"hint":"default","name":"view","section":"other","default_value":"default","label":"View","type":"string"}]</option_schema>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+
+var table = new GlideRecord(options.table_name);
+	table.addEncodedQuery(options.encoded_query);
+	table.query();
+	data.list = table.getRowCount();
+	data.supplycount = 0;
+	data.travelcount = 0;
+	data.purchasecount = 0;
+	while (table.next())
+		{
+			if (table.type == 'General Office Supply Request')
+				{
+					data.supplycount = data.supplycount+1;
+				}
+			if (table.type == 'Travel Request')
+				{
+					data.travelcount = data.travelcount +1;
+				}
+			if (table.type == 'Purchase Request')
+				{
+					data.purchasecount = data.purchasecount+1;
+				}
+		}
+	
+	
+	
+	
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>sphelan</sys_created_by>
+        <sys_created_on>2018-04-21 23:56:35</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>b6e0f3ee6fe19f8051281ecbbb3ee4f5</sys_id>
+        <sys_mod_count>24</sys_mod_count>
+        <sys_name>BOTS Requests Single Counts V2</sys_name>
+        <sys_package display_value="BOTS - New" source="x_63474_bots">fca917c14f111300cb281b818110c713</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="BOTS - New">fca917c14f111300cb281b818110c713</sys_scope>
+        <sys_update_name>sp_widget_b6e0f3ee6fe19f8051281ecbbb3ee4f5</sys_update_name>
+        <sys_updated_by>sphelan</sys_updated_by>
+        <sys_updated_on>2018-08-13 15:49:46</sys_updated_on>
+        <template><![CDATA[<div  id="resize">
+  <div class="panel panel-default" style="text-align:center;">
+    <div style="text-align: center;display: block;font-size: 2.5rem;font-weight: 300; line-height: 1.1; padding-top: 25px;margin: 0 0 10px 0;">{{c.options.title}}</div><hr noshade>
+	<div>
+    <div style="text-align:center;float:left;width:30%;padding-top:20px;">
+    <a target="_parent" href="?id=bots_requests&table={{c.options.table_name}}&filter={{c.options.encoded_query}}&target_page_id=bots_form&view={{c.options.view}}">
+          <div id="color_list" style="font-size:50px;">{{data.list}}</div>
+         </a>
+    </div>
+    
+    <div style="float:right;width:70%;">
+      <table class='table table-stripped'>
+        <tr><th nowrap='nowrap'>Form</th><th>Count</th></tr>
+        <tr><td nowrap='nowrap' align='left'>General Supply Requests</td><td>{{data.supplycount}}</td></tr>
+    <tr><td nowrap='nowrap' align='left'>Travel Requests</td><td>{{data.travelcount}}</td></tr>
+   <tr><td nowrap='nowrap' align='left'> Purchase Requests</td><td>{{data.purchasecount}}</td></tr>
+      </table>
+  </div>
+    </div>
+    <div style='clear:both;'></div>
+</div>
+
+]]></template>
+    </sp_widget>
+</record_update>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_policy_action">
+    <sys_ui_policy_action action="INSERT_OR_UPDATE">
+        <cleared>false</cleared>
+        <disabled>ignore</disabled>
+        <field>payment_method</field>
+        <mandatory>ignore</mandatory>
+        <sys_class_name>sys_ui_policy_action</sys_class_name>
+        <sys_created_by>sphelan</sys_created_by>
+        <sys_created_on>2018-04-13 14:39:50</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>8bb428006f6117805cdc1cccbb3ee494</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>payment_method</sys_name>
+        <sys_package display_value="BOTS - New" source="x_63474_bots">fca917c14f111300cb281b818110c713</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="BOTS - New">fca917c14f111300cb281b818110c713</sys_scope>
+        <sys_update_name>sys_ui_policy_action_8bb428006f6117805cdc1cccbb3ee494</sys_update_name>
+        <sys_updated_by>sphelan</sys_updated_by>
+        <sys_updated_on>2018-04-13 14:39:50</sys_updated_on>
+        <table>x_63474_bots_bots_requests</table>
+        <ui_policy display_value="Show payment/method to Business Office">9eabc0ba6f91df405cdc1cccbb3ee474</ui_policy>
+        <visible>true</visible>
+    </sys_ui_policy_action>
+</record_update>

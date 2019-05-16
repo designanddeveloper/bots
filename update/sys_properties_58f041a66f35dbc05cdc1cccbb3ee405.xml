@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_properties">
+    <sys_properties action="INSERT_OR_UPDATE">
+        <choices/>
+        <description>BOTS Order Request activity formatter fields</description>
+        <ignore_cache>false</ignore_cache>
+        <is_private>false</is_private>
+        <name>glide.ui.x_63474_bots_bots_order_request_activity.fields</name>
+        <read_roles/>
+        <suffix/>
+        <sys_class_name>sys_properties</sys_class_name>
+        <sys_created_by>sdepally</sys_created_by>
+        <sys_created_on>2018-05-03 21:23:25</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>58f041a66f35dbc05cdc1cccbb3ee405</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>glide.ui.x_63474_bots_bots_order_request_activity.fields</sys_name>
+        <sys_package display_value="BOTS - New" source="x_63474_bots">fca917c14f111300cb281b818110c713</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="BOTS - New">fca917c14f111300cb281b818110c713</sys_scope>
+        <sys_update_name>sys_properties_58f041a66f35dbc05cdc1cccbb3ee405</sys_update_name>
+        <sys_updated_by>sdepally</sys_updated_by>
+        <sys_updated_on>2018-05-03 21:23:25</sys_updated_on>
+        <type>string</type>
+        <value>assigned_to,cmdb_ci,state,impact,priority,opened_by,work_notes,comments,*Attachments*,u_substate</value>
+        <write_roles/>
+    </sys_properties>
+    <sys_translated_text action="delete_multiple" query="documentkey=58f041a66f35dbc05cdc1cccbb3ee405"/>
+</record_update>

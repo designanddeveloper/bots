@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sysevent_register">
+    <sysevent_register action="INSERT_OR_UPDATE">
+        <description>fire when budget leadership not approved travel request</description>
+        <event_name>x_63474_bots.order.budget.leader.not.app</event_name>
+        <fired_by>workflow- BOTS travel Request</fired_by>
+        <queue/>
+        <suffix>order.budget.leader.not.approved</suffix>
+        <sys_class_name>sysevent_register</sys_class_name>
+        <sys_created_by>sdepally</sys_created_by>
+        <sys_created_on>2018-04-26 14:06:10</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>07b957886fb9d3c051281ecbbb3ee4c6</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_63474_bots.order.budget.leader.not.app</sys_name>
+        <sys_package display_value="BOTS - New" source="x_63474_bots">fca917c14f111300cb281b818110c713</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="BOTS - New">fca917c14f111300cb281b818110c713</sys_scope>
+        <sys_update_name>sysevent_register_07b957886fb9d3c051281ecbbb3ee4c6</sys_update_name>
+        <sys_updated_by>sdepally</sys_updated_by>
+        <sys_updated_on>2018-04-26 14:06:10</sys_updated_on>
+        <table>x_63474_bots_bots_order_request</table>
+    </sysevent_register>
+</record_update>

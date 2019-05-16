@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_ng_template">
+    <sp_ng_template action="INSERT_OR_UPDATE">
+        <id>showfundingsourcelist.html</id>
+        <sp_widget display_value=" Funding Sources I Can Bill To">8e5d6174dbf0bf003fb0d92b5e96193a</sp_widget>
+        <sys_class_name>sp_ng_template</sys_class_name>
+        <sys_created_by>sphelan</sys_created_by>
+        <sys_created_on>2019-04-11 13:30:22</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>0ffd21b4dbf0bf003fb0d92b5e961953</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>showfundingsourcelist.html</sys_name>
+        <sys_package display_value="BOTS - New" source="x_63474_bots">fca917c14f111300cb281b818110c713</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="BOTS - New">fca917c14f111300cb281b818110c713</sys_scope>
+        <sys_update_name>sp_ng_template_0ffd21b4dbf0bf003fb0d92b5e961953</sys_update_name>
+        <sys_updated_by>sphelan</sys_updated_by>
+        <sys_updated_on>2019-04-11 13:34:53</sys_updated_on>
+        <template><![CDATA[	<div class="panel panel-default" style="width:800px">
+		<div class="panel-heading">
+			<h4 class="panel-title" style="text-align:center;">Funding Sources</h4>
+  		</div>
+		<div class="panel-body wrapper-xl">
+       
+
+<div>
+<table class="table table-striped">
+<tr>
+<!--<th style='border-bottom:2px solid black;'></th>-->
+<th nowrap="nowrap"  style='border-bottom:2px solid black;vertical-align:bottom;'>Funding Source</th>
+<th style='border-bottom:2px solid black;text-align:center;vertical-align:bottom;'>KFS #</th>
+<th nowrap="nowrap"  style='border-bottom:2px solid black;text-align:center;vertical-align:bottom;'>Budget Owner</th>
+<th nowrap="nowrap"  style='border-bottom:2px solid black;text-align:center;vertical-align:bottom;'>Business Manager</th>
+<th style='border-bottom:2px solid black;text-align:center;vertical-align:bottom;'>Selectable</th>
+</tr>
+   <tr ng-repeat="fundinglist in data.fundingsources">  
+	<!--<td nowrap="nowrap" style="border-bottom:1px dotted grey;padding-top:3px;padding-bottom:3px;">
+    <a style="text-decoration:none;"  href="?id=form&table=x_63474_bots_bots_crosswalk&sys_id={{fundinglist.sys_id}}">
+<div alt="request" class="btn btn-info btn-block">   
+  <i class="fa fa-shopping-cartt"></i> View Requests 
+</div>  
+  </a> u_budget_owner
+    </td>-->
+	<td nowrap="nowrap" style='border-bottom:1px dotted grey;padding-top:3px;padding-bottom:3px;'>{{fundinglist.u_budget_long_name}}</td>
+	<td nowrap="nowrap" style='border-bottom:1px dotted grey;padding-top:3px;padding-bottom:3px;'>{{fundinglist.u_kfs_number}}</td>
+	<td nowrap="nowrap" style='border-bottom:1px dotted grey;padding-top:3px;padding-bottom:3px;'>{{fundinglist.u_budget_owner}}</td>
+     <td nowrap="nowrap" style='border-bottom:1px dotted grey;padding-top:3px;padding-bottom:3px;'>{{fundinglist.u_business_manager}}</td>
+    
+    <td ng-if='fundinglist.active=="true"' nowrap="nowrap" style='border-bottom:1px dotted grey;padding-top:3px;padding-bottom:3px;font-weight:bold;color:green;text-align:center;'>YES</td>
+    <td ng-if='fundinglist.active=="false"' nowrap="nowrap" style='border-bottom:1px dotted grey;padding-top:3px;padding-bottom:3px;font-weight:bold;color:red;text-align:center;'>NO</td>
+</tr>  
+</table>
+</div>
+ 
+  		</div>
+		<div class="panel-footer text-right">
+			<button class="btn btn-primary" ng-click="c.closeModal2()">${Return to Dashboard}</button>
+		</div>
+	</div>]]></template>
+    </sp_ng_template>
+</record_update>

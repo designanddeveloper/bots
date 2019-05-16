@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_page">
+    <sys_ui_page action="INSERT_OR_UPDATE">
+        <category>general</category>
+        <client_script><![CDATA[var currentsource = g_form.getValue('funding_source');
+//document.getElementById('listfor').innerHTML = currentsource;
+
+var sourcedetails = new GlideRecord('x_63474_bots_bots_crosswalk');
+sourcedetails.addQuery('sys_id',currentsource);
+sourcedetails.query();
+while(sourcedetails.next()) {
+	document.getElementById('listfor').innerHTML = sourcedetails.u_budget_long_name+" for KFS#"+sourcedetails.u_kfs_number;
+}
+
+var itemcount = 0;
+var list = '<table class="table table-striped">';
+list = list+"<tr>";
+list = list+"<th>Number</th>";
+list = list+"<th>Type</th>";
+list = list+"<th>Opened</th>";
+list = list+"<th>Cost</th>";
+list = list+"<th>State</th>";
+list = list+"</tr>";
+
+var activeitems = new GlideRecord('x_63474_bots_bots_requests');
+activeitems.addQuery('funding_source',currentsource);
+activeitems.query();
+while(activeitems.next()) {
+	if (activeitems.active == 'true')
+		{
+		list = list+"<tr>";
+		list = list+"<td nowrap='nowrap'>"+activeitems.number+"</td>";
+		list = list+"<td nowrap='nowrap'>"+activeitems.type+"</td>";
+		var dateopen = activeitems.opened_at;
+		dateopen = dateopen.split(' ');
+		list = list+"<td nowrap='nowrap'>"+dateopen[0]+"</td>";
+		var costis = activeitems.total_cost;
+		costis = costis.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+			if (costis.indexOf('.')<0)
+				{
+				costis = costis+".00";
+			}
+			else if (costis.indexOf('.') == costis.length-2)
+				{
+				costis = costis+"0";
+			}
+			
+			list = list+"<td nowrap='nowrap'>$"+costis+"</td>";
+			var state = activeitems.state;
+			if (state == '1')
+				{
+				state = "Draft";
+			}
+			else if (state == '2')
+				{
+				state = "Pending Approal";
+			}
+			else if (state == '5' || state == '6')
+				{
+				state = "Pending Review";
+			}
+			list = list+"<td nowrap='nowrap'>"+state+"</td>";
+			list = list+"</tr>";
+			
+			itemcount = itemcount+1;
+		}
+	}
+	list = list+"</table>";
+	
+	document.getElementById('requestcount').innerHTML = "<strong>"+itemcount+" Active Request Items</strong>";
+	document.getElementById('requestlist').innerHTML = list;]]></client_script>
+        <description/>
+        <direct>false</direct>
+        <endpoint>x_63474_bots_BOTS_request_on_source.do</endpoint>
+        <html><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
+	<div id='listfor'></div>
+	<hr />
+	<div id="requestcount" style="margin-bottom:20px; border-bottom:1px solid grey;"></div>
+	
+	<div id="requestlist" style="margin-bottom:20px;"></div>
+	
+</j:jelly>]]></html>
+        <name>BOTS_request_on_source</name>
+        <processing_script/>
+        <sys_class_name>sys_ui_page</sys_class_name>
+        <sys_created_by>sphelan</sys_created_by>
+        <sys_created_on>2018-04-08 15:25:16</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>742fbe9a6f555f4051281ecbbb3ee4b8</sys_id>
+        <sys_mod_count>29</sys_mod_count>
+        <sys_name>BOTS_request_on_source</sys_name>
+        <sys_package display_value="BOTS - New" source="x_63474_bots">fca917c14f111300cb281b818110c713</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="BOTS - New">fca917c14f111300cb281b818110c713</sys_scope>
+        <sys_update_name>sys_ui_page_742fbe9a6f555f4051281ecbbb3ee4b8</sys_update_name>
+        <sys_updated_by>sphelan</sys_updated_by>
+        <sys_updated_on>2018-04-08 16:37:54</sys_updated_on>
+    </sys_ui_page>
+</record_update>

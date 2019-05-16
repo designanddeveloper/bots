@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_properties_category_m2m">
+    <sys_properties_category_m2m action="INSERT_OR_UPDATE">
+        <category display_value="BOTSsettings">b237c6f56fd5db4051281ecbbb3ee4de</category>
+        <order>100</order>
+        <property display_value="x_63474_bots.bots_fiscial_year" name="x_63474_bots.bots_fiscial_year">19f6419a0f7f5bc03264918172050e58</property>
+        <sys_class_name>sys_properties_category_m2m</sys_class_name>
+        <sys_created_by>sphelan</sys_created_by>
+        <sys_created_on>2018-08-10 14:30:25</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>3bc7995a0fbf5bc03264918172050e2a</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_63474_bots.bots_fiscial_year.BOTSsettings</sys_name>
+        <sys_package display_value="BOTS - New" source="x_63474_bots">fca917c14f111300cb281b818110c713</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="BOTS - New">fca917c14f111300cb281b818110c713</sys_scope>
+        <sys_update_name>sys_properties_category_m2m_3bc7995a0fbf5bc03264918172050e2a</sys_update_name>
+        <sys_updated_by>sphelan</sys_updated_by>
+        <sys_updated_on>2018-08-10 14:30:25</sys_updated_on>
+    </sys_properties_category_m2m>
+</record_update>

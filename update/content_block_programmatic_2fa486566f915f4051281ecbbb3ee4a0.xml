@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="content_block_programmatic">
+    <content_block_programmatic action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <category>general</category>
+        <condition/>
+        <conditional>false</conditional>
+        <frame/>
+        <logged_on>false</logged_on>
+        <name>My Funding Sources</name>
+        <programmatic_content><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
+  <g:evaluate var="jvar_fundings" object="true">
+   var myfundingsources = new GlideRecord("x_63474_bots_bots_crosswalk");
+	   myfundingsources.addQuery("sys_id","IN",MySourcesPerGrouper());
+       myfundingsources.query();
+       myfundingsources;
+</g:evaluate>
+
+<h4 style="text-align:center">My Funding Sources</h4>
+
+<j:if test="${!jvar_fundings.hasNext()}">
+	<div style="color:red;font-weight:bold;text-align:center;">YOU HAVE NO FUNDING SOURCES</div>
+	<hr />
+	<div style="text-align:center;padding-top:10px;">
+	Please contact the Business Office if you believe this to be in error
+	</div>
+</j:if>
+	
+<table class="table table-striped">
+	 <j:while test="${jvar_fundings.next()}">
+		<tr>
+			<td>${jvar_fundings.getValue('u_budget_long_name')}</td>
+			<td>KFS#${jvar_fundings.getValue('u_kfs_number')}</td>
+		 </tr>
+    </j:while>
+</table>	
+	
+</j:jelly>]]></programmatic_content>
+        <sys_class_name>content_block_programmatic</sys_class_name>
+        <sys_created_by>sphelan</sys_created_by>
+        <sys_created_on>2018-04-08 11:09:47</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>2fa486566f915f4051281ecbbb3ee4a0</sys_id>
+        <sys_mod_count>65</sys_mod_count>
+        <sys_name>My Funding Sources</sys_name>
+        <sys_package display_value="BOTS - New" source="x_63474_bots">fca917c14f111300cb281b818110c713</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="BOTS - New">fca917c14f111300cb281b818110c713</sys_scope>
+        <sys_update_name>content_block_programmatic_2fa486566f915f4051281ecbbb3ee4a0</sys_update_name>
+        <sys_updated_by>sphelan</sys_updated_by>
+        <sys_updated_on>2018-12-08 14:22:05</sys_updated_on>
+        <two_phase>false</two_phase>
+    </content_block_programmatic>
+</record_update>

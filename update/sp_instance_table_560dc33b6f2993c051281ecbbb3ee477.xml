@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_instance_table">
+    <sp_instance_table action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <class_name/>
+        <color>default</color>
+        <css/>
+        <display_field/>
+        <field_list>number,type,total_cost,state,funding_source,requested_by</field_list>
+        <filter table="x_63474_bots_bots_requests">total_cost&gt;=javascript:global.getCurrencyFilter('x_63474_bots_bots_requests','total_cost', 'USD;250000')^state!=3<item endquery="false" field="total_cost" goto="false" newquery="false" operator="&gt;=" or="false" value="javascript:global.getCurrencyFilter('x_63474_bots_bots_requests','total_cost', 'USD;250000')"/>
+            <item endquery="false" field="state" goto="false" newquery="false" operator="!=" or="false" value="3"/>
+        </filter>
+        <glyph/>
+        <id/>
+        <maximum_entries>20</maximum_entries>
+        <order>1</order>
+        <order_by>total_cost</order_by>
+        <order_direction>desc</order_direction>
+        <roles/>
+        <short_description/>
+        <size>md</size>
+        <sp_column display_value="2">136e927f6f2593c051281ecbbb3ee451</sp_column>
+        <sp_page display_value="bots_form">a8d454236f95938051281ecbbb3ee4b4</sp_page>
+        <sp_widget display_value="Data Table from Instance Definition">38058ff1cb11020000f8d856634c9c8c</sp_widget>
+        <sys_class_name>sp_instance_table</sys_class_name>
+        <sys_created_by>sphelan</sys_created_by>
+        <sys_created_on>2018-04-25 18:32:12</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>560dc33b6f2993c051281ecbbb3ee477</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>Requests &gt;= $250,000</sys_name>
+        <sys_package display_value="BOTS - New" source="x_63474_bots">fca917c14f111300cb281b818110c713</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="BOTS - New">fca917c14f111300cb281b818110c713</sys_scope>
+        <sys_update_name>sp_instance_table_560dc33b6f2993c051281ecbbb3ee477</sys_update_name>
+        <sys_updated_by>sphelan</sys_updated_by>
+        <sys_updated_on>2018-04-27 03:11:07</sys_updated_on>
+        <table>x_63474_bots_bots_requests</table>
+        <title>Requests &gt;= $250,000</title>
+        <url/>
+        <widget_parameters/>
+    </sp_instance_table>
+    <sys_translated_text action="delete_multiple" query="documentkey=560dc33b6f2993c051281ecbbb3ee477"/>
+</record_update>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_63474_bots.NewVendorsToReview</api_name>
+        <client_callable>false</client_callable>
+        <description>Reurn the AU# the DR can access and all for the CRA</description>
+        <name>NewVendorsToReview</name>
+        <script><![CDATA[function NewVendorsToReview(uID) {
+	
+	var newvendors = new GlideRecord('x_63474_bots_bots_requests');
+	newvendors.addQuery('is_new_vendor','Yes');
+	newvendors.addQuery('vendorignored','false');
+	newvendors.query();
+	while(newvendors.next()) {
+		return true;
+	}
+	
+	return false;
+}
+]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>sphelan</sys_created_by>
+        <sys_created_on>2018-10-16 23:42:46</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>33b850400f112b003264918172050e35</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>NewVendorsToReview</sys_name>
+        <sys_package display_value="BOTS - New" source="x_63474_bots">fca917c14f111300cb281b818110c713</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="BOTS - New">fca917c14f111300cb281b818110c713</sys_scope>
+        <sys_update_name>sys_script_include_33b850400f112b003264918172050e35</sys_update_name>
+        <sys_updated_by>sphelan</sys_updated_by>
+        <sys_updated_on>2018-10-16 23:43:55</sys_updated_on>
+    </sys_script_include>
+</record_update>

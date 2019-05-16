@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_script_client">
+    <sys_script_client action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <applies_extended>false</applies_extended>
+        <condition/>
+        <description>use the form widget and not the field on t he form</description>
+        <field>u_action</field>
+        <global>true</global>
+        <isolate_script>false</isolate_script>
+        <messages/>
+        <name>hide comments and worknotes input</name>
+        <order/>
+        <script><![CDATA[function onLoad() {
+   //Type appropriate comment here, and begin script below
+   g_form.setVisible('comments',false);
+	g_form.setVisible('work_notes',false);
+}]]></script>
+        <sys_class_name>sys_script_client</sys_class_name>
+        <sys_created_by>sphelan</sys_created_by>
+        <sys_created_on>2018-04-23 10:52:14</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_domain>global</sys_domain>
+        <sys_id>1c509b876fa9df8051281ecbbb3ee459</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>hide comments and worknotes input</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="BOTS - New" source="x_63474_bots">fca917c14f111300cb281b818110c713</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="BOTS - New">fca917c14f111300cb281b818110c713</sys_scope>
+        <sys_update_name>sys_script_client_1c509b876fa9df8051281ecbbb3ee459</sys_update_name>
+        <sys_updated_by>joshua.ortonio@crossfuze.com</sys_updated_by>
+        <sys_updated_on>2018-06-26 14:06:03</sys_updated_on>
+        <table>x_63474_bots_bots_requests</table>
+        <type>onLoad</type>
+        <ui_type>1</ui_type>
+        <view/>
+    </sys_script_client>
+</record_update>

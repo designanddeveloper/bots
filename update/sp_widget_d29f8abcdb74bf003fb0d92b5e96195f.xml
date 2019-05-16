@@ -1,0 +1,1314 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[function($scope, $sce, spUtil) {
+	/* widget controller */
+	var c = this;
+	
+	var searchnow = document.getElementById("botssearch");
+	searchnow.addEventListener("keydown", function (e) {
+		if (e.keyCode === 13) {  //checks whether the pressed key is "Enter"
+			c.searchbots();
+		}
+	});
+	
+	c.sort = function (newsort) {
+		//number|DESC
+		c.data.sort=newsort;
+		var sortparts = newsort.split('|');
+		c.data.sortfield = sortparts[0];
+		c.data.sortdirection = sortparts[1];
+		c.server.update();
+	};
+	
+	c.searchbots = function () {
+		c.data.botskeywords = c.data.botssearchterm;
+		c.server.update();
+	};
+	
+	c.resetbots = function () {
+		c.data.botskeywords = '';
+		c.data.botssearchterm = '';
+		c.server.update();
+	};
+	
+	c.filterbots = function (catalog) {
+		c.data.onform = catalog;
+		c.server.update();
+	};
+	
+	c.fiscialyear = function (year) {
+		c.data.foryear = year;
+		c.server.update();
+	};
+	
+	$scope.highlight = function(haystack, needle) {
+		if (!haystack)
+			return "";
+		
+		if (!needle)
+			return $sce.trustAsHtml(haystack);
+		
+		return $sce.trustAsHtml(haystack.replace(new RegExp(needle, "gi"), function(match) {
+			return '<mark class="highlight">' + match + '</mark>';
+		}));
+	};
+	
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.label {&#13;
+  display: inline-block;&#13;
+  line-height: 1;&#13;
+  text-align: center;&#13;
+  white-space: nowrap;&#13;
+  vertical-align: baseline;&#13;
+  padding: 4px 8px;&#13;
+  border-radius: 2px;&#13;
+  font-size: 12px;&#13;
+  font-weight: 400;&#13;
+  color: #FFF&#13;
+}&#13;
+&#13;
+.label.label-pill,&#13;
+.label.label-rounded {&#13;
+  border-radius: 99999px&#13;
+}&#13;
+&#13;
+.label.label-square {&#13;
+  border-radius: 0&#13;
+}&#13;
+&#13;
+.label.label-default {&#13;
+  background-color: #B0BEC5&#13;
+}&#13;
+&#13;
+.label.label-primary {&#13;
+  background-color: #2196F3&#13;
+}&#13;
+&#13;
+.label.label-secondary {&#13;
+  background-color: #323a45;&#13;
+  color: #FFF&#13;
+}&#13;
+&#13;
+.label.label-info {&#13;
+  background-color: #29B6F6&#13;
+}&#13;
+&#13;
+.label.label-success {&#13;
+  background-color: #5cb85c&#13;
+}&#13;
+&#13;
+.label.label-warning {&#13;
+  background-color: #f0ad4e&#13;
+}&#13;
+&#13;
+.label.label-danger {&#13;
+  background-color: #ef1c1c&#13;
+}&#13;
+&#13;
+.label.label-outlined {&#13;
+  border-width: 1px;&#13;
+  border-style: solid;&#13;
+  background-color: transparent&#13;
+}&#13;
+&#13;
+.label.label-outlined.label-default {&#13;
+  border-color: #B0BEC5;&#13;
+  color: #B0BEC5&#13;
+}&#13;
+&#13;
+.label.label-outlined.label-primary {&#13;
+  border-color: #2196F3;&#13;
+  color: #2196F3&#13;
+}&#13;
+&#13;
+.label.label-outlined.label-secondary {&#13;
+  border-color: #323a45;&#13;
+  color: #323a45&#13;
+}&#13;
+&#13;
+.label.label-outlined.label-info {&#13;
+  border-color: #29B6F6;&#13;
+  color: #29B6F6&#13;
+}&#13;
+&#13;
+.label.label-outlined.label-success {&#13;
+  border-color: #64DD17;&#13;
+  color: #64DD17&#13;
+}&#13;
+&#13;
+.label.label-outlined.label-warning {&#13;
+  border-color: #FFD600;&#13;
+  color: #FFD600&#13;
+}&#13;
+&#13;
+.label.label-outlined.label-danger {&#13;
+  border-color: #ef1c1c;&#13;
+  color: #ef1c1c&#13;
+}&#13;
+&#13;
+.active {&#13;
+    font-weight:bold;&#13;
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id/>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>On My Bugest Dashboard Tabs</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+	/* populate the 'data' object */
+	/* e.g., data.table = $sp.getValue('table'); */
+	
+	
+	data.draft = 0;
+	data.inprogress = 0;
+	data.approved = 0;
+	data.rejected = 0;
+	data.canceled = 0;
+	
+	if(!input)
+		{
+		//data.drafton = 'active';
+		data.inprogresson = 'active';
+		data.approvedon = '';
+		data.rejectedon = '';
+		
+		//data.draftlist = 'display:inline';
+		data.inprogresslist = 'display:inline';
+		data.approvedlist = 'display:none';
+		data.rejectedlist = 'display:none';
+		
+		data.sort = "opened_at|DESC";
+		data.sortfield = 'opened_at';
+	}
+	
+	data.me = gs.getUserID();
+	data.foryear = gs.getProperty('x_63474_bots.bots_fiscial_year');//'19';
+	
+	var hasdatelimit = true;
+	if  (input)
+		{
+		if (input.foryear)
+			{
+			//gs.addInfoMessage(input.foryear);
+			if (input.foryear != 'all')
+				{
+				var startdatetime = gs.dateGenerate('20'+input.foryear-1+'-07-01','00:00:00');
+				var enddatetime = gs.dateGenerate('20'+input.foryear+'-07-01','00:00:00');
+			}
+			else
+				{
+				hasdatelimit = false;
+			}
+		}
+	}
+	else
+		{
+		var startdatetime = gs.dateGenerate('20'+gs.getProperty('x_63474_bots.bots_fiscial_year')-1+'-07-01','00:00:00');
+		var enddatetime = gs.dateGenerate('20'+gs.getProperty('x_63474_bots.bots_fiscial_year')+'-07-01','00:00:00');
+	}
+	
+	
+	//var draftitems = [];
+	var inprogressitems = [];
+	var approveditems = [];
+	var notapproveditems = [];
+	var canceleditems = [];
+	
+	if (input)
+		{
+		if (input.onform)
+			{
+			var yourlist = new GlideRecord(input.onform);
+		}
+		else
+			{
+			var yourlist = new GlideRecord('x_63474_bots_bots_requests');
+		}
+	}
+	else
+		{
+		var yourlist = new GlideRecord('x_63474_bots_bots_requests');
+	}
+	
+	//var itemlist = [];
+	var suppplyitems = [];
+	if  (input)
+		{
+		if (input.botskeywords)
+			{
+			if (input.botskeywords != '')
+				{
+				var itemsearch = new GlideRecord('x_63474_bots_bots_supply_item');
+				itemsearch.addQuery('');
+				itemsearch.addQuery('u_description','CONTAINS',input.botskeywords).addOrCondition('u_item_no','CONTAINS',input.botskeywords).addOrCondition('created_for.name','CONTAINS',input.botskeywords);
+				itemsearch.query();
+				while(itemsearch.next()) {
+					//itemlist.push(itemsearch.u_number.toString());
+					suppplyitems.push(itemsearch.u_request.toString());
+				}							yourlist.addQuery('description','CONTAINS',input.botskeywords).addOrCondition('short_description','CONTAINS',input.botskeywords).addOrCondition('funding_source.u_kfs_number',input.botskeywords).addOrCondition('sys_id','IN',suppplyitems).addOrCondition('funding_source.u_budget_long_name','CONTAINS',input.botskeywords).addOrCondition('request_identification','CONTAINS',input.botskeywords).addOrCondition('requested_for.name','CONTAINS',input.botskeywords).addOrCondition('vendor.name','CONTAINS',input.botskeywords);
+			}
+		}
+	}
+	
+	if (hasdatelimit)
+		{
+		yourlist.addQuery('sys_created_on','>=', startdatetime);
+		yourlist.addQuery('sys_created_on','<', enddatetime);
+	}
+	if (input)
+		{
+		if (input.sort)
+			{
+			if (input.sortdirection == 'ASC')
+				{
+				yourlist.orderBy(input.sortfield);
+			}
+			else
+				{
+				yourlist.orderByDesc(input.sortfield);
+			}
+		}
+		else
+			{
+			yourlist.orderByDesc('opened_at');
+		}
+		
+	}
+	else
+		{
+		yourlist.orderByDesc('opened_at');
+	}
+	
+	yourlist.addQuery('funding_source','IN',MyFundingSources());
+	yourlist.query();
+	while(yourlist.next()){
+		var state = yourlist.state;
+		
+		var item = {};
+			
+			var anyitems = new GlideRecord('x_63474_bots_bots_supply_item');
+			anyitems.addQuery('u_request',yourlist.sys_id.toString());
+			anyitems.query();
+			item.supplyitems = anyitems.getRowCount();
+			
+			var initem = suppplyitems.indexOf(yourlist.sys_id.toString());
+			if (initem >=0)
+				{
+				//item.itemmessage = "Keyword found in "+ itemlist[initem];
+				item.itemmessage = "Keyword found in a linked item";
+			}
+			else
+				{
+				item.itemmessage = '';
+			}
+			
+			item.state = yourlist.state.getDisplayValue();
+			item.number = yourlist.number.getDisplayValue();
+			item.type = yourlist.sys_class_name.getDisplayValue();
+			item.table = yourlist.sys_class_name.toString();
+			item.sys_id = yourlist.sys_id.toString();
+			item.requested_for_id = yourlist.requested_for.toString(); //is for
+			item.requested_for = yourlist.requested_for.getDisplayValue(); //is for
+			item.requested_for_phone = yourlist.requested_for.phone.getDisplayValue();
+			item.requested_for_email = yourlist.requested_for.email.getDisplayValue();
+			item.funding_source = yourlist.funding_source.getDisplayValue();
+			item.kfs_of_request = yourlist.kfs_of_request.getDisplayValue();
+			item.requested_by = yourlist.requested_by.getDisplayValue(); //submitted by
+			item.total_cost = yourlist.total_cost.getDisplayValue();
+			item.short_description = yourlist.short_description.getDisplayValue();
+			item.assigned_to = yourlist.assigned_to.getDisplayValue();
+			item.active = yourlist.active;
+			
+			var opened_at = yourlist.opened_at.getDisplayValue();
+			opened_at = opened_at.split(' ');
+			item.opened_at = opened_at[0];
+			
+			var updated_on = yourlist.sys_updated_on.getDisplayValue();
+			updated_on = updated_on.split(' ');
+			item.updated_on = updated_on[0];
+			//item.updated_on = yourlist.sys_updated_on.getDisplayValue();
+			
+			var closed_at = yourlist.closed_at.getDisplayValue();
+			closed_at = closed_at.split(' ');
+			item.closed_at = closed_at[0];
+			
+			
+			
+			/*if (state == 1)
+				{
+				item.showstates = false;
+				if (yourlist.requested_for == gs.getUserID() || yourlist.requested_by == gs.getUserID())
+					{
+					data.draft = data.draft+1;
+					draftitems.push(item);
+				}
+			}*/
+			if (state == 2 || state == 5 || state == 6)
+				{
+				item.showstates = true;
+				data.inprogress = data.inprogress + 1;
+				inprogressitems.push(item);
+			}
+			if (state == 4)
+				{
+				item.showstates = false;
+				data.approved = data.approved+1;
+				approveditems.push(item);
+			}
+			if (state == 3)
+				{
+				item.showstates = false;
+				data.rejected = data.rejected+1;
+				notapproveditems.push(item);
+			}
+			if (state == -1)
+				{
+				item.showstates = false;
+				if (yourlist.requested_for == gs.getUserID() || yourlist.requested_by == gs.getUserID())
+					{
+					data.canceled = data.canceled+1;
+					canceleditems.push(item);
+				}
+			}
+		}
+		
+		
+		if(!input)
+			{
+			//if (data.draft == 0)
+			//	{
+				if (data.inprogress > 0)
+					{
+					//data.drafton = '';
+					data.inprogresson = 'active';
+					data.approvedon = '';
+					data.rejectedon = '';
+					//data.draftlist = 'display:none';
+					data.inprogresslist = 'display:inline';
+					data.approvedlist = 'display:none';
+					data.rejectedlist = 'display:none';
+				}
+				else if (data.approved > 0)
+					{
+					//data.drafton = '';
+					data.inprogresson = '';
+					data.approvedon = 'active';
+					data.rejectedon = '';
+					//data.draftlist = 'display:none';
+					data.inprogresslist = 'display:none';
+					data.approvedlist = 'display:inline';
+					data.rejectedlist = 'display:none';
+				}
+				else if (data.rejected > 0)
+					{
+					//data.drafton = '';
+					data.inprogresson = '';
+					data.approvedon = '';
+					data.rejectedon = 'active';
+					//data.draftlist = 'display:none';
+					data.inprogresslist = 'display:none';
+					data.approvedlist = 'display:none';
+					data.rejectedlist = 'display:inline';
+				}
+			//}
+			}
+			//data.draftitems = draftitems;
+			data.inprogressitems = inprogressitems;
+			data.approveditems = approveditems;
+			data.notapproveditems = notapproveditems;
+			data.canceleditems = canceleditems;
+			
+			
+			
+		})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>sphelan</sys_created_by>
+        <sys_created_on>2019-04-11 15:57:14</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>d29f8abcdb74bf003fb0d92b5e96195f</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>On My Bugest Dashboard Tabs</sys_name>
+        <sys_package display_value="BOTS - New" source="x_63474_bots">fca917c14f111300cb281b818110c713</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="BOTS - New">fca917c14f111300cb281b818110c713</sys_scope>
+        <sys_update_name>sp_widget_d29f8abcdb74bf003fb0d92b5e96195f</sys_update_name>
+        <sys_updated_by>sphelan</sys_updated_by>
+        <sys_updated_on>2019-04-11 16:06:00</sys_updated_on>
+        <template><![CDATA[<div class="row" style="margin-bottom:10px;">
+   <div class="col-sm-8">
+      <div class="card">
+         <div class="card-body">
+            <!--<h5 class="card-title">Search</h5>-->
+            <p class="card-text" style="margin-top:10px;">
+               <!--ng-keyup="c.search()"-->        
+               <input class="form-control form-control-lg" type="string" placeholder="Enter Search Term Here" id="botssearch" name="botssearch" ng-model="data.botssearchterm" ng-init="data.botssearchterm=''">
+            </p>
+            <a href="javascript:void(0)" class="btn btn-success" style="color:white;" ng-click="c.searchbots()">Search Requests</a>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="javascript:void(0)" class="btn btn-warning" style="color:white;" ng-click="c.resetbots()">Reset</a>
+         </div>
+      </div>
+   </div>
+   <div class="col-sm-2">
+      <div class="card">
+         <div class="card-body">
+            <h5 class="card-title">Filter</h5>
+            <p class="card-text">
+               <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio0" value="all" ng-click="c.filterbots('x_63474_bots_bots_requests')" checked/>
+               <label class="form-check-label" for="inlineRadio0">All Requests</label>
+               <br>      
+               <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="e0d08b13c3330100c8b837659bba8fb4" ng-click="c.filterbots('x_63474_bots_bots_order_request')"/>
+               <label class="form-check-label" for="inlineRadio1">General Office Supply</label>
+               <br>        
+               <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="606fd6ee6f2a260051281ecbbb3ee471" ng-click="c.filterbots('x_63474_bots_bots_purchase_order_request')"/>
+               <label class="form-check-label" for="inlineRadio2">Purchase</label>
+               <br>
+               <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="d4a3454f6f9513805cdc1cccbb3ee4aa" ng-click="c.filterbots('x_63474_bots_bots_travel')"/>
+               <label class="form-check-label" for="inlineRadio3">Travel</label>
+            </p>
+            <!--<a href="javascript:void(0)" class="btn btn-info" style="color:white;" ng-click="c.filter()">Add Filter</a>-->
+         </div>
+      </div>
+   </div>
+   <div class="col-sm-2">
+      <div class="card">
+         <div class="card-body">
+            <h5 class="card-title">Fiscal Year</h5>
+            <p class="card-text">
+               <span><input class="form-check-input" type="radio" name="serviceforOptions" id="servicelimit0" value="all" ng-click="c.fiscialyear('all')"/>
+               <label class="form-check-label" for="servicelimit0">All</label></span>
+               <br>      
+               <span><input class="form-check-input" type="radio" name="serviceforOptions" id="servicelimit1" value="u_stafffaculty" ng-click="c.fiscialyear('18')"/>
+               <label class="form-check-label" for="servicelimit1">FY 18</label></span>
+               <br>        
+               <span><input checked class="form-check-input" type="radio" name="serviceforOptions" id="servicelimit2" value="u_student" ng-click="c.fiscialyear('19')"/>
+               <label class="form-check-label" for="servicelimit2">FY 19</label></span>
+            </p>
+            <!--<a href="javascript:void(0)" class="btn btn-info" style="color:white;" ng-click="c.filter()">Add Filter</a>-->
+         </div>
+      </div>
+   </div>
+</div>
+<div>
+   <div id="tabs" style="background:#F5F5F5;border-radius-top-left:2px;border-radius-top-right:2px;">
+      <ul class="nav nav-tabs">
+         <!--<li class="{{data.drafton}}" onclick="swapvisibilty('draft')">
+            <a data-toggle="tab" onclick="return false;">
+            My Drafts&nbsp;&nbsp;
+            <span ng-if="data.draft > 0" class="label label-info label-as-badge ng-binding ng-scope">{{data.draft}}</span>
+            <span ng-if="data.draft == 0" class="label label-secondary label-outlined">{{data.draft}}</span>
+            </a>
+         </li>-->
+         <li class="{{data.inprogresson}}" onclick="swapvisibilty('open')">
+            <a data-toggle="tab" onclick="return false;">
+            Pending An Approval&nbsp;&nbsp;
+            <span ng-if="data.inprogress > 0" class="label label-info label-as-badge ng-binding ng-scope">{{data.inprogress}}</span>
+            <span ng-if="data.inprogress == 0" class="label label-secondary label-outlined">{{data.inprogress}}</span>
+            </a>
+         </li>
+         <li class="{{data.approvedon}}" onclick="swapvisibilty('approved')">
+            <a data-toggle="tab" onclick="return false;">
+            Approved&nbsp;&nbsp;
+            <span ng-if="data.approved > 0" class="label label-success label-as-badge ng-binding ng-scope">{{data.approved}}</span>
+            <span ng-if="data.approved == 0" class="label label-secondary label-outlined">{{data.approved}}</span>
+            </a>
+         </li>
+         <li class="{{data.rejectedon}}" onclick="swapvisibilty('canceled')">
+            <a data-toggle="tab" onclick="return false;">
+            Not Approved&nbsp;&nbsp;
+            <span ng-if="data.rejected > 0" class="label label-danger label-as-badge ng-binding ng-scope">{{data.rejected}}</span>
+            <span ng-if="data.rejected == 0" class="label label-secondary label-outlined">{{data.rejected}}</span>
+            </a>
+         </li>
+         <li class="" onclick="swapvisibilty('deleted')">
+            <a data-toggle="tab" onclick="return false;">
+            Canceled&nbsp;&nbsp;
+            <span ng-if="data.canceled > 0" class="label label-warning label-as-badge ng-binding ng-scope">{{data.canceled}}</span>
+            <span ng-if="data.canceled == 0" class="label label-secondary label-outlined">{{data.canceled}}</span>
+            </a>
+         </li>
+      </ul>
+   </div>
+</div>
+<div id="recordlists">
+   <!--DRAFT-->
+   <div id ="drafts" style="{{data.draftlist}}">
+      <!--x049a057c6f6997805cdc1cccbb3ee48a-->
+      <div ng-if="data.draftitems.length == 0" style="font-weight:bold;">At this time you have no drafts<span ng-if="data.botssearchterm != ''"> per the applied filter</span></div>
+      <table id="draftrequests" class='table table-striped' ng-if="data.draftitems.length > 0">
+         <tr>
+            <th nowrap="nowrap"> <span ng-if="data.sort == 'number|ASC'" ng-click="c.sort('number|DESC')" style="cursor:pointer;">
+               Request&nbsp;&nbsp;
+               <span> 
+               <span class="fa ng-scope fa-chevron-circle-up text-primary"></span>  
+               </span>
+               </span>
+               <span ng-if="data.sort == 'number|DESC'" ng-click="c.sort('number|ASC')"  style="cursor:pointer;">
+               Request&nbsp;&nbsp;
+               <span> 
+               <span class="fa ng-scope fa-chevron-circle-down text-primary"></span>  
+               </span>
+               </span>
+               <span ng-if="data.sortfield != 'number'" ng-click="c.sort('number|DESC')" style="cursor:pointer;">
+               Request&nbsp;&nbsp;
+               </span>
+            </th>
+            <th nowrap="nowrap"><span ng-if="data.sort == 'requested_for|ASC'" ng-click="c.sort('requested_for|DESC')" style="cursor:pointer;">
+               Requested For&nbsp;&nbsp;
+               <span> 
+               <span class="fa ng-scope fa-chevron-circle-up text-primary"></span>  
+               </span>
+               </span>
+               <span ng-if="data.sort == 'requested_for|DESC'" ng-click="c.sort('requested_for|ASC')" style="cursor:pointer;">
+               Requested For&nbsp;&nbsp;
+               <span> 
+               <span class="fa ng-scope fa-chevron-circle-down text-primary"></span>  
+               </span>
+               </span>
+               <span ng-if="data.sortfield != 'requested_for'" ng-click="c.sort('requested_for|DESC')" style="cursor:pointer;">
+               Requested For&nbsp;&nbsp;
+               </span>
+            </th>
+            <th nowrap="nowrap">Short Description</th>
+            <th nowrap="nowrap"> <span ng-if="data.sort == 'funding_source|ASC'" ng-click="c.sort('funding_source|DESC')" style="cursor:pointer;">
+               Funding Source&nbsp;&nbsp;
+               <span> 
+               <span class="fa ng-scope fa-chevron-circle-up text-primary"></span>  
+               </span>
+               </span>
+               <span ng-if="data.sort == 'funding_source|DESC'" ng-click="c.sort('funding_source|ASC')" style="cursor:pointer;">
+               Funding Source&nbsp;&nbsp;
+               <span> 
+               <span class="fa ng-scope fa-chevron-circle-down text-primary"></span>  
+               </span>
+               </span>
+               <span ng-if="data.sortfield != 'funding_source'" ng-click="c.sort('funding_source|DESC')" style="cursor:pointer;">
+               Funding Source&nbsp;&nbsp;
+               </span>
+              &nbsp;&nbsp;/&nbsp;&nbsp;
+              <span ng-if="data.sort == 'kfs_of_request|ASC'" ng-click="c.sort('kfs_of_request|DESC')" style="cursor:pointer;">
+                KFS#&nbsp;&nbsp;
+               <span> 
+               <span class="fa ng-scope fa-chevron-circle-up text-primary"></span>  
+               </span>
+               </span>
+               <span ng-if="data.sort == 'kfs_of_request|DESC'" ng-click="c.sort('kfs_of_request|ASC')" style="cursor:pointer;">
+                KFS#&nbsp;&nbsp;
+               <span> 
+               <span class="fa ng-scope fa-chevron-circle-down text-primary"></span>  
+               </span>
+               </span>
+               <span ng-if="data.sortfield != 'kfs_of_request'" ng-click="c.sort('kfs_of_request|DESC')" style="cursor:pointer;">
+                KFS#&nbsp;&nbsp;
+               </span>
+            </th>
+            <th nowrap="nowrap">
+               <span ng-if="data.sort == 'opened_at|ASC'" ng-click="c.sort('opened_at|DESC')" style="cursor:pointer;">
+               Opened&nbsp;&nbsp;
+               <span> 
+               <span class="fa ng-scope fa-chevron-circle-up text-primary"></span>  
+               </span>
+               </span>
+               <span ng-if="data.sort == 'opened_at|DESC'" ng-click="c.sort('opened_at|ASC')" style="cursor:pointer;">
+               Opened&nbsp;&nbsp;
+               <span> 
+               <span class="fa ng-scope fa-chevron-circle-down text-primary"></span>  
+               </span>
+               </span>	
+               <span ng-if="data.sortfield != 'opened_at'" ng-click="c.sort('opened_at|DESC')" style="cursor:pointer;">
+               Opened&nbsp;&nbsp;
+               </span>
+               <!--closed_at-->
+            </th>
+            <th nowrap="nowrap"><span ng-if="data.sort == 'total_cost|ASC'" ng-click="c.sort('total_cost|DESC')" style="cursor:pointer;">
+               Total Cost&nbsp;&nbsp;
+               <span> 
+               <span class="fa ng-scope fa-chevron-circle-up text-primary"></span>  
+               </span>
+               </span>
+               <span ng-if="data.sort == 'total_cost|DESC'" ng-click="c.sort('total_cost|ASC')" style="cursor:pointer;">
+               Total Cost&nbsp;&nbsp;
+               <span> 
+               <span class="fa ng-scope fa-chevron-circle-down text-primary"></span>  
+               </span>
+               </span>
+               <span ng-if="data.sortfield != 'total_cost'" ng-click="c.sort('total_cost|DESC')" style="cursor:pointer;">
+               Total Cost&nbsp;&nbsp;
+               </span>
+            </th>
+         </tr>
+         <tr ng-repeat="item in data.draftitems">
+            <td nowrap="nowrap">
+               <a style='font-size:20px;color:red;' target='_parent' href='?id=bots_form&table={{item.table}}&sys_id={{item.sys_id}}&view=sp'>{{item.number}}</a>
+               <br>{{item.type}}
+               <span ng-show="item.showstates == true"><br>{{item.state}}</span>
+               <span ng-if="item.supplyitems == 1"><br>Contains {{item.supplyitems}} Item</span>
+               <span ng-if="item.supplyitems > 1"><br>Contains {{item.supplyitems}} Items</span>
+              <span ng-if="item.itemmessage != ''"><br><em>{{item.itemmessage}}</em></span>
+            </td>
+            <td nowrap="nowrap">{{item.requested_for}}<span ng-if="data.me != item.requested_for_id"><br>{{item.requested_for_phone}}<br><a style="color:red;" href="mailto:{{item.requested_for_email}}">{{item.requested_for_email}}</a></span></td>
+            <td>
+              <!--{{item.short_description}}-->
+              <p ng-bind-html="highlight(item.short_description, data.botssearchterm)"></p>
+           </td>
+            <td>{{item.funding_source}}<br>of KFS# {{item.kfs_of_request}}</td>
+            <td nowrap="nowrap">{{item.opened_at}}</td>
+            <td nowrap="nowrap">{{item.total_cost}}</td>
+         </tr>
+      </table>
+   </div>
+   <!--IN Progress-->
+   <div id ="inprogress" style="{{data.inprogresslist}}">
+      <!--xc49b8d7c6f6997805cdc1cccbb3ee40f-->
+      <div ng-if="data.inprogressitems.length == 0" style="font-weight:bold;">At this time you have no requests to review<span ng-if="data.botssearchterm != ''"> per the applied filter</span></div>
+      <table class='table table-striped' ng-if="data.inprogressitems.length > 0">
+         <thead>
+            <tr>
+                         <th nowrap="nowrap">
+               <span ng-if="data.sort == 'number|ASC'" ng-click="c.sort('number|DESC')" style="cursor:pointer;">
+               Request&nbsp;&nbsp;
+               <span> 
+               <span class="fa ng-scope fa-chevron-circle-up text-primary"></span>  
+               </span>
+               </span>
+               <span ng-if="data.sort == 'number|DESC'" ng-click="c.sort('number|ASC')"  style="cursor:pointer;">
+               Request&nbsp;&nbsp;
+               <span> 
+               <span class="fa ng-scope fa-chevron-circle-down text-primary"></span>  
+               </span>
+               </span>
+               <span ng-if="data.sortfield != 'number'" ng-click="c.sort('number|DESC')" style="cursor:pointer;">
+               Request&nbsp;&nbsp;
+               </span>
+            </th>
+            <th nowrap="nowrap">
+               <span ng-if="data.sort == 'assigned_to|ASC'" ng-click="c.sort('assigned_to|DESC')" style="cursor:pointer;">
+               Assigned To&nbsp;&nbsp;
+               <span> 
+               <span class="fa ng-scope fa-chevron-circle-up text-primary"></span>  
+               </span>
+               </span>
+               <span ng-if="data.sort == 'assigned_to|DESC'" ng-click="c.sort('assigned_to|ASC')"  style="cursor:pointer;">
+               Assigned To&nbsp;&nbsp;
+               <span> 
+               <span class="fa ng-scope fa-chevron-circle-down text-primary"></span>  
+               </span>
+               </span>
+               <span ng-if="data.sortfield != 'assigned_to'" ng-click="c.sort('assigned_to|DESC')" style="cursor:pointer;">
+               Assigned To&nbsp;&nbsp;
+               </span>
+            </th>
+            <th nowrap="nowrap">
+               <span ng-if="data.sort == 'requested_for|ASC'" ng-click="c.sort('requested_for|DESC')" style="cursor:pointer;">
+               Requested For&nbsp;&nbsp;
+               <span> 
+               <span class="fa ng-scope fa-chevron-circle-up text-primary"></span>  
+               </span>
+               </span>
+               <span ng-if="data.sort == 'requested_for|DESC'" ng-click="c.sort('requested_for|ASC')" style="cursor:pointer;">
+               Requested For&nbsp;&nbsp;
+               <span> 
+               <span class="fa ng-scope fa-chevron-circle-down text-primary"></span>  
+               </span>
+               </span>
+               <span ng-if="data.sortfield != 'requested_for'" ng-click="c.sort('requested_for|DESC')" style="cursor:pointer;">
+               Requested For&nbsp;&nbsp;
+               </span>
+            </th>
+            <th nowrap="nowrap">
+               Short Description&nbsp;&nbsp;
+            </th>
+            <th nowrap="nowrap">
+               <span ng-if="data.sort == 'funding_source|ASC'" ng-click="c.sort('funding_source|DESC')" style="cursor:pointer;">
+               Funding Source&nbsp;&nbsp;
+               <span> 
+               <span class="fa ng-scope fa-chevron-circle-up text-primary"></span>  
+               </span>
+               </span>
+               <span ng-if="data.sort == 'funding_source|DESC'" ng-click="c.sort('funding_source|ASC')" style="cursor:pointer;">
+               Funding Source&nbsp;&nbsp;
+               <span> 
+               <span class="fa ng-scope fa-chevron-circle-down text-primary"></span>  
+               </span>
+               </span>
+               <span ng-if="data.sortfield != 'funding_source'" ng-click="c.sort('funding_source|DESC')" style="cursor:pointer;">
+               Funding Source&nbsp;&nbsp;
+               </span>
+               &nbsp;&nbsp;/&nbsp;&nbsp;
+              <span ng-if="data.sort == 'kfs_of_request|ASC'" ng-click="c.sort('kfs_of_request|DESC')" style="cursor:pointer;">
+                KFS#&nbsp;&nbsp;
+               <span> 
+               <span class="fa ng-scope fa-chevron-circle-up text-primary"></span>  
+               </span>
+               </span>
+               <span ng-if="data.sort == 'kfs_of_request|DESC'" ng-click="c.sort('kfs_of_request|ASC')" style="cursor:pointer;">
+                KFS#&nbsp;&nbsp;
+               <span> 
+               <span class="fa ng-scope fa-chevron-circle-down text-primary"></span>  
+               </span>
+               </span>
+               <span ng-if="data.sortfield != 'kfs_of_request'" ng-click="c.sort('kfs_of_request|DESC')" style="cursor:pointer;">
+                KFS#&nbsp;&nbsp;
+               </span>
+            </th>
+            <th nowrap="nowrap">
+               <span ng-if="data.sort == 'opened_at|ASC'" ng-click="c.sort('opened_at|DESC')" style="cursor:pointer;">
+               Opened&nbsp;&nbsp;
+               <span> 
+               <span class="fa ng-scope fa-chevron-circle-up text-primary"></span>  
+               </span>
+               </span>
+               <span ng-if="data.sort == 'opened_at|DESC'" ng-click="c.sort('opened_at|ASC')" style="cursor:pointer;">
+               Opened&nbsp;&nbsp;
+               <span> 
+               <span class="fa ng-scope fa-chevron-circle-down text-primary"></span>  
+               </span>
+               </span>	
+               <span ng-if="data.sortfield != 'opened_at'" ng-click="c.sort('opened_at|DESC')" style="cursor:pointer;">
+               Opened&nbsp;&nbsp;
+               </span>
+               <!--closed_at-->
+            </th>
+            <th nowrap="nowrap">
+               <span ng-if="data.sort == 'sys_updated_on|ASC'" ng-click="c.sort('sys_updated_on|DESC')" style="cursor:pointer;">
+               Updated&nbsp;&nbsp;
+               <span> 
+               <span class="fa ng-scope fa-chevron-circle-up text-primary"></span>  
+               </span>
+               </span>
+               <span ng-if="data.sort == 'sys_updated_on|DESC'" ng-click="c.sort('sys_updated_on|ASC')" style="cursor:pointer;">
+               Updated&nbsp;&nbsp;
+               <span> 
+               <span class="fa ng-scope fa-chevron-circle-down text-primary"></span>  
+               </span>
+               </span>
+               <span ng-if="data.sortfield != 'sys_updated_on'" ng-click="c.sort('sys_updated_on|DESC')" style="cursor:pointer;">
+               Updated&nbsp;&nbsp;
+               </span>
+            </th>
+            <th nowrap="nowrap">
+               <span ng-if="data.sort == 'total_cost|ASC'" ng-click="c.sort('total_cost|DESC')" style="cursor:pointer;">
+               Total Cost&nbsp;&nbsp;
+               <span> 
+               <span class="fa ng-scope fa-chevron-circle-up text-primary"></span>  
+               </span>
+               </span>
+               <span ng-if="data.sort == 'total_cost|DESC'" ng-click="c.sort('total_cost|ASC')" style="cursor:pointer;">
+               Total Cost&nbsp;&nbsp;
+               <span> 
+               <span class="fa ng-scope fa-chevron-circle-down text-primary"></span>  
+               </span>
+               </span>
+               <span ng-if="data.sortfield != 'total_cost'" ng-click="c.sort('total_cost|DESC')" style="cursor:pointer;">
+               Total Cost&nbsp;&nbsp;
+               </span>
+            </th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr ng-repeat="item in data.inprogressitems">
+               <td nowrap="nowrap"><a style='font-size:20px;color:red;' target='_parent' href='?id=bots_form&table={{item.table}}&sys_id={{item.sys_id}}&view=sp'>{{item.number}}</a>
+                  <br>{{item.type}}
+                  <span ng-show="item.showstates == true"><br>{{item.state}}</span>
+                  <span ng-if="item.supplyitems == 1"><br>Contains {{item.supplyitems}} Item</span>
+                  <span ng-if="item.supplyitems > 1"><br>Contains {{item.supplyitems}} Items</span>
+                <span ng-if="item.itemmessage != ''"><br><em>{{item.itemmessage}}</em></span>
+               </td>
+              
+               <td>{{item.assigned_to}}</td> 
+              
+               <td>{{item.requested_for}}<span ng-if="data.me != item.requested_for_id"><br>{{item.requested_for_phone}}<br><a style="color:red;" href="mailto:{{item.requested_for_email}}">{{item.requested_for_email}}</a></span></td>
+             
+              <td>
+              <!--{{item.short_description}}-->
+              <p ng-bind-html="highlight(item.short_description, data.botssearchterm)"></p>
+           </td>
+               <td>{{item.funding_source}}<br>of KFS# {{item.kfs_of_request}}</td>
+               <td nowrap="nowrap">{{item.opened_at}}</td>
+               <td nowrap="nowrap"><span>{{item.updated_on}}</span></td><!-- ng-if="item.updated_on != item.opened_at"-->
+               <td nowrap="nowrap">{{item.total_cost}}</td>
+            </tr>
+         </tbody>
+      </table>
+   </div>
+</div>
+<!--Approved-->
+<div id ="approved" style="{{data.approvedlist}}">
+   <!--x2b9b01bc6f6997805cdc1cccbb3ee410-->
+   <div ng-if="data.approveditems.length == 0" style="font-weight:bold;">At this time your funding source(s) has no approved requests<span ng-if="data.botssearchterm != ''"> per the applied filter</span></div>
+   <table id="approveditemsrequests" class='table table-striped' ng-if="data.approveditems.length > 0">
+      <tr>
+         <th nowrap="nowrap"> <span ng-if="data.sort == 'number|ASC'" ng-click="c.sort('number|DESC')" style="cursor:pointer;">
+            Request&nbsp;&nbsp;
+            <span> 
+            <span class="fa ng-scope fa-chevron-circle-up text-primary"></span>  
+            </span>
+            </span>
+            <span ng-if="data.sort == 'number|DESC'" ng-click="c.sort('number|ASC')"  style="cursor:pointer;">
+            Request&nbsp;&nbsp;
+            <span> 
+            <span class="fa ng-scope fa-chevron-circle-down text-primary"></span>  
+            </span>
+            </span>
+            <span ng-if="data.sortfield != 'number'" ng-click="c.sort('number|DESC')" style="cursor:pointer;">
+            Request&nbsp;&nbsp;
+            </span>
+         </th>
+         <th nowrap="nowrap"><span ng-if="data.sort == 'requested_for|ASC'" ng-click="c.sort('requested_for|DESC')" style="cursor:pointer;">
+            Requested For&nbsp;&nbsp;
+            <span> 
+            <span class="fa ng-scope fa-chevron-circle-up text-primary"></span>  
+            </span>
+            </span>
+            <span ng-if="data.sort == 'requested_for|DESC'" ng-click="c.sort('requested_for|ASC')" style="cursor:pointer;">
+            Requested For&nbsp;&nbsp;
+            <span> 
+            <span class="fa ng-scope fa-chevron-circle-down text-primary"></span>  
+            </span>
+            </span>
+            <span ng-if="data.sortfield != 'requested_for'" ng-click="c.sort('requested_for|DESC')" style="cursor:pointer;">
+            Requested For&nbsp;&nbsp;
+            </span>
+         </th>
+         <th nowrap="nowrap">Short Description</th>
+         <th nowrap="nowrap"> <span ng-if="data.sort == 'funding_source|ASC'" ng-click="c.sort('funding_source|DESC')" style="cursor:pointer;">
+            Funding Source&nbsp;&nbsp;
+            <span> 
+            <span class="fa ng-scope fa-chevron-circle-up text-primary"></span>  
+            </span>
+            </span>
+            <span ng-if="data.sort == 'funding_source|DESC'" ng-click="c.sort('funding_source|ASC')" style="cursor:pointer;">
+            Funding Source&nbsp;&nbsp;
+            <span> 
+            <span class="fa ng-scope fa-chevron-circle-down text-primary"></span>  
+            </span>
+            </span>
+            <span ng-if="data.sortfield != 'funding_source'" ng-click="c.sort('funding_source|DESC')" style="cursor:pointer;">
+            Funding Source&nbsp;&nbsp;
+            </span>
+           &nbsp;&nbsp;/&nbsp;&nbsp;
+              <span ng-if="data.sort == 'kfs_of_request|ASC'" ng-click="c.sort('kfs_of_request|DESC')" style="cursor:pointer;">
+                KFS#&nbsp;&nbsp;
+               <span> 
+               <span class="fa ng-scope fa-chevron-circle-up text-primary"></span>  
+               </span>
+               </span>
+               <span ng-if="data.sort == 'kfs_of_request|DESC'" ng-click="c.sort('kfs_of_request|ASC')" style="cursor:pointer;">
+                KFS#&nbsp;&nbsp;
+               <span> 
+               <span class="fa ng-scope fa-chevron-circle-down text-primary"></span>  
+               </span>
+               </span>
+               <span ng-if="data.sortfield != 'kfs_of_request'" ng-click="c.sort('kfs_of_request|DESC')" style="cursor:pointer;">
+                KFS#&nbsp;&nbsp;
+               </span>
+         </th>
+         <th nowrap="nowrap"><span ng-if="data.sort == 'opened_at|ASC'" ng-click="c.sort('opened_at|DESC')" style="cursor:pointer;">
+            Opened&nbsp;&nbsp;
+            <span> 
+            <span class="fa ng-scope fa-chevron-circle-up text-primary"></span>  
+            </span>
+            </span>
+            <span ng-if="data.sort == 'opened_at|DESC'" ng-click="c.sort('opened_at|ASC')" style="cursor:pointer;">
+            Opened&nbsp;&nbsp;
+            <span> 
+            <span class="fa ng-scope fa-chevron-circle-down text-primary"></span>  
+            </span>
+            </span>	
+            <span ng-if="data.sortfield != 'opened_at'" ng-click="c.sort('opened_at|DESC')" style="cursor:pointer;">
+            Opened&nbsp;&nbsp;
+            </span>
+         </th>
+         <th nowrap="nowrap"><span ng-if="data.sort == 'closed_at|ASC'" ng-click="c.sort('closed_at|DESC')" style="cursor:pointer;">
+            Closed&nbsp;&nbsp;
+            <span> 
+            <span class="fa ng-scope fa-chevron-circle-up text-primary"></span>  
+            </span>
+            </span>
+            <span ng-if="data.sort == 'closed_at|DESC'" ng-click="c.sort('closed_at|ASC')" style="cursor:pointer;">
+            Closed&nbsp;&nbsp;
+            <span> 
+            <span class="fa ng-scope fa-chevron-circle-down text-primary"></span>  
+            </span>
+            </span>	
+            <span ng-if="data.sortfield != 'closed_at'" ng-click="c.sort('closed_at|DESC')" style="cursor:pointer;">
+            Closed&nbsp;&nbsp;
+            </span>
+         </th>
+         <th nowrap="nowrap"><span ng-if="data.sort == 'total_cost|ASC'" ng-click="c.sort('total_cost|DESC')" style="cursor:pointer;">
+            Total Cost&nbsp;&nbsp;
+            <span> 
+            <span class="fa ng-scope fa-chevron-circle-up text-primary"></span>  
+            </span>
+            </span>
+            <span ng-if="data.sort == 'total_cost|DESC'" ng-click="c.sort('total_cost|ASC')" style="cursor:pointer;">
+            Total Cost&nbsp;&nbsp;
+            <span> 
+            <span class="fa ng-scope fa-chevron-circle-down text-primary"></span>  
+            </span>
+            </span>
+            <span ng-if="data.sortfield != 'total_cost'" ng-click="c.sort('total_cost|DESC')" style="cursor:pointer;">
+            Total Cost&nbsp;&nbsp;
+            </span>
+         </th>
+      </tr>
+      <tr ng-repeat="item in data.approveditems">
+         <td nowrap="nowrap"><a style='font-size:20px;color:red;' target='_parent' href='?id=bots_form&table={{item.table}}&sys_id={{item.sys_id}}&view=sp'>{{item.number}}</a>
+            <br>{{item.type}}
+            <span ng-show="item.showstates == true"><br>{{item.state}}</span>
+            <span ng-if="item.supplyitems == 1"><br>Contains {{item.supplyitems}} Item</span>
+            <span ng-if="item.supplyitems > 1"><br>Contains {{item.supplyitems}} Items</span>
+           <span ng-if="item.itemmessage != ''"><br><em>{{item.itemmessage}}</em></span>
+         </td>
+         <td nowrap="nowrap">{{item.requested_for}}<span ng-if="data.me != item.requested_for_id"><br>{{item.requested_for_phone}}<br><a style="color:red;" href="mailto:{{item.requested_for_email}}">{{item.requested_for_email}}</a></span></td>
+         <td>
+              <!--{{item.short_description}}-->
+              <p ng-bind-html="highlight(item.short_description, data.botssearchterm)"></p>
+           </td>
+         <td>{{item.funding_source}}<br>of KFS# {{item.kfs_of_request}}</td>
+         <td nowrap="nowrap">{{item.opened_at}}</td>
+         <td nowrap="nowrap">{{item.closed_at}}</td>
+         <td nowrap="nowrap">{{item.total_cost}}</td>
+      </tr>
+   </table>
+</div>
+<!--Not Approved-->
+<div id ="notapproved" style="{{data.rejectedlist}}">
+   <!--x16ab4d7c6f6997805cdc1cccbb3ee4bd-->
+   <div ng-if="data.notapproveditems.length == 0" style="font-weight:bold;">At this time your funding source(s) has no rejected requests<span ng-if="data.botssearchterm != ''"> per the applied filter</span></div>
+   <table id="notapprovedrequests" class='table table-striped' ng-if="data.notapproveditems.length > 0">
+      <tr>
+         <th nowrap="nowrap"> <span ng-if="data.sort == 'number|ASC'" ng-click="c.sort('number|DESC')" style="cursor:pointer;">
+            Request&nbsp;&nbsp;
+            <span> 
+            <span class="fa ng-scope fa-chevron-circle-up text-primary"></span>  
+            </span>
+            </span>
+            <span ng-if="data.sort == 'number|DESC'" ng-click="c.sort('number|ASC')"  style="cursor:pointer;">
+            Request&nbsp;&nbsp;
+            <span> 
+            <span class="fa ng-scope fa-chevron-circle-down text-primary"></span>  
+            </span>
+            </span>
+            <span ng-if="data.sortfield != 'number'" ng-click="c.sort('number|DESC')" style="cursor:pointer;">
+            Request&nbsp;&nbsp;
+            </span>
+         </th>
+         <th nowrap="nowrap"><span ng-if="data.sort == 'requested_for|ASC'" ng-click="c.sort('requested_for|DESC')" style="cursor:pointer;">
+            Requested For&nbsp;&nbsp;
+            <span> 
+            <span class="fa ng-scope fa-chevron-circle-up text-primary"></span>  
+            </span>
+            </span>
+            <span ng-if="data.sort == 'requested_for|DESC'" ng-click="c.sort('requested_for|ASC')" style="cursor:pointer;">
+            Requested For&nbsp;&nbsp;
+            <span> 
+            <span class="fa ng-scope fa-chevron-circle-down text-primary"></span>  
+            </span>
+            </span>
+            <span ng-if="data.sortfield != 'requested_for'" ng-click="c.sort('requested_for|DESC')" style="cursor:pointer;">
+            Requested For&nbsp;&nbsp;
+            </span>
+         </th>
+         <th nowrap="nowrap">Short Description</th>
+         <th nowrap="nowrap"><span ng-if="data.sort == 'funding_source|ASC'" ng-click="c.sort('funding_source|DESC')" style="cursor:pointer;">
+            Funding Source&nbsp;&nbsp;
+            <span> 
+            <span class="fa ng-scope fa-chevron-circle-up text-primary"></span>  
+            </span>
+            </span>
+            <span ng-if="data.sort == 'funding_source|DESC'" ng-click="c.sort('funding_source|ASC')" style="cursor:pointer;">
+            Funding Source&nbsp;&nbsp;
+            <span> 
+            <span class="fa ng-scope fa-chevron-circle-down text-primary"></span>  
+            </span>
+            </span>
+            <span ng-if="data.sortfield != 'funding_source'" ng-click="c.sort('funding_source|DESC')" style="cursor:pointer;">
+            Funding Source&nbsp;&nbsp;
+            </span>
+           &nbsp;&nbsp;/&nbsp;&nbsp;
+              <span ng-if="data.sort == 'kfs_of_request|ASC'" ng-click="c.sort('kfs_of_request|DESC')" style="cursor:pointer;">
+                KFS#&nbsp;&nbsp;
+               <span> 
+               <span class="fa ng-scope fa-chevron-circle-up text-primary"></span>  
+               </span>
+               </span>
+               <span ng-if="data.sort == 'kfs_of_request|DESC'" ng-click="c.sort('kfs_of_request|ASC')" style="cursor:pointer;">
+                KFS#&nbsp;&nbsp;
+               <span> 
+               <span class="fa ng-scope fa-chevron-circle-down text-primary"></span>  
+               </span>
+               </span>
+               <span ng-if="data.sortfield != 'kfs_of_request'" ng-click="c.sort('kfs_of_request|DESC')" style="cursor:pointer;">
+                KFS#&nbsp;&nbsp;
+               </span>
+         </th>
+         <th nowrap="nowrap"><span ng-if="data.sort == 'opened_at|ASC'" ng-click="c.sort('opened_at|DESC')" style="cursor:pointer;">
+            Opened&nbsp;&nbsp;
+            <span> 
+            <span class="fa ng-scope fa-chevron-circle-up text-primary"></span>  
+            </span>
+            </span>
+            <span ng-if="data.sort == 'opened_at|DESC'" ng-click="c.sort('opened_at|ASC')" style="cursor:pointer;">
+            Opened&nbsp;&nbsp;
+            <span> 
+            <span class="fa ng-scope fa-chevron-circle-down text-primary"></span>  
+            </span>
+            </span>	
+            <span ng-if="data.sortfield != 'opened_at'" ng-click="c.sort('opened_at|DESC')" style="cursor:pointer;">
+            Opened&nbsp;&nbsp;
+            </span>
+         </th>
+         <th nowrap="nowrap"><span ng-if="data.sort == 'closed_at|ASC'" ng-click="c.sort('closed_at|DESC')" style="cursor:pointer;">
+            Closed&nbsp;&nbsp;
+            <span> 
+            <span class="fa ng-scope fa-chevron-circle-up text-primary"></span>  
+            </span>
+            </span>
+            <span ng-if="data.sort == 'closed_at|DESC'" ng-click="c.sort('closed_at|ASC')" style="cursor:pointer;">
+            Closed&nbsp;&nbsp;
+            <span> 
+            <span class="fa ng-scope fa-chevron-circle-down text-primary"></span>  
+            </span>
+            </span>	
+            <span ng-if="data.sortfield != 'closed_at'" ng-click="c.sort('closed_at|DESC')" style="cursor:pointer;">
+            Closed&nbsp;&nbsp;
+            </span>
+         </th>
+         <th nowrap="nowrap"><span ng-if="data.sort == 'total_cost|ASC'" ng-click="c.sort('total_cost|DESC')" style="cursor:pointer;">
+            Total Cost&nbsp;&nbsp;
+            <span> 
+            <span class="fa ng-scope fa-chevron-circle-up text-primary"></span>  
+            </span>
+            </span>
+            <span ng-if="data.sort == 'total_cost|DESC'" ng-click="c.sort('total_cost|ASC')" style="cursor:pointer;">
+            Total Cost&nbsp;&nbsp;
+            <span> 
+            <span class="fa ng-scope fa-chevron-circle-down text-primary"></span>  
+            </span>
+            </span>
+            <span ng-if="data.sortfield != 'total_cost'" ng-click="c.sort('total_cost|DESC')" style="cursor:pointer;">
+            Total Cost&nbsp;&nbsp;
+            </span>
+         </th>
+      </tr>
+      <tr ng-repeat="item in data.notapproveditems">
+         <td nowrap="nowrap"><a style='font-size:20px;color:red;' target='_parent' href='?id=bots_form&table={{item.table}}&sys_id={{item.sys_id}}&view=sp'>{{item.number}}</a>
+            <br>{{item.type}}
+            <span ng-show="item.showstates == true"><br>{{item.state}}</span>
+            <span ng-if="item.supplyitems == 1"><br>Contains {{item.supplyitems}} Item</span>
+            <span ng-if="item.supplyitems > 1"><br>Contains {{item.supplyitems}} Items</span>
+           <span ng-if="item.itemmessage != ''"><br><em>{{item.itemmessage}}</em></span>
+         </td>
+         <td>{{item.requested_for}}<span ng-if="data.me != item.requested_for_id"><br>{{item.requested_for_phone}}<br><a style="color:red;" href="mailto:{{item.requested_for_email}}">{{item.requested_for_email}}</a></span></td>
+         <td>
+              <!--{{item.short_description}}-->
+              <p ng-bind-html="highlight(item.short_description, data.botssearchterm)"></p>
+           </td>
+         <td>{{item.funding_source}}<br>of KFS# {{item.kfs_of_request}}</td>
+         <td nowrap="nowrap">{{item.opened_at}}</td>
+         <td nowrap="nowrap">{{item.closed_at}}</td>
+         <td nowrap="nowrap">{{item.total_cost}}</td>
+      </tr>
+   </table>
+</div>
+<!--Canceled-->
+<div id ="canceled">
+   <!--x58442a456fe6530051281ecbbb3ee41d-->
+   <div ng-if="data.canceleditems.length == 0" style="font-weight:bold;">At this time your funding source(s) has no canceled requests<span ng-if="data.botssearchterm != ''"> per the applied filter</span></div>
+   <table id="canceledrequests" class='table table-striped' ng-if="data.canceleditems.length > 0">
+      <tr>
+         <th nowrap="nowrap"> <span ng-if="data.sort == 'number|ASC'" ng-click="c.sort('number|DESC')" style="cursor:pointer;">
+            Request&nbsp;&nbsp;
+            <span> 
+            <span class="fa ng-scope fa-chevron-circle-up text-primary"></span>  
+            </span>
+            </span>
+            <span ng-if="data.sort == 'number|DESC'" ng-click="c.sort('number|ASC')"  style="cursor:pointer;">
+            Request&nbsp;&nbsp;
+            <span> 
+            <span class="fa ng-scope fa-chevron-circle-down text-primary"></span>  
+            </span>
+            </span>
+            <span ng-if="data.sortfield != 'number'" ng-click="c.sort('number|DESC')" style="cursor:pointer;">
+            Request&nbsp;&nbsp;
+            </span>
+         </th>
+         <th nowrap="nowrap"><span ng-if="data.sort == 'requested_for|ASC'" ng-click="c.sort('requested_for|DESC')" style="cursor:pointer;">
+            Requested For&nbsp;&nbsp;
+            <span> 
+            <span class="fa ng-scope fa-chevron-circle-up text-primary"></span>  
+            </span>
+            </span>
+            <span ng-if="data.sort == 'requested_for|DESC'" ng-click="c.sort('requested_for|ASC')" style="cursor:pointer;">
+            Requested For&nbsp;&nbsp;
+            <span> 
+            <span class="fa ng-scope fa-chevron-circle-down text-primary"></span>  
+            </span>
+            </span>
+            <span ng-if="data.sortfield != 'requested_for'" ng-click="c.sort('requested_for|DESC')" style="cursor:pointer;">
+            Requested For&nbsp;&nbsp;
+            </span>
+         </th>
+         <th nowrap="nowrap">Short Description</th>
+         <th nowrap="nowrap"> <span ng-if="data.sort == 'funding_source|ASC'" ng-click="c.sort('funding_source|DESC')" style="cursor:pointer;">
+            Funding Source&nbsp;&nbsp;
+            <span> 
+            <span class="fa ng-scope fa-chevron-circle-up text-primary"></span>  
+            </span>
+            </span>
+            <span ng-if="data.sort == 'funding_source|DESC'" ng-click="c.sort('funding_source|ASC')" style="cursor:pointer;">
+            Funding Source&nbsp;&nbsp;
+            <span> 
+            <span class="fa ng-scope fa-chevron-circle-down text-primary"></span>  
+            </span>
+            </span>
+            <span ng-if="data.sortfield != 'funding_source'" ng-click="c.sort('funding_source|DESC')" style="cursor:pointer;">
+            Funding Source&nbsp;&nbsp;
+            </span>
+           &nbsp;&nbsp;/&nbsp;&nbsp;
+              <span ng-if="data.sort == 'kfs_of_request|ASC'" ng-click="c.sort('kfs_of_request|DESC')" style="cursor:pointer;">
+                KFS#&nbsp;&nbsp;
+               <span> 
+               <span class="fa ng-scope fa-chevron-circle-up text-primary"></span>  
+               </span>
+               </span>
+               <span ng-if="data.sort == 'kfs_of_request|DESC'" ng-click="c.sort('kfs_of_request|ASC')" style="cursor:pointer;">
+                KFS#&nbsp;&nbsp;
+               <span> 
+               <span class="fa ng-scope fa-chevron-circle-down text-primary"></span>  
+               </span>
+               </span>
+               <span ng-if="data.sortfield != 'kfs_of_request'" ng-click="c.sort('kfs_of_request|DESC')" style="cursor:pointer;">
+                KFS#&nbsp;&nbsp;
+               </span>
+         </th>
+         <th nowrap="nowrap"><span ng-if="data.sort == 'opened_at|ASC'" ng-click="c.sort('opened_at|DESC')" style="cursor:pointer;">
+            Opened&nbsp;&nbsp;
+            <span> 
+            <span class="fa ng-scope fa-chevron-circle-up text-primary"></span>  
+            </span>
+            </span>
+            <span ng-if="data.sort == 'opened_at|DESC'" ng-click="c.sort('opened_at|ASC')" style="cursor:pointer;">
+            Opened&nbsp;&nbsp;
+            <span> 
+            <span class="fa ng-scope fa-chevron-circle-down text-primary"></span>  
+            </span>
+            </span>	
+            <span ng-if="data.sortfield != 'opened_at'" ng-click="c.sort('opened_at|DESC')" style="cursor:pointer;">
+            Opened&nbsp;&nbsp;
+            </span>
+         </th>
+         <th nowrap="nowrap"><span ng-if="data.sort == 'closed_at|ASC'" ng-click="c.sort('closed_at|DESC')" style="cursor:pointer;">
+            Closed&nbsp;&nbsp;
+            <span> 
+            <span class="fa ng-scope fa-chevron-circle-up text-primary"></span>  
+            </span>
+            </span>
+            <span ng-if="data.sort == 'closed_at|DESC'" ng-click="c.sort('closed_at|ASC')" style="cursor:pointer;">
+            Closed&nbsp;&nbsp;
+            <span> 
+            <span class="fa ng-scope fa-chevron-circle-down text-primary"></span>  
+            </span>
+            </span>	
+            <span ng-if="data.sortfield != 'closed_at'" ng-click="c.sort('closed_at|DESC')" style="cursor:pointer;">
+            Closed&nbsp;&nbsp;
+            </span>
+         </th>
+         <th nowrap="nowrap"><span ng-if="data.sort == 'total_cost|ASC'" ng-click="c.sort('total_cost|DESC')" style="cursor:pointer;">
+            Total Cost&nbsp;&nbsp;
+            <span> 
+            <span class="fa ng-scope fa-chevron-circle-up text-primary"></span>  
+            </span>
+            </span>
+            <span ng-if="data.sort == 'total_cost|DESC'" ng-click="c.sort('total_cost|ASC')" style="cursor:pointer;">
+            Total Cost&nbsp;&nbsp;
+            <span> 
+            <span class="fa ng-scope fa-chevron-circle-down text-primary"></span>  
+            </span>
+            </span>
+            <span ng-if="data.sortfield != 'total_cost'" ng-click="c.sort('total_cost|DESC')" style="cursor:pointer;">
+            Total Cost&nbsp;&nbsp;
+            </span>
+         </th>
+      </tr>
+      <tr ng-repeat="item in data.canceleditems">
+         <td nowrap="nowrap"><a style='font-size:20px;color:red;' target='_parent' href='?id=bots_form&table={{item.table}}&sys_id={{item.sys_id}}&view=sp'>{{item.number}}</a>
+            <br>{{item.type}}
+            <span ng-show="item.showstates == true"><br>{{item.state}}</span>
+            <span ng-if="item.supplyitems == 1"><br>Contains {{item.supplyitems}} Item</span>
+            <span ng-if="item.supplyitems > 1"><br>Contains {{item.supplyitems}} Items</span>
+           <span ng-if="item.itemmessage != ''"><br><em>{{item.itemmessage}}</em></span>
+         </td>
+         <td>{{item.requested_for}}<span ng-if="data.me != item.requested_for_id"><br>{{item.requested_for_phone}}<br><a style="color:red;" href="mailto:{{item.requested_for_email}}">{{item.requested_for_email}}</a></span></td>
+         <td>
+              <!--{{item.short_description}}-->
+              <p ng-bind-html="highlight(item.short_description, data.botssearchterm)"></p>
+           </td>
+         <td>{{item.funding_source}}<br>of KFS# {{item.kfs_of_request}}</td>
+         <td nowrap="nowrap">{{item.opened_at}}</td>
+         <td nowrap="nowrap">{{item.closed_at}}</td>
+         <td nowrap="nowrap">{{item.total_cost}}</td>
+      </tr>
+   </table>
+</div>
+</div>
+<script>
+   function swapvisibilty(showthis) {
+   	if (showthis == 'draft')
+   	{
+   		document.getElementById('drafts').style.display="inline";
+   		document.getElementById('inprogress').style.display="none";
+         document.getElementById('approved').style.display="none";
+         document.getElementById('notapproved').style.display="none";
+             document.getElementById('canceled').style.display="none";
+   	}
+       if (showthis == 'open')
+   	{
+   		document.getElementById('drafts').style.display="none";
+         document.getElementById('inprogress').style.display="inline";
+         document.getElementById('approved').style.display="none";        
+         document.getElementById('notapproved').style.display="none";
+               document.getElementById('canceled').style.display="none";
+   	}
+   	if (showthis == 'approved')
+   	{
+   		document.getElementById('drafts').style.display="none";
+         document.getElementById('inprogress').style.display="none";
+         document.getElementById('approved').style.display="inline";
+         document.getElementById('notapproved').style.display="none";
+               document.getElementById('canceled').style.display="none";
+   	}
+   	if (showthis == 'canceled')
+   	{
+   		document.getElementById('drafts').style.display="none";
+         document.getElementById('inprogress').style.display="none";
+         document.getElementById('approved').style.display="none";
+   		document.getElementById('notapproved').style.display="inline";
+               document.getElementById('canceled').style.display="none";
+   	}
+           if (showthis == 'deleted')
+   	{
+   		document.getElementById('drafts').style.display="none";
+         document.getElementById('inprogress').style.display="none";
+         document.getElementById('approved').style.display="none";
+   		document.getElementById('notapproved').style.display="none";
+               document.getElementById('canceled').style.display="inline";
+   	}
+   
+         }
+</script>]]></template>
+    </sp_widget>
+</record_update>

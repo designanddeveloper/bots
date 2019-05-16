@@ -1,0 +1,836 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_header_footer">
+    <sp_header_footer action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[function ($rootScope, $scope, snRecordWatcher, spUtil, $location, $uibModal, cabrillo, $timeout, csmUnifiedDeviceType, $window) {
+	var c=this;
+	$scope.userID = $scope.user.sys_id;
+	$scope.mobileNavBarToggledOnce = false;
+	$scope.showTypeaheadSearch = false;
+	
+	$scope.getMobileClassIfNeeded = function() {
+		return $scope.isMobileView() ? 'is-mobile' : '';
+	};
+	
+	$(window).resize(function() {
+		handleResize();
+	});
+	
+	function handleResize(){
+		var view = $scope.isMobileView();
+		if( view != $scope.currentView) {
+			if (!view) {
+				$('.csm-unified-panel').hide();
+				$('.navbar-action-search').show();
+			}
+			else {
+				$('.csm-unified-panel').show();
+				$('.navbar-action-search').hide();
+			}
+			$scope.currentView = !$scope.currentView;
+		}
+	}
+	
+	var setNavBarMaxHeight = function() {
+		
+		var navBarDiv = $('#sp-nav-bar');
+		if (!navBarDiv) {
+			return;
+		}
+		
+		var navBarHeaderHeight = $('.navbar-header') ? $('.navbar-header').height() : 0;
+		var navBarMaxHeight = $(window).innerHeight() - navBarHeaderHeight;
+		
+		navBarDiv.css({'max-height': navBarMaxHeight + 'px'});
+		};
+		
+		$(window).on('orientationchange', function(e) {
+			$timeout(function(){
+				setNavBarMaxHeight();
+			});
+		});
+		
+		$scope.toggleNavBarClicked = function(e) {
+			
+			// Set the max-height on navBarDiv equal to window height
+			// to make sure the overflow on this div can take effect
+			if (!$scope.mobileNavBarToggledOnce) {
+				setNavBarMaxHeight();
+				$scope.mobileNavBarToggledOnce = true;
+			}
+		};
+		
+		$scope.collapseTypeaheadSearch = function(e) {
+			$scope.showTypeaheadSearch = false;
+		};
+		
+		$scope.expandTypeaheadSearch = function(e) {
+			$scope.showTypeaheadSearch = true;
+			$timeout(function() {
+				$('.navbar-action-search input[name="q"]').focus();
+			});
+		};
+		
+		$scope.toggleTypeaheadSearch = function(e) {
+			$scope.showTypeaheadSearch ? $scope.collapseTypeaheadSearch(e) : $scope.expandTypeaheadSearch(e);
+		};
+		
+		$('.navbar-action-search').focusout(function() {
+			$scope.collapseTypeaheadSearch();
+		});
+		
+		$rootScope.$on('$locationChangeSuccess', function(e, newUrl, oldUrl) {
+			$scope.collapseTypeaheadSearch();
+			$('.navbar-action-search input[name="q"]').val('');
+		});
+		
+		// 	$rootScope.$on('sp_loading_indicator', function(e, value) {
+			
+			// 		// value is true  => show loading indicator, need to hide the footer
+			// 		// value is false => show loading indicator, need to show the footer
+			// 		value ? $('.navbar.csm-unified-footer').hide() : $('.navbar.csm-unified-footer').show();
+			// 	});
+			
+			if (cabrillo.isNative())
+				$scope.isViewNative = true;
+			
+			$scope.isMobileView = csmUnifiedDeviceType.isMobileView;
+			$scope.currentView = $scope.isMobileView();
+			
+			function popupCenter(url, title, w, h) {
+				// Fixes dual-screen position                         Most browsers      Firefox
+				var dualScreenLeft = window.screenLeft != undefined ? window.screenLeft : screen.left;
+				var dualScreenTop = window.screenTop != undefined ? window.screenTop : screen.top;
+				
+				var width = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;
+				var height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;
+				
+				var left = ((width / 2) - (w / 2)) + dualScreenLeft;
+				var top = ((height / 2) - (h / 2)) + dualScreenTop;
+				var newWindow = window.open(url, title, 'scrollbars=yes, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
+				
+				// Puts focus on the newWindow
+				if (window.focus) {
+					newWindow.focus();
+				}
+				newWindow.onload = function() {
+					var jq = newWindow.$j;
+					console.log(jq);
+					jq('#back_cell').hide();
+					jq('#sc_attachment_button').hide();
+				};
+				return newWindow;
+			}
+			
+			$scope.openAnonymousChatPopUp = function() {
+				var url = "com.glideapp.servicecatalog_cat_item_view.do?v=1&sysparm_id=2ee88dafdb416200f6c270f5bf9619cf&sysparm_domain_restore=false&sysparm_stack=no&sysparm_queue_id=3a40c019c333120071d07bfaa2d3ae17";
+				popupCenter (url, "chat_popup", 650, 580);
+			};
+			
+			$scope.openPopUp = function() {
+				var url = "$chat_support.do?queueID=" + $scope.data.connect_support_queue_id;
+				var popup = window.open (url, "popup", "width=900, height=600");
+			};
+			c.openSignLogin = function () {
+				$window.location.href="/community?id=community_login";
+			};
+			$scope.openLogin = function () {
+				$scope.modalInstance = $uibModal.open({
+					templateUrl: 'bots-unifiedModalLogin',
+					scope: $scope
+				});
+			};
+			
+			$scope.isCommunityPortal = function() {
+				return $scope.data.isCommunityPortal;
+			};
+			
+			$scope.isCSMPortal = function() {
+				return $scope.data.isCSMPortal;
+			};
+			
+			$scope.isCSPPortal = function() {
+				return $scope.data.isCSPPortal;
+			};
+			
+			$scope.showCommunitySupportProfile = function() {
+				return $scope.portal.url_suffix === "community" && $scope.data.enableSupportProfile;
+			};
+			
+			$rootScope.$on('sp.avatar_changed', function() {
+				$scope.userID = "";
+				$timeout(function(){
+					$scope.userID = $scope.user.sys_id;
+				});
+			});
+			
+			$scope.isHomepage = function() {
+				if (!$scope.page.id)
+					return true;
+				
+				if ($scope.page.id == $scope.portal.homepage_dv)
+					return true;
+				
+				return false;
+			};
+			
+			$scope.openUserGuide = function()
+			{
+				c.modalInstance = $uibModal.open({
+					templateUrl: 'bots-user-guide',
+					scope: $scope,
+					size:"lg",
+					//backdrop:'static',
+					keyboard:false
+				});
+			};
+			$scope.closeUserGuide = function() {
+				c.modalInstance.close();
+			};
+			
+			
+		}]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.custommenuitem {&#13;
+    color: white;&#13;
+    line-height: 20px;&#13;
+  	padding: 10px 15px;&#13;
+  	font-family: "Roboto", "SourceSansPro", Helvetica, Arial, sans-serif;&#13;
+    font-size: 14px;&#13;
+  	text-decoration: none;&#13;
+}&#13;
+.custommenuitem:hover {&#13;
+    color: #FFD700;&#13;
+  	text-decoration: none;&#13;
+}&#13;
+&#13;
+&#13;
+.umdheader-wrap {&#13;
+    display: block!important;&#13;
+    position: relative!important;&#13;
+    /*z-index: 2147483647!important;*/&#13;
+    font-family: Source Sans,Source Sans Pro,sans-serif!important;&#13;
+    font-size: 13px!important;&#13;
+    line-height: 1.3!important;&#13;
+}&#13;
+.umdheader-main, .umdheader-main__container {&#13;
+    border: 0!important;&#13;
+    padding: 0!important;&#13;
+    font-family: Source Sans,Source Sans Pro,sans-serif!important;&#13;
+    font-size: 13px!important;&#13;
+    line-height: 1.3!important;&#13;
+}&#13;
+.umdheader-main {&#13;
+    display: block!important;&#13;
+    background-color: #e21833!important;&#13;
+    margin: 0!important;&#13;
+}&#13;
+.umdheader-main__container {&#13;
+    display: flex!important;&#13;
+    justify-content: space-between!important;&#13;
+    align-items: center!important;&#13;
+    /*height: 56px!important;*/&#13;
+    margin: 0 auto!important;&#13;
+}&#13;
+.umdheader-main, .umdheader-main__container {&#13;
+    border: 0!important;&#13;
+    padding: 0!important;&#13;
+    font-family: Source Sans,Source Sans Pro,sans-serif!important;&#13;
+    font-size: 13px!important;&#13;
+    line-height: 1.3!important;&#13;
+}&#13;
+.umdheader-main__logo {&#13;
+    border: 0!important;&#13;
+    margin: 1px 0 0!important;&#13;
+    padding: 0 0 0 10px!important;&#13;
+    font-family: Source Sans,Source Sans Pro,sans-serif!important;&#13;
+    font-size: 13px!important;&#13;
+    line-height: 1.3!important;&#13;
+    color: #fff!important;&#13;
+    font-family: Crimson,serif!important;&#13;
+    font-size: 1.076923076923077em!important;&#13;
+    font-weight: 400!important;&#13;
+}&#13;
+.umdheader-main__logo a {&#13;
+    font-family: Source Sans,Source Sans Pro,sans-serif!important;&#13;
+    font-size: 13px!important;&#13;
+    line-height: 1.3!important;&#13;
+    font-family: Crimson,serif!important;&#13;
+    font-size: 100%!important;&#13;
+    color: #fff!important;&#13;
+    text-decoration: none!important;&#13;
+    padding: 10px 0!important;&#13;
+    display: inline-block!important;&#13;
+    text-transform: uppercase!important;&#13;
+    letter-spacing: 1px!important;&#13;
+}&#13;
+&#13;
+//Hiding the header-loader&#13;
+.csm-navbar .header-loader {&#13;
+  display: none !important;&#13;
+}&#13;
+.navbar-inverse .navbar-toggle {&#13;
+  margin-top: 9px;&#13;
+  margin-bottom: 11px;&#13;
+  margin-left: 15px;&#13;
+  border: none;&#13;
+  background-color: inherit;&#13;
+}&#13;
+&#13;
+header[role="banner"],&#13;
+.nav &gt; li &gt; a {&#13;
+  max-height: 60px;&#13;
+}&#13;
+&#13;
+&#13;
+@media screen and (max-width: 768px){&#13;
+  .nav &gt; li &gt; a {&#13;
+    padding-right: 0.5rem;&#13;
+    padding-left: 0.5rem;&#13;
+  }&#13;
+}&#13;
+&#13;
+.navbar-brand {&#13;
+  height: 50px;&#13;
+  padding: 0;&#13;
+}&#13;
+&#13;
+.navbar-brand img, .navbar-brand span {&#13;
+  margin-left: $sp-logo-margin-x;&#13;
+  margin-right: $sp-logo-margin-x;&#13;
+  display: block;&#13;
+  max-height: $sp-logo-max-height;&#13;
+  max-width: $sp-logo-max-width;&#13;
+  position: relative;&#13;
+  top: 50%;&#13;
+  color: $navbar-inverse-link-color;&#13;
+  #  color: $csm-navbar-text-color-selected;&#13;
+  -webkit-transform: translateY(-50%);&#13;
+  -ms-transform: translateY(-50%);&#13;
+  transform: translateY(-50%);&#13;
+}&#13;
+.breadcrumb-container {&#13;
+  background-color: $panel-bg;&#13;
+}&#13;
+&#13;
+.navbar-header.is-mobile {&#13;
+  margin-top: 2px;&#13;
+}&#13;
+&#13;
+.navbar-header.is-mobile img {&#13;
+  width: 110px;&#13;
+}&#13;
+&#13;
+.navbar-header.is-mobile .navbar-action-search {&#13;
+  display: table;&#13;
+}&#13;
+&#13;
+.navbar-action-search .search-box {&#13;
+  #  	padding-bottom: 0px;&#13;
+}&#13;
+&#13;
+.navbar-header.is-mobile .navbar-action-search {&#13;
+  margin-top: 8px;&#13;
+}&#13;
+&#13;
+.navbar-global.is-mobile .navbar-nav {&#13;
+  display: block;&#13;
+}&#13;
+&#13;
+.navbar-action-icon {&#13;
+  padding-right: 10px;&#13;
+  color: $navbar-inverse-link-color;&#13;
+&#13;
+}&#13;
+&#13;
+.navbar-action-login {&#13;
+  padding-top: 20px;&#13;
+  padding-bottom: 20px;&#13;
+}&#13;
+&#13;
+.navbar-nav &gt; li &gt; a.navbar-user-profile-dropdown-link,&#13;
+.navbar-action-icon {&#13;
+  #  	color: $text-muted;&#13;
+  #  	color: $navbar-inverse-link-hover-color;&#13;
+}&#13;
+&#13;
+.navbar-global .navbar-action-search-icon {&#13;
+  #  margin-top: 17px;&#13;
+}&#13;
+&#13;
+.navbar-global .navbar-action-search {&#13;
+  display: table;&#13;
+&#13;
+  .input-group {&#13;
+    padding-bottom: 0px;&#13;
+&#13;
+    input[name="q"] {&#13;
+      width: 270px;&#13;
+      border-color: $text-muted;&#13;
+      border-radius: 3px;&#13;
+      float: right;&#13;
+      color: $text-color;&#13;
+    }&#13;
+&#13;
+    ul.dropdown-menu {&#13;
+      min-width: 110%;&#13;
+&#13;
+      a.ta-item {&#13;
+        line-height: 20px;&#13;
+        font-size: 14px;&#13;
+        white-space: normal;&#13;
+&#13;
+        i.ta-icon, span {&#13;
+          display: table-cell;&#13;
+        }&#13;
+&#13;
+        span {&#13;
+          vertical-align: top;&#13;
+        }&#13;
+      }&#13;
+    }&#13;
+&#13;
+    span.input-group-btn {&#13;
+      float: left;&#13;
+      #          	padding-right: 20px;&#13;
+&#13;
+      button {&#13;
+        background-color: inherit;&#13;
+        border: none;&#13;
+        color: inherit;&#13;
+        outline: none;&#13;
+        margin-right: 10px;&#13;
+        padding-top: 8px;&#13;
+      }      	      &#13;
+    }      &#13;
+  }&#13;
+}&#13;
+&#13;
+/* for mobile app */&#13;
+.navbar-inverse.is-native {&#13;
+  background-color: #405060;&#13;
+}&#13;
+&#13;
+.navbar-collapse {&#13;
+  padding-right: 0px;&#13;
+  padding-left: 0px;&#13;
+}&#13;
+&#13;
+.navbar-nav &gt; li &gt; a, .navbar-nav &gt; li &gt; span{&#13;
+  #	color: $csm-navbar-text-color-selected;&#13;
+}&#13;
+&#13;
+.navbar-primary {&#13;
+  background-color: $csm-secondary-header-bg; &#13;
+  height: 36px;&#13;
+}&#13;
+&#13;
+.navbar-header {&#13;
+  padding-top: 3px;&#13;
+}&#13;
+&#13;
+.navbar-global ul.dropdown-menu {&#13;
+  border-color: $csm-navbar-global-user-profile-dropdown-border;&#13;
+  #  border-radius: 3px;&#13;
+  padding: 10px 0;&#13;
+  padding-right: 0px;&#13;
+  box-shadow: none; &#13;
+}&#13;
+&#13;
+.navbar-global .navbar-user-profile-dropdown-menu a {&#13;
+  line-height: 23px;&#13;
+  color: $link-color;&#13;
+  #	color: $csm-navbar-global-user-profile-dropdown-link-color;&#13;
+}&#13;
+&#13;
+.navbar-primary ul {&#13;
+  padding-left: $sp-logo-margin-x;&#13;
+  line-height: 16px;&#13;
+}&#13;
+.navbar-primary ul.dropdown-menu {&#13;
+  margin-top: 8px;&#13;
+  padding-bottom: 15px;&#13;
+  padding-right: 10px;&#13;
+}&#13;
+&#13;
+.navbar-primary .navbar-left &gt; ul.navbar-nav &gt; li:first-of-type &gt; a {&#13;
+  padding-left: 0px;&#13;
+}&#13;
+.navbar-inverse .navbar-nav  &gt; .open &gt; a, &#13;
+.navbar-inverse .navbar-nav  &gt; .open &gt; a:hover, &#13;
+.navbar-inverse .navbar-nav  &gt; .open &gt; a:focus {&#13;
+  background-color: inherit;&#13;
+}&#13;
+&#13;
+.nav-bar-separator-pipe {&#13;
+  margin-top: 10px;&#13;
+  height: 30px;&#13;
+  border: 1px solid #979797;&#13;
+}&#13;
+&#13;
+.csm-nav-bar-separator-pipe {&#13;
+  border-color: $csm-navbar-separator-color;&#13;
+}&#13;
+&#13;
+.navbar-nav &gt; li &gt; a.navbar-user-profile-dropdown-link {&#13;
+  padding-top: 17px;&#13;
+  padding-bottom: 17px;&#13;
+}&#13;
+&#13;
+.navbar-nav &gt; li &gt; a {&#13;
+  padding-top: 0px;&#13;
+  padding-bottom: 0px;&#13;
+  #    line-height: inherit;&#13;
+}&#13;
+&#13;
+.csm-unified-secondary-menu {&#13;
+  .navbar-nav {&#13;
+    margin-right: -20px;&#13;
+&#13;
+    .unifiedMenuPrimaryMenuItem {&#13;
+      a:hover, a:focus {&#13;
+        text-decoration: none;&#13;
+      }&#13;
+    }&#13;
+  }&#13;
+}&#13;
+&#13;
+.navbar-global.is-mobile .navbar-nav {&#13;
+  margin: 0px;&#13;
+}&#13;
+&#13;
+.navbar-global.is-mobile .panel-heading,&#13;
+.csm-unified-mobile-menu .panel-heading,&#13;
+.navbar-global.is-mobile .navbar-nav &gt; li &gt; a, &#13;
+.navbar-global.is-mobile .csm-unified-panel .panel-body &gt; div,&#13;
+.unified-mobile-header-menu-level3 .panel-body &gt; div {&#13;
+  padding-top: 15px;&#13;
+  padding-bottom: 15px;&#13;
+  padding-left: 20px;&#13;
+  padding-right: 20px;&#13;
+}&#13;
+&#13;
+.navbar-global.is-mobile .panel-body,&#13;
+.csm-unified-mobile-menu .panel-body {&#13;
+  background-color: $panel-bg;&#13;
+  #  	background-color: $csm-navbar-panel-body-text-color;&#13;
+  color: $text-color;&#13;
+  padding: 0px;&#13;
+}&#13;
+&#13;
+.navbar-global.is-mobile .panel-group .panel-heading  + .panel-collapse &gt; .panel-body,&#13;
+.csm-unified-mobile-menu .panel-group .panel-heading  + .panel-collapse &gt; .panel-body {&#13;
+  border: none;&#13;
+}&#13;
+&#13;
+.navbar-global.is-mobile .panel-body,&#13;
+.csm-unified-mobile-menu .panel-body {&#13;
+  #    color: $text-color;&#13;
+  #  	color: $csm-navbar-panel-body-text-color;&#13;
+  color: $navbar-inverse-link-color;&#13;
+}&#13;
+&#13;
+.unified-mobile-header-menu-level1-link a {&#13;
+  color: $navbar-inverse-link-color;&#13;
+}&#13;
+&#13;
+.navbar-global.is-mobile .panel-group .panel  + .panel {&#13;
+  margin-top: 0px;&#13;
+}&#13;
+&#13;
+.link-align {&#13;
+  text-align: center;&#13;
+  margin:0 auto;&#13;
+  border-top:1px solid #E6E8EA;&#13;
+  padding-top: 10px;&#13;
+  margin-top:10px;&#13;
+  margin-bottom: -10px;&#13;
+  padding-bottom: 10px;&#13;
+}&#13;
+&#13;
+.notif-badge{&#13;
+  position: absolute;&#13;
+  top:-3px;&#13;
+  right: 10px;&#13;
+  font-size: 60%;&#13;
+}&#13;
+&#13;
+.dropdown-menu-line{&#13;
+  min-width: 20em;  &#13;
+}&#13;
+&#13;
+.dropdown-menu &gt; li &gt; a {&#13;
+  white-space: nowrap;&#13;
+  padding: 6px 20px;&#13;
+  color: $link-color;&#13;
+}&#13;
+&#13;
+.dropdown-menu &gt; li &gt; a:hover,&#13;
+.dropdown-menu &gt; li &gt; a:focus {&#13;
+  text-decoration: underline;&#13;
+  background-color: inherit;&#13;
+  color: darken($link-color,15%);&#13;
+}&#13;
+&#13;
+.navbar-primary.navbar-align-content {&#13;
+  justify-content: space-between;&#13;
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id>bots-unified-portal-header</id>
+        <internal>false</internal>
+        <link><![CDATA[function(scope, element) {	
+	$(element).on('click.nav','.navbar-collapse.in',function(e) {	
+		var target = $(e.target);
+		if (target.is('a')) {
+			// collapse mobile nav if clicked an anchor
+			$(this).removeClass('in').addClass('collapse');
+			return;
+		}
+		
+		// if neither target nor parent is an anchor, do nothing
+		if (!target.parent().is('a'))
+			return;
+		
+		// collapse mobile nav if target is part of a submenu
+		if (target.parents("ul.dropdown-menu").length > 0)
+			$(this).removeClass('in').addClass('collapse');
+	});
+}]]></link>
+        <name>BOTS Portal Header</name>
+        <option_schema/>
+        <public>true</public>
+        <roles/>
+        <script><![CDATA[// Defines the support queue ID that will be linked to by the Live Chat link in header
+data.url_suffix = $sp.getValue('url_suffix');  
+if(data.url_suffix=="community"){
+	data.iscommunity=true;
+	data.show_signup=GlidePluginManager.isActive('com.sn_customer_communities');
+	if(data.show_signup)
+		data.login_label=gs.getMessage("Sign up/Login");
+	else
+		data.login_label=gs.getMessage("Login");
+}
+
+data.connect_support_queue_id = $sp.getValue('sp_chat_queue');
+data.login_page = $sp.getValue('login_page');
+
+var menu = $sp.getValue("sp_rectangle_menu");
+data.menu = $sp.getWidgetFromInstance(menu);
+
+// Load the Secondary Menu Widget
+var qsConfig = $sp.getValue("quick_start_config");
+var qsConfigJson = qsConfig ? JSON.parse(qsConfig)[0] : {};
+var secondaryMenuInstance = qsConfigJson.secondaryMenu ? qsConfigJson.secondaryMenu.sys_id : '';
+data.secondaryMenu = $sp.getWidgetFromInstance(secondaryMenuInstance);
+
+data.isCommunityPortal = qsConfigJson.isCommunityPortal;
+data.isCSPPortal = qsConfigJson.isCSPPortal;
+data.isCSMPortal = qsConfigJson.isCSMPortal;
+
+var liveProfileGR = new GlideRecord("live_profile");
+liveProfileGR.addQuery("document",gs.getUser().getID());
+liveProfileGR.query();
+
+data.liveProfileId = "";
+
+if (liveProfileGR.next()) {
+	data.liveProfileId = liveProfileGR.getUniqueValue();
+}
+if (data.menu && data.menu.data) {
+	data.menu.data.replace = true;
+	// Hide login if menu already has link to login
+	data.hasLogin = false;
+	if (data.menu.data.menu.items) {
+		var notifications = [];
+		for(var i in data.menu.data.menu.items) {
+			var item = data.menu.data.menu.items[i];
+			if (item.type == 'page' && item.sp_page == data.login_page)
+				data.hasLogin = true;
+			if(item.type == 'scripted')
+				notifications.push(item);
+		}
+		data.notifications = notifications;
+	}
+}
+
+// Determine if Support profile should be enabled
+// This is needed to correctly configure the "Support profile" link in the dropdown
+// Show the Support profile only if the logged in user has customer/consumer roles and sys_user_class
+// The sys_user_class check is for Systme Admin so that system admin does not see the Support Profile link
+data.enableSupportProfile = false;
+data.enableCommProfile = false;
+data.supportProfilePortal = "";
+data.supportPortalPrefix = "";
+data.hasConsumerRole = gs.getUser().hasRole('sn_customerservice.consumer');
+data.hasCustomerRole = gs.getUser().hasRole('sn_customerservice.customer');
+data.isCommunityEnabled = GlidePluginManager().isActive('com.sn_communities');
+data.isCommunityDemoDataEnabled = GlidePluginManager().isActive('com.sn_communities_demo');
+var CSM_CONSUMER_USER = 'csm_consumer_user';
+var CSM_CONTACT_USER = 'customer_contact';
+var csp_profile = 'csp_profile';
+var csm_profile = 'csm_profile';
+var default_profile = 'user_profile';
+
+var sysUserGR = new GlideRecord("sys_user");
+if (sysUserGR.get(gs.getUser().getID())) {
+	data.userClass = sysUserGR.getValue("sys_class_name");
+}
+
+if ((GlidePluginManager().isActive('com.glide.service-portal.consumer-portal') ||
+     GlidePluginManager().isActive('com.glide.service-portal.customer-portal')) && ( (data.hasConsumerRole && data.userClass == CSM_CONSUMER_USER) || (data.hasCustomerRole && data.userClass == CSM_CONTACT_USER))) {
+    data.enableSupportProfile = true;
+}
+
+if ((GlidePluginManager().isActive('com.sn_communities')) && ((data.hasConsumerRole && data.userClass == CSM_CONSUMER_USER) || (data.hasCustomerRole && data.userClass == CSM_CONTACT_USER))) {
+    data.enableCommProfile = true;
+}
+
+if (data.hasConsumerRole && data.userClass == CSM_CONSUMER_USER) {
+    data.supportProfilePortal = csp_profile;
+	data.supportPortalPrefix = "csp";
+	
+} else if (data.hasCustomerRole && data.userClass == CSM_CONTACT_USER) {
+    data.supportProfilePortal = csm_profile;
+	data.supportPortalPrefix = "csm";
+} else {
+	data.supportProfilePortal = default_profile;
+	data.supportPortalPrefix = "csm";
+}
+data.optionsSearch = "{title: 'Search All Sources', limit: 10}";
+data.loginWidget = $sp.getWidgetFromInstance('login-modal-unified');
+data.typeahead = $sp.getWidget('bots-search', data.optionsSearch);
+
+
+//bots user guide
+/*
+var botsuserguide = new GlideRecord('kb_knowledge');
+botsuserguide.addQuery('number=KB0013761');
+botsuserguide.query();
+while(botsuserguide.next()) {
+	data.botsuserguidekbNumber = botsuserguide.number.toString();
+	data.botsuserguidetitle = botsuserguide.short_description.toString();
+	data.botsuserguidesysid = botsuserguide.sys_id.toString();
+	data.botsuserguidehtml = botsuserguide.text.toString();
+}
+*/]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_header_footer</sys_class_name>
+        <sys_created_by>sphelan</sys_created_by>
+        <sys_created_on>2018-05-01 18:28:09</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>d1a5ce7d6fb11bc05cdc1cccbb3ee403</sys_id>
+        <sys_mod_count>36</sys_mod_count>
+        <sys_name>BOTS Portal Header</sys_name>
+        <sys_package display_value="BOTS - New" source="x_63474_bots">fca917c14f111300cb281b818110c713</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="BOTS - New">fca917c14f111300cb281b818110c713</sys_scope>
+        <sys_update_name>sp_header_footer_d1a5ce7d6fb11bc05cdc1cccbb3ee403</sys_update_name>
+        <sys_updated_by>sdepally</sys_updated_by>
+        <sys_updated_on>2018-07-31 15:08:59</sys_updated_on>
+        <template><![CDATA[<div class="umdheader-wrap" style="border-bottom: 1px solid #636b74;">
+  <div class="umdheader-main" id="umdheader-main">
+    <div class="umdheader-main__container">
+      <div class="umdheader-main__logo">
+        <a href="https://umd.edu" target="_blank">University of Maryland</a>
+      </div>
+	</div>
+  </div>
+</div>
+
+<div>
+  <nav class="csm-navbar navbar-inverse csm-navbar-inverse" ng-class="::{'navbar':!isViewNative, 'is-native': isViewNative}" role="navigation">
+            
+    
+    <div ng-show="::!isViewNative" class="navbar-header" ng-class="::getMobileClassIfNeeded() ? 'is-mobile': ''">
+    	  <a class="navbar-brand navbar-brand-logo" ng-if="::portal.logo" href="?id={{::portal.homepage_dv}}" aria-label="{{::portal.title}}">
+        	<img ng-src="{{::portal.logo}}" alt="{{::portal.title}}"/>
+	      </a>
+    	  <span class="navbar-brand nav-bar-separator-pipe csm-nav-bar-separator-pipe" ng-if="::(portal.logo && portal.title)"></span>      
+	      <a class="navbar-brand" ng-if="::portal.title" href="?id={{::portal.homepage_dv}}" aria-label="{{::portal.title}}"><span>{{::portal.title}}</span></a>        
+          
+          <button ng-click="toggleNavBarClicked($event)" type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sp-nav-bar">
+        	<span class="sr-only">${Toggle navigation}</span>
+        	<span class="icon-bar"></span>
+        	<span class="icon-bar"></span>
+       	 	<span class="icon-bar"></span>
+      	  </button>
+    </div>
+    
+    <div sp-navbar-toggle="" class="collapse navbar-collapse" id="sp-nav-bar">
+      <div id="sp-nav-bar-global" class="navbar-global csm-navbar-clear" ng-class="::getMobileClassIfNeeded() ? 'is-mobile': ''">         
+        <div class="navbar-right">		  
+            <ul class="nav navbar-nav csm-align-center-vertical">       
+            <li ng-show="::!isMobileView()" class="navbar-action-icon">
+              <i aria-label="${Search from all sources}" ng-show="!showTypeaheadSearch" ng-click="toggleTypeaheadSearch($event)" class="fa fa-search navbar-action-search-icon" tabindex="0"/>
+				    <div ng-show="showTypeaheadSearch" ng-submit="collapseTypeaheadSearch($event)" class="navbar-action-icon navbar-action-search">
+				        <sp-widget widget="data.typeahead"></sp-widget>
+				    </div>
+				</li>  
+                <li ng-if="data.iscommunity && (!user.logged_in)" class="navbar-action-login">
+              <a href="javascript:void(0);" ng-click="c.openSignLogin()" aria-label="{{::data.login_label}}">{{::data.login_label}}</a>
+                </li>
+              	<li ng-repeat="notification in data.notifications" ng-if="notification.scriptedItems.count > 0" ng-class="{dropdown: notification.scriptedItems.items.length > 0}"  class="hidden-xs">
+                  <a ng-if="notification.scriptedItems.count > 0" href="javascript:void(0)" data-toggle="dropdown" title="{{notification.hint}}" aria-label="{{notification.hint}}">
+                    <fa ng-if="notification.glyph" name="{{::notification.glyph}}"></fa>
+                    <span ng-if="!notification.scriptedItems.omitBadge" class="label label-as-badge label-primary sp-navbar-badge-count notif-badge">{{notification.scriptedItems.count}}</span>
+                  </a>
+                  <ul class="dropdown-menu ng-scope ng-isolate-scope">
+                  	<li ng-repeat="mi in notification.scriptedItems.items" ng-include="'botsDropdownTreeTemplate'" class="ng-scope dropdown-menu-line">
+                  </ul>  
+                </li>
+              
+                <li ng-if="(!user.logged_in && isCSPPortal() && page.id != portal.login_page_dv)" class="hidden-xs">
+                    <a href ng-click="openAnonymousChatPopUp()" aria-label="${Live Chat}"><i class="fa fa-comment"/></a>
+                </li>            
+               <li ng-if="!data.iscommunity && ((!user.logged_in && page.id != portal.login_page_dv) && !isMobileView())" class="hidden-xs navbar-action-login">
+                    <a href ng-click="openLogin()" aria-label="${Login}">${Login}</a>
+                </li>
+                <li ng-if="(user.logged_in && data.connect_support_queue_id)" class="hidden-xs">
+                    <a href class="navbar-action-icon" ng-click="openPopUp()" aria-label="${Live Chat}"><i class="fa fa-comment"/></a>
+                </li>
+                <li ng-if="user.logged_in" class="dropdown hidden-xs">
+                  <a href="javascript:void(0)" class="dropdown-toggle navbar-user-profile-dropdown-link" data-toggle="dropdown" aria-label="{{::user.name}}">
+                    <span class="visible-lg-inline">{{::user.name}}</span>
+                    <span class="navbar-avatar"><sn-avatar class="avatar-small-medium" primary="userID" /></span>
+                    <span class="caret"></span>
+                  </a>
+                  <ul class="dropdown-menu navbar-user-profile-dropdown-menu">
+                    <li>                  
+                  <a ng-show="::isCommunityPortal() || data.isCommunityDemoDataEnabled" ng-href="?id=community_user_profile&user={{::data.liveProfileId}}" aria-label="${Community Profile}">${Community Profile}</a>
+                  <a ng-show="::!isCommunityPortal() && !data.isCommunityDemoDataEnabled" ng-href="?id={{::data.supportProfilePortal}}&user={{::userID}}" aria-label="${Support Profile}">${Profile}</a>
+                      <!--a ng-show="!isCommunityPortal() && data.enableCommProfile" ng-href="/community?id=community_user_profile&user={{::data.liveProfileId}}">${Community Profile}</a-->
+                    </li>
+                    <!-- <li>                  
+                      <a ng-show="isCommunityPortal() && data.enableSupportProfile" ng-href="/{{::data.supportPortalPrefix}}?id={{::data.supportProfilePortal}}&user={{::userID}}" aria-label="${Support Profile}">${Support Profile}</a>
+                    </li> --> 
+                <li><a ng-show="::data.isCommunityEnabled" ng-href="?id=community_user_profile&user={{::data.liveProfileId}}&tab=bookmarks">${My Bookmarks}</a></li>
+                <li><a ng-show="::data.isCommunityEnabled" ng-href="?id=actsub_notif_pref" aria-label="${Notification Settings}">${Notifications and Subscriptions}</a></li>
+                    <li><a href="?id=delegate_dashboard&table=sys_user_delegate&sys_id=-1" aria-label="${Delegate User}">${Delegate User}</a></li>
+                    <li><a href="{{::portal.logoutUrl}}" aria-label="${Logout}">${Logout}</a></li>
+                  </ul>
+                </li>
+                <li ng-click="$event.stopPropagation();" class="csm-unified-panel" ng-include="'bots-header-mobile-global-nav-template'" role="group" tabindex="-1"></li>                        
+            </ul>
+        </div>
+      </div>
+      <div ng-show="::!isMobileView()" id="sp-nav-bar-primary" class="navbar-primary csm-align-center-vertical navbar-align-content">
+        <div class="navbar-left">
+          <!-- Include The Menu -->
+          <sp-widget widget="data.menu"></sp-widget>
+          <a href="javascript:void()" ng-click="openUserGuide()" target title class="ng-scope custommenuitem" role="link">User Guide</a>
+        </div>
+        <div class="navbar-right csm-unified-secondary-menu">
+          <!-- Include The Secondary Menu -->
+          <sp-widget widget="data.secondaryMenu"></sp-widget>
+        </div>        
+	  </div>
+    </div>
+  </nav>  
+</div>]]></template>
+    </sp_header_footer>
+</record_update>

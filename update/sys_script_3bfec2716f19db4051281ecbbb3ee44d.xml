@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_script">
+    <sys_script action="INSERT_OR_UPDATE">
+        <abort_action>false</abort_action>
+        <access>package_private</access>
+        <action_delete>false</action_delete>
+        <action_insert>true</action_insert>
+        <action_query>false</action_query>
+        <action_update>true</action_update>
+        <active>true</active>
+        <add_message>false</add_message>
+        <advanced>true</advanced>
+        <change_fields>false</change_fields>
+        <client_callable>false</client_callable>
+        <collection>x_63474_bots_bots_supply_item</collection>
+        <condition/>
+        <description/>
+        <execute_function>false</execute_function>
+        <filter_condition table="x_63474_bots_bots_supply_item">u_priceVALCHANGESjavascript:global.getCurrencyFilter('x_63474_bots_bots_supply_item','u_price', 'USD;USD')^EQ<item endquery="false" field="u_price" goto="false" newquery="false" operator="VALCHANGES" or="false" value="javascript:global.getCurrencyFilter('x_63474_bots_bots_supply_item','u_price', 'USD;USD')"/>
+            <item endquery="true" field="" goto="false" newquery="false" operator="=" or="false" value=""/>
+        </filter_condition>
+        <is_rest>false</is_rest>
+        <message/>
+        <name>Recalc Order Total on New/Update</name>
+        <order>100</order>
+        <priority>100</priority>
+        <rest_method/>
+        <rest_method_text/>
+        <rest_service/>
+        <rest_service_text/>
+        <rest_variables/>
+        <role_conditions/>
+        <script><![CDATA[(function executeRule(current, previous /*null when async*/) {
+	
+	
+	var requesttotal = 0;
+	var getitems = new GlideRecord('x_63474_bots_bots_supply_item');
+	getitems.addQuery('u_request',current.u_request);
+	getitems.query();
+	//gs.addInfoMessage('Updateing price for '+getitems.getRowCount()+" supply items");
+	while(getitems.next()) {
+		var itemtotal = getitems.u_price;
+		itemtotal=itemtotal*1;
+		requesttotal = requesttotal + itemtotal;
+	}
+	requesttotal = requesttotal.toFixed(2);
+	
+	var updateitem = new GlideRecord('x_63474_bots_bots_requests');
+	updateitem.addQuery('sys_id',current.u_request);
+	updateitem.query();
+	while(updateitem.next()) {
+		updateitem.total_cost = requesttotal;
+		updateitem.correlation_display = getitems.getRowCount();
+		updateitem.update();
+	}
+	
+	if (current.time_worked == '1970-01-01 00:00:00')
+		{
+		//only display message if not new
+	}
+	else
+		{
+		gs.addErrorMessage('Request '+updateitem.number+ "(<em>"+getitems.getRowCount()+" supply items</em>) has a new total cost of <strong>$"+requesttotal+"</strong>");
+		
+		var sys_id = '';
+		var state = '';
+		var number = '';
+		
+		var parentrequest = new GlideRecord('x_63474_bots_bots_requests');
+		parentrequest.addQuery('sys_id',current.u_request);
+		parentrequest.query();
+		while(parentrequest.next()) {
+			sys_id = parentrequest.sys_id;
+			state = parentrequest.state;
+			number = parentrequest.number;
+		}
+		gs.addInfoMessage("Click <a href='?id=bots_form&table=x_63474_bots_bots_requests&sys_id="+sys_id+"'>Here</a> to return to Request "+number);
+	}
+	
+})(current, previous);]]></script>
+        <sys_class_name>sys_script</sys_class_name>
+        <sys_created_by>sphelan</sys_created_by>
+        <sys_created_on>2018-04-06 22:38:48</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_domain>global</sys_domain>
+        <sys_id>3bfec2716f19db4051281ecbbb3ee44d</sys_id>
+        <sys_mod_count>28</sys_mod_count>
+        <sys_name>Recalc Order Total on New/Update</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="BOTS - New" source="x_63474_bots">fca917c14f111300cb281b818110c713</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="BOTS - New">fca917c14f111300cb281b818110c713</sys_scope>
+        <sys_update_name>sys_script_3bfec2716f19db4051281ecbbb3ee44d</sys_update_name>
+        <sys_updated_by>sphelan</sys_updated_by>
+        <sys_updated_on>2018-10-31 14:00:13</sys_updated_on>
+        <template/>
+        <when>after</when>
+    </sys_script>
+</record_update>

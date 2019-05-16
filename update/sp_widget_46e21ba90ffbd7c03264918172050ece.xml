@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[function($uibModal, $scope, $interval, spUtil, $window) {
+  /* widget controller */
+  var c = this;
+
+	c.deleteitem = function (botsitem,itemid) {
+		c.data.theitemtoremove = botsitem;
+		c.data.theitemid = itemid;
+			
+		c.modalInstance = $uibModal.open({
+			templateUrl: 'remove_item',
+			scope: $scope,
+			size:"lg",
+			//backdrop:'static',
+			keyboard:false
+		});
+		
+	};
+	
+	$scope.closeUserInfo = function() {
+		c.modalInstance.close();
+	};
+	
+	$scope.deleteitemconfirmed = function () {
+		c.modalInstance.close();
+		c.data.removeanitem = "yes";
+		c.data.record = c.data.theitemid;
+		c.server.update();
+		setTimeout($window.location.reload(), 2000);
+	};
+	
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.p-3 {&#13;
+    padding: 1rem!important;&#13;
+}&#13;
+&#13;
+.mb-5, .my-5 {&#13;
+    margin-bottom: 3rem!important;&#13;
+}&#13;
+.shadow {&#13;
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;&#13;
+}&#13;
+.card {&#13;
+    position: relative;&#13;
+    display: -webkit-box;&#13;
+    display: -ms-flexbox;&#13;
+    display: flex;&#13;
+    -webkit-box-orient: vertical;&#13;
+    -webkit-box-direction: normal;&#13;
+    -ms-flex-direction: column;&#13;
+    flex-direction: column;&#13;
+    min-width: 0;&#13;
+    word-wrap: break-word;&#13;
+    background-color: #fff;&#13;
+    background-clip: border-box;&#13;
+    border: 1px solid rgba(0,0,0,.125);&#13;
+    border-radius: .25rem;&#13;
+}&#13;
+&#13;
+.card-body {&#13;
+    -webkit-box-flex: 1;&#13;
+    -ms-flex: 1 1 auto;&#13;
+    flex: 1 1 auto;&#13;
+    padding: 1.25rem;&#13;
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id/>
+        <internal>false</internal>
+        <link/>
+        <name>BOTS Item List</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+	/* populate the 'data' object */
+	/* e.g., data.table = $sp.getValue('table'); */
+	
+	if (input)
+		{
+			
+		if (input.removeanitem)
+			{
+			//gs.addInfoMessage("Debug Delete: "+input.record);
+			var removethisitem = new GlideRecord('x_63474_bots_bots_supply_item');
+			removethisitem.addQuery('sys_id',input.record);
+			removethisitem.query();
+			removethisitem.deleteMultiple();
+			//gs.addInfoMessage("Debug Delete: Record Found="+removethisitem.getRowCount());
+		}
+		
+	}
+	
+	var items = [];
+	
+	data.removeanitem = '';
+	data.addanitem = '';
+	data.theitemtoremove ='';
+	data.theitemid = '';
+	data.record = '';
+	
+	var forme = new GlideRecord('x_63474_bots_bots_supply_item');
+	forme.addQuery('u_request',$sp.getParameter('sys_id'));
+		forme.orderBy('u_number');
+		forme.query();
+		while(forme.next()) {
+		var item = {};
+			data.requeststate =  forme.u_request.state.toString();
+			data.requestid =  forme.u_request.sys_id.toString();
+			data.requesttable =  forme.u_request.sys_class_name.toString();
+			item.sysid = forme.sys_id.toString();
+			item.u_number = forme.u_number.getDisplayValue();
+			item.created_for = forme.created_for.getDisplayValue();
+			item.url = forme.url.getDisplayValue();
+			item.u_price_cost = forme.u_price_cost.getDisplayValue();
+			item.u_quantity = forme.u_quantity.getDisplayValue();
+			item.u_price = forme.u_price.getDisplayValue();
+			item.u_description = forme.u_description.getDisplayValue();
+			item.u_item_no = forme.u_item_no.getDisplayValue();
+			
+			item.shortdescription = item.u_number +" for " + item.u_price;
+			
+			if (forme.u_request.active)
+				{
+					data.showbuttons = gs.hasRole("x_63474_bots.business-managers");
+				}
+			else
+				{
+					data.showbuttons = false;
+				}
+			
+			items.push(item);
+		}
+		data.items = items;
+		
+		data.action = '';
+		data.actionitem = '';
+		
+	})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>sphelan</sys_created_by>
+        <sys_created_on>2018-08-08 15:32:48</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>46e21ba90ffbd7c03264918172050ece</sys_id>
+        <sys_mod_count>70</sys_mod_count>
+        <sys_name>BOTS Item List</sys_name>
+        <sys_package display_value="BOTS - New" source="x_63474_bots">fca917c14f111300cb281b818110c713</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="BOTS - New">fca917c14f111300cb281b818110c713</sys_scope>
+        <sys_update_name>sp_widget_46e21ba90ffbd7c03264918172050ece</sys_update_name>
+        <sys_updated_by>sphelan</sys_updated_by>
+        <sys_updated_on>2018-11-15 19:25:56</sys_updated_on>
+        <template><![CDATA[<div class="panel panel-default b" style="margin-top:40px;border:2px #ddd solid;">
+  <div class="panel-heading">
+    <h4 class="panel-title" style="text-align:center;"><fa ng-if="::options.glyph.length" name="{{::options.glyph}}" class="m-r-sm"/>Items Of Request</h4>
+  </div>
+  
+  <div class="panel-body">
+
+  <div ng-if="data.items.length > 0">   
+<div class="card shadow p-3 mb-5" ng-repeat="item in data.items">
+  <div class="card-body">
+    <h5 class="card-title">{{item.u_number}}</h5>
+    <h5 class="card-subtitle mb-2 text-muted" ng-if="item.u_item_no !=''">Item #: {{item.u_item_no}}</h5>
+    <h6 class="card-subtitle mb-2 text-muted">{{item.u_quantity}} <span ng-if="item.u_quantity == 1">Item</span><span ng-if="item.u_quantity != 1">Items</span> @ {{item.u_price_cost}} per item for {{item.u_price}}</h6>
+    <h6 class="card-subtitle mb-2 text-muted"><a ng-if="item.url != ''" href="{{item.url}}" target="_blank">{{item.url}}</a></h6>
+    <p class="card-text" ng-bind-html="item.u_description"></p> 
+<span class="card-link pull-right">
+    <span ng-if="data.requeststate == 1 || data.showbuttons" ng-click="c.deleteitem(item.shortdescription,item.sysid)" style="color:#8B0000;cursor:pointer;">Delete Item</span>&nbsp;&nbsp;
+    <a ng-if="data.requeststate == 1 || data.showbuttons" href="?id=item&table=x_63474_bots_bots_supply_item&sys_id={{item.sysid}}" target="_parent">Edit Item</a>
+    </span>
+  </div>
+</div>
+    
+<!--    
+<table class="table table-striped table-bordered table-responsive-md">
+  <tr>
+    <th>Intended Recipient</th>
+    <th>URL</th>
+    <th>Cost Per Item</th>
+    <th>Quanity</th>
+    <th>Subtotal</th>
+    <th>Description</th>
+  </tr>
+    <tr ng-repeat="item in data.items">      
+	  <td>{{item.created_for}}</td>
+      <td>
+        <a ng-if="item.url != ''" href="{{item.url}}" target="_blank">{{item.url}}</a>
+        <span ng-if="item.url == ''">&nbsp;</span>
+      </td>
+    <td>{{item.u_price_cost}}</td>
+    <td>{{item.u_quantity}}</td>
+    <td>{{item.u_price}}</td>
+      <td><div ng-bind-html="item.u_description"></div></td>
+  </tr>
+</table>
+-->
+    <div>
+     <a ng-if="data.requeststate == 1 || data.showbuttons" class="btn btn-success" href="?id=item&table=x_63474_bots_bots_supply_item&view=mobile&sys_id=-1&query=u_request%3D{{data.requestid}}">Add Another Item</a>
+    
+    </div>
+  </div>    
+    
+   <div ng-if="data.items.length == 0" style="margin-top:20px;">  
+      <strong>This request has no items</strong>
+  </div>
+    
+</div>
+]]></template>
+    </sp_widget>
+</record_update>

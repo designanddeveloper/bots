@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_number">
+    <sys_number action="INSERT_OR_UPDATE">
+        <category display_value="" name="x_63474_bots_bots_purchase_order_request">x_63474_bots_bots_purchase_order_request</category>
+        <maximum_digits>7</maximum_digits>
+        <number>1000</number>
+        <prefix>BOTS-P</prefix>
+        <sys_class_name>sys_number</sys_class_name>
+        <sys_created_by>sdepally</sys_created_by>
+        <sys_created_on>2018-05-22 18:55:40</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>4d5512e86fd69b0051281ecbbb3ee46e</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>BOTS-P</sys_name>
+        <sys_package display_value="BOTS - New" source="x_63474_bots">fca917c14f111300cb281b818110c713</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="BOTS - New">fca917c14f111300cb281b818110c713</sys_scope>
+        <sys_update_name>sys_number_4d5512e86fd69b0051281ecbbb3ee46e</sys_update_name>
+        <sys_updated_by>sdepally</sys_updated_by>
+        <sys_updated_on>2018-05-22 18:55:40</sys_updated_on>
+    </sys_number>
+</record_update>

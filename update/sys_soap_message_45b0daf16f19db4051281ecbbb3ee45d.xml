@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_soap_message">
+    <sys_soap_message action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <authentication_type/>
+        <basic_auth_password/>
+        <basic_auth_profile/>
+        <basic_auth_user/>
+        <description/>
+        <download_wsdl>false</download_wsdl>
+        <enable_mutual_auth>false</enable_mutual_auth>
+        <name>BOTS_KFS</name>
+        <protocol_profile display_value="">e0a840536f8207805cdc1cccbb3ee44d</protocol_profile>
+        <sys_class_name>sys_soap_message</sys_class_name>
+        <sys_created_by>sphelan</sys_created_by>
+        <sys_created_on>2018-04-06 22:45:04</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>45b0daf16f19db4051281ecbbb3ee45d</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>BOTS_KFS</sys_name>
+        <sys_package display_value="BOTS - New" source="x_63474_bots">fca917c14f111300cb281b818110c713</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="BOTS - New">fca917c14f111300cb281b818110c713</sys_scope>
+        <sys_update_name>sys_soap_message_45b0daf16f19db4051281ecbbb3ee45d</sys_update_name>
+        <sys_updated_by>sphelan</sys_updated_by>
+        <sys_updated_on>2018-04-06 22:48:50</sys_updated_on>
+        <use_basic_auth>false</use_basic_auth>
+        <wsdl/>
+        <wsdl_xml><![CDATA[<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ns1="KFS" name="accountService" targetNamespace="KFS">
+<wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://rice.kuali.org/core/v2_0" elementFormDefault="qualified" targetNamespace="http://rice.kuali.org/core/v2_0" version="1.0">
+<xs:complexType name="StringMapEntryListType">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="entry" type="tns:StringMapEntryType"/>
+<xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other" processContents="skip"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType final="extension restriction" name="StringMapEntryType">
+<xs:simpleContent>
+<xs:extension base="xs:string">
+<xs:attribute name="key" type="xs:string"/>
+</xs:extension>
+</xs:simpleContent>
+</xs:complexType>
+</xs:schema>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="KFS" xmlns:ns1="http://rice.kuali.org/core/v2_0" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="KFS">
+<xs:import namespace="http://rice.kuali.org/core/v2_0"/>
+<xs:element name="Account" type="tns:AccountType"/>
+<xs:element name="Person" type="tns:PersonType"/>
+<xs:element name="getAccountDetails" type="tns:getAccountDetails"/>
+<xs:element name="getAccountDetailsResponse" type="tns:getAccountDetailsResponse"/>
+<xs:element name="isAccountValid" type="tns:isAccountValid"/>
+<xs:element name="isAccountValidResponse" type="tns:isAccountValidResponse"/>
+<xs:complexType name="isAccountValid">
+<xs:sequence>
+<xs:element minOccurs="0" name="chartOfAccountsCode" type="xs:string"/>
+<xs:element minOccurs="0" name="accountNumber" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="isAccountValidResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="AccountStatus" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getAccountDetails">
+<xs:sequence>
+<xs:element minOccurs="0" name="chartOfAccountsCode" type="xs:string"/>
+<xs:element minOccurs="0" name="accountNumber" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getAccountDetailsResponse">
+<xs:sequence>
+<xs:element minOccurs="0" ref="tns:Account"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="AccountType">
+<xs:sequence>
+<xs:element name="CampusCode" type="xs:string"/>
+<xs:element name="AccountNumber" type="xs:string"/>
+<xs:element minOccurs="0" name="AccountName" type="xs:string"/>
+<xs:element minOccurs="0" name="FiscalOfficer" type="tns:PersonType"/>
+<xs:element minOccurs="0" name="Supervisor" type="tns:PersonType"/>
+<xs:element minOccurs="0" name="Manager" type="tns:PersonType"/>
+<xs:element name="Status" type="xs:string"/>
+<xs:element minOccurs="0" name="variables" type="ns1:StringMapEntryListType"/>
+<xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other" processContents="skip"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="PersonType">
+<xs:sequence>
+<xs:element name="PrincipalId" type="xs:string"/>
+<xs:element minOccurs="0" name="PrincipalName" type="xs:string"/>
+<xs:element minOccurs="0" name="Name" type="xs:string"/>
+<xs:element minOccurs="0" name="FirstName" type="xs:string"/>
+<xs:element minOccurs="0" name="MiddleName" type="xs:string"/>
+<xs:element minOccurs="0" name="LastName" type="xs:string"/>
+<xs:element minOccurs="0" name="EmailAddress" type="xs:string"/>
+<xs:element minOccurs="0" name="PhoneNumber" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="SOAPException" type="tns:SOAPException"/>
+<xs:complexType name="SOAPException">
+<xs:sequence/>
+</xs:complexType>
+</xs:schema>
+</wsdl:types>
+<wsdl:message name="getAccountDetailsResponse">
+<wsdl:part element="ns1:getAccountDetailsResponse" name="parameters"></wsdl:part>
+</wsdl:message>
+<wsdl:message name="getAccountDetails">
+<wsdl:part element="ns1:getAccountDetails" name="parameters"></wsdl:part>
+</wsdl:message>
+<wsdl:message name="isAccountValidResponse">
+<wsdl:part element="ns1:isAccountValidResponse" name="parameters"></wsdl:part>
+</wsdl:message>
+<wsdl:message name="SOAPException">
+<wsdl:part element="ns1:SOAPException" name="SOAPException"></wsdl:part>
+</wsdl:message>
+<wsdl:message name="isAccountValid">
+<wsdl:part element="ns1:isAccountValid" name="parameters"></wsdl:part>
+</wsdl:message>
+<wsdl:portType name="accountService">
+<wsdl:operation name="isAccountValid">
+<wsdl:input message="ns1:isAccountValid" name="isAccountValid"></wsdl:input>
+<wsdl:output message="ns1:isAccountValidResponse" name="isAccountValidResponse"></wsdl:output>
+<wsdl:fault message="ns1:SOAPException" name="SOAPException"></wsdl:fault>
+</wsdl:operation>
+<wsdl:operation name="getAccountDetails">
+<wsdl:input message="ns1:getAccountDetails" name="getAccountDetails"></wsdl:input>
+<wsdl:output message="ns1:getAccountDetailsResponse" name="getAccountDetailsResponse"></wsdl:output>
+<wsdl:fault message="ns1:SOAPException" name="SOAPException"></wsdl:fault>
+</wsdl:operation>
+</wsdl:portType>
+</wsdl:definitions>]]></wsdl_xml>
+    </sys_soap_message>
+</record_update>

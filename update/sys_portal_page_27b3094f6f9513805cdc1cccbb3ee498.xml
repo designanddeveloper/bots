@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update node_type="sys_portal_page" unload_date="2019-05-16 19:26:57">
+    <sys_portal_page action="INSERT_OR_UPDATE">
+        <layout display_value="layout_2_across">f6defafa0a0a0b12000d5016bd12ff06</layout>
+        <order/>
+        <read_roles>snc_internal</read_roles>
+        <roles/>
+        <selectable>false</selectable>
+        <sys_class_name>sys_portal_page</sys_class_name>
+        <sys_created_by>sphelan</sys_created_by>
+        <sys_created_on>2018-04-10 14:21:13</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_domain>global</sys_domain>
+        <sys_id>27b3094f6f9513805cdc1cccbb3ee498</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>catalog_bots</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="BOTS - New" source="x_63474_bots">fca917c14f111300cb281b818110c713</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="BOTS - New">fca917c14f111300cb281b818110c713</sys_scope>
+        <sys_update_name>sys_portal_page_27b3094f6f9513805cdc1cccbb3ee498</sys_update_name>
+        <sys_updated_by>sphelan</sys_updated_by>
+        <sys_updated_on>2018-04-10 14:21:13</sys_updated_on>
+        <title>catalog_bots</title>
+        <u_homepage_owner/>
+        <user/>
+        <view>catalog_bots</view>
+    </sys_portal_page>
+</record_update>

@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_ui_section caption="Vendor Details" section_id="958f1ae06f1a9b0051281ecbbb3ee495" sys_domain="global" table="x_63474_bots_bots_purchase_order_request" version="3" view="">
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>vendor</element>
+            <position>0</position>
+            <sys_created_by>sdepally</sys_created_by>
+            <sys_created_on>2018-05-22 19:40:14</sys_created_on>
+            <sys_id>028f5ae06f1a9b0051281ecbbb3ee4c5</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Vendor Details" display_value="Vendor Details" name="x_63474_bots_bots_purchase_order_request" sys_domain="global" view="Default view">958f1ae06f1a9b0051281ecbbb3ee495</sys_ui_section>
+            <sys_updated_by>sdepally</sys_updated_by>
+            <sys_updated_on>2018-05-22 19:40:14</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>new_vendor_name</element>
+            <position>1</position>
+            <sys_created_by>sdepally</sys_created_by>
+            <sys_created_on>2018-05-22 19:40:14</sys_created_on>
+            <sys_id>828f5ae06f1a9b0051281ecbbb3ee4c5</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Vendor Details" display_value="Vendor Details" name="x_63474_bots_bots_purchase_order_request" sys_domain="global" view="Default view">958f1ae06f1a9b0051281ecbbb3ee495</sys_ui_section>
+            <sys_updated_by>sdepally</sys_updated_by>
+            <sys_updated_on>2018-05-22 19:40:14</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>new_vendor_phone</element>
+            <position>2</position>
+            <sys_created_by>sdepally</sys_created_by>
+            <sys_created_on>2018-05-22 19:40:14</sys_created_on>
+            <sys_id>068f5ae06f1a9b0051281ecbbb3ee4c5</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Vendor Details" display_value="Vendor Details" name="x_63474_bots_bots_purchase_order_request" sys_domain="global" view="Default view">958f1ae06f1a9b0051281ecbbb3ee495</sys_ui_section>
+            <sys_updated_by>sdepally</sys_updated_by>
+            <sys_updated_on>2018-05-22 19:40:14</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>new_vendor_email</element>
+            <position>3</position>
+            <sys_created_by>sdepally</sys_created_by>
+            <sys_created_on>2018-05-22 19:40:14</sys_created_on>
+            <sys_id>868f5ae06f1a9b0051281ecbbb3ee4c5</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Vendor Details" display_value="Vendor Details" name="x_63474_bots_bots_purchase_order_request" sys_domain="global" view="Default view">958f1ae06f1a9b0051281ecbbb3ee495</sys_ui_section>
+            <sys_updated_by>sdepally</sys_updated_by>
+            <sys_updated_on>2018-05-22 19:40:14</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>new_vendor_website</element>
+            <position>4</position>
+            <sys_created_by>sdepally</sys_created_by>
+            <sys_created_on>2018-05-22 19:40:14</sys_created_on>
+            <sys_id>0a8f5ae06f1a9b0051281ecbbb3ee4c5</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Vendor Details" display_value="Vendor Details" name="x_63474_bots_bots_purchase_order_request" sys_domain="global" view="Default view">958f1ae06f1a9b0051281ecbbb3ee495</sys_ui_section>
+            <sys_updated_by>sdepally</sys_updated_by>
+            <sys_updated_on>2018-05-22 19:40:14</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>.split</element>
+            <position>5</position>
+            <sys_created_by>sdepally</sys_created_by>
+            <sys_created_on>2018-05-22 19:40:14</sys_created_on>
+            <sys_id>8a8f5ae06f1a9b0051281ecbbb3ee4c5</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Vendor Details" display_value="Vendor Details" name="x_63474_bots_bots_purchase_order_request" sys_domain="global" view="Default view">958f1ae06f1a9b0051281ecbbb3ee495</sys_ui_section>
+            <sys_updated_by>sdepally</sys_updated_by>
+            <sys_updated_on>2018-05-22 19:40:14</sys_updated_on>
+            <sys_user/>
+            <type>.split</type>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>is_new_vendor</element>
+            <position>6</position>
+            <sys_created_by>sdepally</sys_created_by>
+            <sys_created_on>2018-05-22 19:40:14</sys_created_on>
+            <sys_id>0e8f5ae06f1a9b0051281ecbbb3ee4c5</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Vendor Details" display_value="Vendor Details" name="x_63474_bots_bots_purchase_order_request" sys_domain="global" view="Default view">958f1ae06f1a9b0051281ecbbb3ee495</sys_ui_section>
+            <sys_updated_by>sdepally</sys_updated_by>
+            <sys_updated_on>2018-05-22 19:40:14</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>new_vendor_address</element>
+            <position>7</position>
+            <sys_created_by>sdepally</sys_created_by>
+            <sys_created_on>2018-05-22 19:40:14</sys_created_on>
+            <sys_id>8e8f5ae06f1a9b0051281ecbbb3ee4c5</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Vendor Details" display_value="Vendor Details" name="x_63474_bots_bots_purchase_order_request" sys_domain="global" view="Default view">958f1ae06f1a9b0051281ecbbb3ee495</sys_ui_section>
+            <sys_updated_by>sdepally</sys_updated_by>
+            <sys_updated_on>2018-05-22 19:40:14</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>new_vendor_notes</element>
+            <position>8</position>
+            <sys_created_by>sdepally</sys_created_by>
+            <sys_created_on>2018-05-22 19:40:14</sys_created_on>
+            <sys_id>028f5ae06f1a9b0051281ecbbb3ee4c6</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Vendor Details" display_value="Vendor Details" name="x_63474_bots_bots_purchase_order_request" sys_domain="global" view="Default view">958f1ae06f1a9b0051281ecbbb3ee495</sys_ui_section>
+            <sys_updated_by>sdepally</sys_updated_by>
+            <sys_updated_on>2018-05-22 19:40:14</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_section action="INSERT_OR_UPDATE">
+            <caption>Vendor Details</caption>
+            <header>false</header>
+            <name>x_63474_bots_bots_purchase_order_request</name>
+            <roles/>
+            <sys_class_name>sys_ui_section</sys_class_name>
+            <sys_created_by>sdepally</sys_created_by>
+            <sys_created_on>2018-05-22 19:40:12</sys_created_on>
+            <sys_customer_update>false</sys_customer_update>
+            <sys_domain>global</sys_domain>
+            <sys_id>958f1ae06f1a9b0051281ecbbb3ee495</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>Vendor Details</sys_name>
+            <sys_overrides/>
+            <sys_package display_value="BOTS - New" source="x_63474_bots">fca917c14f111300cb281b818110c713</sys_package>
+            <sys_policy/>
+            <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+            <sys_scope display_value="BOTS - New">fca917c14f111300cb281b818110c713</sys_scope>
+            <sys_update_name>sys_ui_section_958f1ae06f1a9b0051281ecbbb3ee495</sys_update_name>
+            <sys_updated_by>sdepally</sys_updated_by>
+            <sys_updated_on>2018-05-22 19:40:12</sys_updated_on>
+            <sys_user/>
+            <title>false</title>
+            <view display_value="Default view" name="NULL">Default view</view>
+            <view_name/>
+        </sys_ui_section>
+    </sys_ui_section>
+</record_update>

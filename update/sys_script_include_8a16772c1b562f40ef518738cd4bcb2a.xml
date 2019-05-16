@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_63474_bots.MyKFS</api_name>
+        <client_callable>true</client_callable>
+        <description/>
+        <name>MyKFS</name>
+        <script><![CDATA[function MyKFS(uID){
+	
+	if (uID == '' || typeof uID == 'undefined')
+		{
+		uID = gs.getUserID();
+	}
+	var fundingarray = '(';
+	//(mykfs_sys_id = '2bf246a96f255b805cdc1cccbb3ee4d4' || mykfs_sys_id = '70e3765b6f51938051281ecbbb3ee413')
+	var grouparray = MyBOTSGroupNames(uID);
+	//gs.debug (grouparray.length);
+	
+	for(var i in grouparray) {
+		var searchterm = grouparray[i];
+		var groupparts = grouparray[i];
+		groupparts =groupparts.split('-');
+		searchterm = searchterm.replace(groupparts[0]+'-','');
+		searchterm = searchterm.replace(groupparts[1]+'-','');
+		
+		//gs.debug(searchterm);
+		var fundinglist = new GlideRecord('x_63474_bots_bots_crosswalk');
+		fundinglist.addQuery('active=true');
+		fundinglist.addQuery('u_budget_short_name',searchterm);
+		fundinglist.query();
+		while(fundinglist.next()) {
+			//gs.debug(fundinglist.sys_id);
+			fundingarray += "mykfs_sys_id = '"+ fundinglist.sys_id.toString() + "',";
+		}
+		
+	}
+	fundingarray = fundingarray.replace(/,\s*$/, "");
+	fundingarray += ")";
+	fundingarray = fundingarray.replace(/,/g,' || ');
+	return fundingarray;
+}
+
+]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>sphelan</sys_created_by>
+        <sys_created_on>2018-12-07 22:09:36</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>8a16772c1b562f40ef518738cd4bcb2a</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>MyKFS</sys_name>
+        <sys_package display_value="BOTS - New" source="x_63474_bots">fca917c14f111300cb281b818110c713</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="BOTS - New">fca917c14f111300cb281b818110c713</sys_scope>
+        <sys_update_name>sys_script_include_8a16772c1b562f40ef518738cd4bcb2a</sys_update_name>
+        <sys_updated_by>sphelan</sys_updated_by>
+        <sys_updated_on>2018-12-07 22:15:20</sys_updated_on>
+    </sys_script_include>
+</record_update>

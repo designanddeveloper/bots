@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_63474_bots.MyFundingSources</api_name>
+        <client_callable>true</client_callable>
+        <description/>
+        <name>MyFundingSources</name>
+        <script><![CDATA[function MyFundingSources(uID){
+	
+	if (uID == '' || typeof uID == 'undefined')
+		{
+		uID = gs.getUserID();
+	}
+	var fundingarray = [];
+	
+	//if (gs.hasRole('x_63474_bots.business-managers')||gs.hasRole('x_63474_bots.budget-leadership')||gs.hasRole('x_63474_bots.budget-owner'))
+	//	{
+	//	var masterlist = new GlideRecord('x_63474_bots_bots_crosswalk');
+	//	//masterlist.addQuery('active=true');
+	//	masterlist.query();
+	//	while(masterlist.next()) {
+	//		fundingarray.push(masterlist.sys_id.toString());
+	//	}
+	//}
+	//else
+	//	{
+		var grouparray = MyBOTSGroupNames(uID);
+		//gs.debug (grouparray.length);
+		
+		for(var i in grouparray) {
+			var searchterm = grouparray[i];
+			var groupparts = grouparray[i];
+			groupparts =groupparts.split('-');
+			searchterm = searchterm.replace(groupparts[0]+'-','');
+			searchterm = searchterm.replace(groupparts[1]+'-','');
+			
+			//gs.debug(searchterm);
+			var fundinglist = new GlideRecord('x_63474_bots_bots_crosswalk');
+			fundinglist.addQuery('active=true');
+			fundinglist.addQuery('u_budget_short_name',searchterm);
+			fundinglist.query();
+			while(fundinglist.next()) {
+				//gs.debug(fundinglist.sys_id);
+				fundingarray.push(fundinglist.sys_id.toString());
+			}
+			
+		}
+	//}
+	//Return the array of group IDs
+	return fundingarray;
+}
+
+]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>sphelan</sys_created_by>
+        <sys_created_on>2018-04-08 00:28:18</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>43e17fc66f955f405cdc1cccbb3ee416</sys_id>
+        <sys_mod_count>9</sys_mod_count>
+        <sys_name>MyFundingSources</sys_name>
+        <sys_package display_value="BOTS - New" source="x_63474_bots">fca917c14f111300cb281b818110c713</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="BOTS - New">fca917c14f111300cb281b818110c713</sys_scope>
+        <sys_update_name>sys_script_include_43e17fc66f955f405cdc1cccbb3ee416</sys_update_name>
+        <sys_updated_by>sphelan</sys_updated_by>
+        <sys_updated_on>2018-04-10 23:15:58</sys_updated_on>
+    </sys_script_include>
+</record_update>

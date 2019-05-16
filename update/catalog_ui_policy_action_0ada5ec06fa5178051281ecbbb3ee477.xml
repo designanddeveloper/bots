@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="catalog_ui_policy_action">
+    <catalog_ui_policy_action action="INSERT_OR_UPDATE">
+        <catalog_item display_value="New General Office Supply Request">3784561b6f1953805cdc1cccbb3ee447</catalog_item>
+        <catalog_variable>IO:2fb293d00ffdaa00fdbb4d9ce1050e7e</catalog_variable>
+        <cleared>false</cleared>
+        <disabled>ignore</disabled>
+        <field/>
+        <mandatory>false</mandatory>
+        <order>100</order>
+        <sys_class_name>catalog_ui_policy_action</sys_class_name>
+        <sys_created_by>sphelan</sys_created_by>
+        <sys_created_on>2018-04-13 23:15:50</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>0ada5ec06fa5178051281ecbbb3ee477</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>json_output</sys_name>
+        <sys_package display_value="BOTS - New" source="x_63474_bots">fca917c14f111300cb281b818110c713</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="BOTS - New">fca917c14f111300cb281b818110c713</sys_scope>
+        <sys_update_name>catalog_ui_policy_action_0ada5ec06fa5178051281ecbbb3ee477</sys_update_name>
+        <sys_updated_by>sphelan</sys_updated_by>
+        <sys_updated_on>2018-04-13 23:15:50</sys_updated_on>
+        <table/>
+        <ui_policy display_value="Show Item Table">923965886f6517805cdc1cccbb3ee4de</ui_policy>
+        <variable>json_output</variable>
+        <variable_set/>
+        <visible>ignore</visible>
+    </catalog_ui_policy_action>
+</record_update>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[function($scope) {
+  /* widget controller */
+  var c = this;
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css/>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list>ref_sp_instance_table.table,title,sys_update_name,sys_updated_on,sys_updated_by,sys_mod_count,sp_widget</field_list>
+        <has_preview>true</has_preview>
+        <id/>
+        <internal>false</internal>
+        <link/>
+        <name>BOTS Requests Single Counts</name>
+        <option_schema>[{"displayValue":"Task","name":"table_name","default_value":"incident","section":"other","label":"Table name","type":"string","value":"task"},{"name":"title","default_value":"My Cases","section":"other","label":"Title","type":"string"},{"name":"encoded_query","section":"other","label":"Encoded Query","type":"string"},{"hint":"default","name":"view","section":"other","default_value":"default","label":"View","type":"string"}]</option_schema>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+  /* populate the 'data' object */
+	
+//var inc = new GlideRecord('x_63474_bots_bots_requests');
+//if(options.table_name == 'x_63474_bots_bots_requests')             inc.addEncodedQuery('active=true');
+//if(options.table_name == 'kb_knowledge')     inc.addEncodedQuery('workflow_stateINpublished^author=javascript:gs.getUserID()');
+//inc.addActiveQuery();
+//inc.addQuery('requested_by',gs.getUserID());
+///	inc.query();
+//data.list = inc.getRowCount();
+//	gs.addInfoMessage(data.list);
+	
+	
+var table = new GlideRecord(options.table_name);
+	//if(options.table_name == 'x_63474_bots_bots_requests') table.addActiveQuery()
+//	else table.addActiveQuery().addCondition('type',options.type_of_order);
+//	table.addQuery('requested_by',gs.getUserID());
+	table.addEncodedQuery(options.encoded_query);
+	table.query();
+	data.list = table.getRowCount();
+//	gs.addInfoMessage(data.list);
+	
+	
+	
+	
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>sdepally</sys_created_by>
+        <sys_created_on>2018-04-12 18:41:14</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>6762dcbb6f91d38051281ecbbb3ee415</sys_id>
+        <sys_mod_count>37</sys_mod_count>
+        <sys_name>BOTS Requests Single Counts</sys_name>
+        <sys_package display_value="BOTS - New" source="x_63474_bots">fca917c14f111300cb281b818110c713</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="BOTS - New">fca917c14f111300cb281b818110c713</sys_scope>
+        <sys_update_name>sp_widget_6762dcbb6f91d38051281ecbbb3ee415</sys_update_name>
+        <sys_updated_by>sphelan</sys_updated_by>
+        <sys_updated_on>2018-04-27 21:18:21</sys_updated_on>
+        <template><![CDATA[<div  id="resize">
+  <div class="panel panel-default" style="text-align:center;">
+    <div style="text-align: center;display: block;font-size: 2.5rem;font-weight: 300; line-height: 1.1; padding-top: 25px;margin: 0 0 10px 0;">{{c.options.title}}</div><hr noshade>
+		<a  href="?id=bots_requests&table={{c.options.table_name}}&filter={{c.options.encoded_query}}&target_page_id=bots_form&view={{c.options.view}}" class="block">
+          <div id="color_list" style="text-align:center;font-size:50px;">{{data.list}}</div><br>
+          
+        </a>
+    
+  	<!--	<a ng-if="c.options.table_name == 'kb_knowledge'" href="?id=kb_search&spa=1&author=javascript:gs.getUserID()" class="panel-body block">
+          <div id="color_list" style="text-align: center ;"><strong><h2>{{data.list}}</h2></strong></div><br> 
+          
+        </a>
+  	   -->
+  </div>
+</div>
+
+]]></template>
+    </sp_widget>
+</record_update>

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_ui_section caption="Description" section_id="ceda22356f191f405cdc1cccbb3ee477" sys_domain="global" table="x_63474_bots_bots_order_request" version="3" view="">
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>short_description</element>
+            <position>0</position>
+            <sys_created_by>sphelan</sys_created_by>
+            <sys_created_on>2018-05-07 14:55:44</sys_created_on>
+            <sys_id>9c9e007b6fb5dfc051281ecbbb3ee468</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Description" display_value="Description" name="x_63474_bots_bots_order_request" sys_domain="global" view="Default view">ceda22356f191f405cdc1cccbb3ee477</sys_ui_section>
+            <sys_updated_by>sphelan</sys_updated_by>
+            <sys_updated_on>2018-05-07 14:55:44</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>description</element>
+            <position>1</position>
+            <sys_created_by>sphelan</sys_created_by>
+            <sys_created_on>2018-05-07 14:55:44</sys_created_on>
+            <sys_id>109e007b6fb5dfc051281ecbbb3ee469</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Description" display_value="Description" name="x_63474_bots_bots_order_request" sys_domain="global" view="Default view">ceda22356f191f405cdc1cccbb3ee477</sys_ui_section>
+            <sys_updated_by>sphelan</sys_updated_by>
+            <sys_updated_on>2018-05-07 14:55:44</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>.begin_split</element>
+            <position>2</position>
+            <sys_created_by>sphelan</sys_created_by>
+            <sys_created_on>2018-05-07 14:55:44</sys_created_on>
+            <sys_id>909e007b6fb5dfc051281ecbbb3ee469</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Description" display_value="Description" name="x_63474_bots_bots_order_request" sys_domain="global" view="Default view">ceda22356f191f405cdc1cccbb3ee477</sys_ui_section>
+            <sys_updated_by>sphelan</sys_updated_by>
+            <sys_updated_on>2018-05-07 14:55:44</sys_updated_on>
+            <sys_user/>
+            <type>.begin_split</type>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>ship_to_person</element>
+            <position>3</position>
+            <sys_created_by>sphelan</sys_created_by>
+            <sys_created_on>2018-05-07 14:55:44</sys_created_on>
+            <sys_id>149e007b6fb5dfc051281ecbbb3ee469</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Description" display_value="Description" name="x_63474_bots_bots_order_request" sys_domain="global" view="Default view">ceda22356f191f405cdc1cccbb3ee477</sys_ui_section>
+            <sys_updated_by>sphelan</sys_updated_by>
+            <sys_updated_on>2018-05-07 14:55:44</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>required_by_date</element>
+            <position>4</position>
+            <sys_created_by>sphelan</sys_created_by>
+            <sys_created_on>2018-05-07 14:55:44</sys_created_on>
+            <sys_id>949e007b6fb5dfc051281ecbbb3ee469</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Description" display_value="Description" name="x_63474_bots_bots_order_request" sys_domain="global" view="Default view">ceda22356f191f405cdc1cccbb3ee477</sys_ui_section>
+            <sys_updated_by>sphelan</sys_updated_by>
+            <sys_updated_on>2018-05-07 14:55:44</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>.split</element>
+            <position>5</position>
+            <sys_created_by>sphelan</sys_created_by>
+            <sys_created_on>2018-05-07 14:55:44</sys_created_on>
+            <sys_id>189e007b6fb5dfc051281ecbbb3ee469</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Description" display_value="Description" name="x_63474_bots_bots_order_request" sys_domain="global" view="Default view">ceda22356f191f405cdc1cccbb3ee477</sys_ui_section>
+            <sys_updated_by>sphelan</sys_updated_by>
+            <sys_updated_on>2018-05-07 14:55:44</sys_updated_on>
+            <sys_user/>
+            <type>.split</type>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>ship_to_address</element>
+            <position>6</position>
+            <sys_created_by>sphelan</sys_created_by>
+            <sys_created_on>2018-05-07 14:55:44</sys_created_on>
+            <sys_id>989e007b6fb5dfc051281ecbbb3ee469</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Description" display_value="Description" name="x_63474_bots_bots_order_request" sys_domain="global" view="Default view">ceda22356f191f405cdc1cccbb3ee477</sys_ui_section>
+            <sys_updated_by>sphelan</sys_updated_by>
+            <sys_updated_on>2018-05-07 14:55:44</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_section action="INSERT_OR_UPDATE">
+            <caption>Description</caption>
+            <header>false</header>
+            <name>x_63474_bots_bots_order_request</name>
+            <roles/>
+            <sys_class_name>sys_ui_section</sys_class_name>
+            <sys_created_by>sphelan</sys_created_by>
+            <sys_created_on>2018-04-07 00:39:17</sys_created_on>
+            <sys_customer_update>false</sys_customer_update>
+            <sys_domain>global</sys_domain>
+            <sys_id>ceda22356f191f405cdc1cccbb3ee477</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>Description</sys_name>
+            <sys_overrides/>
+            <sys_package display_value="BOTS - New" source="x_63474_bots">fca917c14f111300cb281b818110c713</sys_package>
+            <sys_policy/>
+            <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+            <sys_scope display_value="BOTS - New">fca917c14f111300cb281b818110c713</sys_scope>
+            <sys_update_name>sys_ui_section_ceda22356f191f405cdc1cccbb3ee477</sys_update_name>
+            <sys_updated_by>sphelan</sys_updated_by>
+            <sys_updated_on>2018-04-07 00:39:17</sys_updated_on>
+            <sys_user/>
+            <title>false</title>
+            <view display_value="Default view" name="NULL">Default view</view>
+            <view_name/>
+        </sys_ui_section>
+    </sys_ui_section>
+</record_update>

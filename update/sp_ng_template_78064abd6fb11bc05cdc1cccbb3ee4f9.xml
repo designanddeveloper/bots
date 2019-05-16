@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_ng_template">
+    <sp_ng_template action="INSERT_OR_UPDATE">
+        <id>bots-header-mobile-global-nav-template</id>
+        <sp_widget display_value="BOTS Portal Header">d1a5ce7d6fb11bc05cdc1cccbb3ee403</sp_widget>
+        <sys_class_name>sp_ng_template</sys_class_name>
+        <sys_created_by>sphelan</sys_created_by>
+        <sys_created_on>2018-05-01 18:30:14</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>78064abd6fb11bc05cdc1cccbb3ee4f9</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>bots-header-mobile-global-nav-template</sys_name>
+        <sys_package display_value="BOTS - New" source="x_63474_bots">fca917c14f111300cb281b818110c713</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="BOTS - New">fca917c14f111300cb281b818110c713</sys_scope>
+        <sys_update_name>sp_ng_template_78064abd6fb11bc05cdc1cccbb3ee4f9</sys_update_name>
+        <sys_updated_by>sphelan</sys_updated_by>
+        <sys_updated_on>2018-05-01 18:30:14</sys_updated_on>
+        <template><![CDATA[<uib-accordion ng-show="isMobileView()" close-others="false">
+  <uib-accordion-group ng-if="(!user.logged_in && page.id != portal.login_page_dv)" ng-init="status = {isOpen: false}" is-open="status.isOpen">
+  	<uib-accordion-heading>
+    	<div class="unified-mobile-header-menu-level1-link">
+        	<h4><a href ng-click="$event.stopPropagation();openLogin();" aria-label="${Login}">${Login}</a></h4>
+        </div> 
+    </uib-accordion-heading>
+  </uib-accordion-group>  
+  <uib-accordion-group ng-if="user.logged_in" ng-init="status = {isOpen: false}" is-open="status.isOpen">
+    <uib-accordion-heading>
+        <div>                          
+          <span class="navbar-avatar"><sn-avatar class="avatar-small-medium" primary="userID" /></span>
+          <h4>{{::user.name}}<i class="csm-unified-float-right" ng-class="status.isOpen ? 'fa fa-minus' : 'fa fa-plus'"/></h4>
+        </div>
+    </uib-accordion-heading>
+    <uib-accordion class="csm-unified-mobile-level2">
+        <uib-accordion-group ng-if="user.logged_in" ng-init="status = {isOpen: false}" is-open="status.isOpen">
+            <uib-accordion-heading>
+              <div class="csm-unified-mobile-level2-item">
+                <h4><a ng-if="isCommunityPortal()" ng-click="$event.stopPropagation();" class="csm-unified-heading-link" ng-href="?id=community_user_profile&user={{::data.liveProfileId}}" aria-label="${Community Profile}">${Community Profile}</a></h4>
+                <h4><a ng-if="!isCommunityPortal()" ng-click="$event.stopPropagation();" class="csm-unified-heading-link" ng-href="?id={{::data.supportProfilePortal}}&user={{::userID}}" aria-label="${Profile}">${Support Profile}</a></h4>  
+              </div>                              
+            </uib-accordion-heading>
+        </uib-accordion-group>
+        <uib-accordion-group ng-if="user.logged_in && isCommunityPortal() && data.enableSupportProfile" ng-init="status = {isOpen: false}" is-open="status.isOpen">
+            <uib-accordion-heading>
+              <div class="csm-unified-mobile-level2-item">                  
+                <h4><a ng-if="isCommunityPortal() && data.enableSupportProfile" ng-click="$event.stopPropagation();" class="csm-unified-heading-link" ng-href="/{{::data.supportPortalPrefix}}?id={{::data.supportProfilePortal}}&user={{::userID}}" aria-label="${Support Profile}">${Support Profile}</a></h4>
+              </div>                              
+            </uib-accordion-heading>
+        </uib-accordion-group>
+        <uib-accordion-group ng-if="user.logged_in" ng-init="status = {isOpen: false}" is-open="status.isOpen">
+            <uib-accordion-heading>
+              <div class="csm-unified-mobile-level2-item">                  
+                <h4><a ng-show="data.isCommunityEnabled" ng-click="$event.stopPropagation();" ng-href="?id=actsub_notif_pref" aria-label="${Notification Settings}">${Notification Settings}</a></h4>
+              </div>                              
+            </uib-accordion-heading>
+        </uib-accordion-group>
+    </uib-accordion>
+  </uib-accordion-group>
+</uib-accordion> 
+<div ng-show="isMobileView()" class="">
+	<li ng-show="isMobileView()">
+      <sp-widget widget="data.menu"></sp-widget>
+	</li>
+</div>   
+<uib-accordion ng-show="isMobileView()" close-others="false">
+  <uib-accordion-group ng-repeat="notification in data.notifications" ng-if="(user.logged_in && notification.scriptedItems.count > 0)" ng-init="status = {isOpen: false}" is-open="status.isOpen">
+    <uib-accordion-heading >
+      <div class="unified-mobile-header-menu-level1-link">
+        <h4><a ng-click="$event.stopPropagation();" ng-repeat="link in notification.scriptedItems.items | filter:{ type: 'link' }" href={{link.href}} style='color:white' aria-label="{{notification.label}}">{{notification.label}} </a><span ng-if="!notification.scriptedItems.omitBadge" class="label label-as-badge label-primary sp-navbar-badge-count">{{notification.scriptedItems.count}}</span></h4>
+      </div>
+    </uib-accordion-heading>
+  </uib-accordion-group>  
+</uib-accordion>
+<div ng-show="isMobileView()" class="">
+	<li ng-show="isMobileView()">
+      <sp-widget widget="data.secondaryMenu"></sp-widget>
+	</li>
+</div>   
+<uib-accordion ng-show="isMobileView()">  
+   <uib-accordion-group ng-if="(!user.logged_in && isCSPPortal() && page.id != portal.login_page_dv)" ng-init="status = {isOpen: false}" is-open="status.isOpen">
+        <uib-accordion-heading>
+            <div class="unified-mobile-header-menu-level1-link">
+              <h4><a href ng-click="$event.stopPropagation();openAnonymousChatPopUp()" aria-label="${Live Chat}">${Live Chat}</a></h4>
+            </div> 
+        </uib-accordion-heading>
+   </uib-accordion-group>
+   <uib-accordion-group ng-if="user.logged_in && data.connect_support_queue_id" ng-init="status = {isOpen: false}" is-open="status.isOpen">
+        <uib-accordion-heading>
+            <div class="unified-mobile-header-menu-level1-link">
+              <h4><a href ng-click="$event.stopPropagation();openPopUp()" aria-label="${Live Chat}">${Live Chat}</a></h4>
+            </div> 
+        </uib-accordion-heading>
+   </uib-accordion-group>
+   <uib-accordion-group ng-if="user.logged_in" ng-init="status = {isOpen: false}" is-open="status.isOpen">
+        <uib-accordion-heading>
+            <div class="unified-mobile-header-menu-level1-link">
+              <h4><a ng-click="$event.stopPropagation();" href="{{::portal.logoutUrl}}" aria-label="${Logout}">${Logout}</a></h4>
+            </div> 
+        </uib-accordion-heading>
+   </uib-accordion-group>                      
+</uib-accordion>  ]]></template>
+    </sp_ng_template>
+</record_update>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_relationship">
+    <sys_relationship action="INSERT_OR_UPDATE">
+        <advanced>false</advanced>
+        <apply_to/>
+        <basic_apply_to>x_63474_bots_bots_requests</basic_apply_to>
+        <basic_query_from>sys_attachment</basic_query_from>
+        <insert_callback/>
+        <name>All Attachments</name>
+        <query_from/>
+        <query_with><![CDATA[(function(){
+	var queryString = "table_nameINx_63474_bots_bots_order_request,x_63474_bots_bots_supply_item^table_sys_idIN" + parent.getValue("sys_id");
+	
+	var qc = current.addQuery('table_sys_id', parent.sys_id);
+	//Query for associated tasks
+	var tsk = new GlideRecord('x_63474_bots_bots_supply_item');
+	tsk.addQuery('u_request', parent.sys_id);
+	tsk.query();
+	var tskIDArr = new Array();
+	while(tsk.next()){
+		tskIDArr.push(tsk.sys_id.toString());
+	}
+	
+	
+	//gs.addInfoMessage("degug: "+ parent.sys_id);
+	var tskIDStr = tskIDArr.join();
+	qc.addOrCondition('table_sys_id', 'IN', tskIDStr);
+	current.addNotNullQuery('table_sys_id');
+	
+})();
+
+]]></query_with>
+        <reference_field>encryption_context</reference_field>
+        <related_list/>
+        <simple_reference>false</simple_reference>
+        <sys_class_name>sys_relationship</sys_class_name>
+        <sys_created_by>sphelan</sys_created_by>
+        <sys_created_on>2018-04-06 22:26:24</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>0d1c8afd6fd5db4051281ecbbb3ee4e8</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>All Attachments</sys_name>
+        <sys_package display_value="BOTS - New" source="x_63474_bots">fca917c14f111300cb281b818110c713</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="BOTS - New">fca917c14f111300cb281b818110c713</sys_scope>
+        <sys_update_name>sys_relationship_0d1c8afd6fd5db4051281ecbbb3ee4e8</sys_update_name>
+        <sys_updated_by>sphelan</sys_updated_by>
+        <sys_updated_on>2018-04-06 23:42:57</sys_updated_on>
+    </sys_relationship>
+    <sys_translated_text action="delete_multiple" query="documentkey=0d1c8afd6fd5db4051281ecbbb3ee4e8"/>
+</record_update>

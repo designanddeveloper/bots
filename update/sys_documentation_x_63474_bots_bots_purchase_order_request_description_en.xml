@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_documentation element="description" label="Justification of Request" language="en" table="x_63474_bots_bots_purchase_order_request">
+        <sys_documentation action="INSERT_OR_UPDATE">
+            <element>description</element>
+            <help/>
+            <hint/>
+            <label>Justification of Request</label>
+            <language>en</language>
+            <name>x_63474_bots_bots_purchase_order_request</name>
+            <plural>Justification of Requests</plural>
+            <sys_class_name>sys_documentation</sys_class_name>
+            <sys_created_by>sdepally</sys_created_by>
+            <sys_created_on>2018-05-23 19:47:35</sys_created_on>
+            <sys_customer_update>false</sys_customer_update>
+            <sys_id>9fca6f7c6f9edb0051281ecbbb3ee4d5</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>Justification of Request</sys_name>
+            <sys_package display_value="BOTS - New" source="x_63474_bots">fca917c14f111300cb281b818110c713</sys_package>
+            <sys_policy/>
+            <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+            <sys_scope display_value="BOTS - New">fca917c14f111300cb281b818110c713</sys_scope>
+            <sys_update_name>sys_documentation_x_63474_bots_bots_purchase_order_request_description_en</sys_update_name>
+            <sys_updated_by>sdepally</sys_updated_by>
+            <sys_updated_on>2018-05-23 19:47:35</sys_updated_on>
+            <u_field_explanation/>
+            <url/>
+            <url_target/>
+        </sys_documentation>
+    </sys_documentation>
+</record_update>

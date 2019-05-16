@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_script_client">
+    <sys_script_client action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <applies_extended>true</applies_extended>
+        <condition/>
+        <description/>
+        <field>u_kfs_number</field>
+        <global>true</global>
+        <isolate_script>false</isolate_script>
+        <messages/>
+        <name>KFS Validate</name>
+        <order/>
+        <script><![CDATA[function onChange(control, oldValue, newValue, isLoading, isTemplate) {
+	if (isLoading || newValue === '') {
+		return;
+	}
+	
+	//var txt;
+	//var r = confirm("Do you want to load the details of this Crosswalk per the KFS Details?");
+	//if (r == true) {
+		//set the values
+		//var kfsgood = new GlideAjax('FundingSource');
+		//kfsgood.addParam('sysparm_name','initialize');
+		//kfsgood.addParam('sysparm_name','KFSDetails');
+		//kfsgood.addParam('kfsnumber',newValue);
+		//kfsgood.getXML(kfsrecord);
+	//}
+	//else
+	//	{
+		//just do a kfs check
+		var healthcheck = new GlideAjax('FundingSource');
+		healthcheck.addParam('sysparm_name','initialize');
+		healthcheck.addParam('sysparm_name','KFSCheck');
+		healthcheck.addParam('kfsnumber',newValue);
+		healthcheck.getXML(kfsstatus);
+	//}
+	
+}
+
+function kfsstatus(response)
+{
+	g_form.hideFieldMsg('kfs_number');
+	g_form.hideFieldMsg('kfs_number');
+	var answer = response.responseXML.documentElement.getAttribute("answer");
+	//alert(answer);
+	answer = answer.split('|');
+	//number + "|" + account status
+	g_form.showFieldMsg('kfs_number','KFS# is '+ answer[1]);
+}
+
+function kfsrecord(response)
+{
+	g_form.hideFieldMsg('kfs_number');
+	g_form.hideFieldMsg('kfs_number');
+	var answer = response.responseXML.documentElement.getAttribute("answer");
+	//alert(answer);
+	answer = answer.split('|');
+	//AccountStatus + "|" + businessmanager + "|" + budgetowner + "|" + budgettitle  + "|" + budgetdepartment;
+	g_form.setValue('budget_long_name',answer[3]);
+	g_form.setValue('budget_owner',answer[2]);
+	g_form.setValue('business_manager',answer[1]);
+	g_form.showFieldMsg('kfs_number','Department: '+ answer[4]);
+	g_form.showFieldMsg('kfs_number','KFS# is '+ answer[0]);
+}]]></script>
+        <sys_class_name>sys_script_client</sys_class_name>
+        <sys_created_by>sphelan</sys_created_by>
+        <sys_created_on>2018-04-06 22:54:21</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_domain>global</sys_domain>
+        <sys_id>cdd29a756f19db4051281ecbbb3ee48c</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>KFS Validate</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="BOTS - New" source="x_63474_bots">fca917c14f111300cb281b818110c713</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="BOTS - New">fca917c14f111300cb281b818110c713</sys_scope>
+        <sys_update_name>sys_script_client_cdd29a756f19db4051281ecbbb3ee48c</sys_update_name>
+        <sys_updated_by>sphelan</sys_updated_by>
+        <sys_updated_on>2018-04-06 22:54:21</sys_updated_on>
+        <table>x_63474_bots_bots_crosswalk</table>
+        <type>onChange</type>
+        <ui_type>0</ui_type>
+        <view/>
+    </sys_script_client>
+</record_update>

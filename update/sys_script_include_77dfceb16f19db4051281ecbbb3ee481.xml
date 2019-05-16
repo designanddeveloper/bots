@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_63474_bots.FundingSource</api_name>
+        <client_callable>true</client_callable>
+        <description>KFS and Funding Source Details From Crosswalk Table</description>
+        <name>FundingSource</name>
+        <script><![CDATA[var FundingSource  = Class.create ( ) ;
+FundingSource.prototype = Object.extendsObject(global.AbstractAjaxProcessor , {
+	
+	
+	KFSCheck : function ( ) {
+		var kfsnum = this.getParameter('kfsnumber');
+		var s = new sn_ws.SOAPMessageV2('BOTS_KFS', 'Is_Valid');
+		s.setStringParameter('kfsnumber', kfsnum);
+		var response = s.execute();
+		var responseBody = response.getBody();
+		var status = response.getStatusCode();
+		
+		var xmlDoc = new XMLDocument2();
+		xmlDoc.parseXML(responseBody);
+		var AccountStatus = xmlDoc.getNodeText("//AccountStatus");
+		
+		return kfsnum+"|"+AccountStatus;
+		
+	} ,
+	
+	KFSDetails : function ( ) {
+		var kfsnum = this.getParameter('kfsnumber');
+		var s = new sn_ws.SOAPMessageV2('BOTS_KFS', 'account_details');
+		s.setStringParameter('kfsnumber', kfsnum);
+		var response = s.execute();
+		var responseBody = response.getBody();
+		var status = response.getStatusCode();
+		
+		var xmlDoc = new XMLDocument2();
+		xmlDoc.parseXML(responseBody);
+		
+		var AccountStatus = xmlDoc.getNodeText("//Account/Status");
+		var budgettitle = xmlDoc.getNodeText("//Account/AccountName");
+		var budgetdepartment = xmlDoc.getNodeText("//Account/Department/DepartmentName");
+		
+		var businessmanager = '';
+		var FiscalOfficer = new GlideRecord('sys_user');
+		FiscalOfficer.addQuery('u_correlation_id',xmlDoc.getNodeText("//Account/FiscalOfficer/PrincipalId"));
+		FiscalOfficer.query();
+		while(FiscalOfficer.next()) {
+			businessmanager = FiscalOfficer.sys_id;
+		}
+		
+		var budgetowner = '';
+		var Supervisor = new GlideRecord('sys_user');
+		Supervisor.addQuery('u_correlation_id',xmlDoc.getNodeText("//Account/Supervisor/PrincipalId"));
+		Supervisor.query();
+		while(Supervisor.next()) {
+			budgetowner = Supervisor.sys_id;
+		}
+				
+		return  AccountStatus + "|" + businessmanager + "|" + budgetowner + "|" + budgettitle  + "|" + budgetdepartment;
+		
+	} ,
+	
+	FundingDetails : function ( ) {
+		
+		var budgetitems = new GlideRecord('x_63474_bots_bots_crosswalk');
+		budgetitems.addQuery('sys_id',this.getParameter('fundingsource'));
+		budgetitems.query();
+		while(budgetitems.next()) {
+			return budgetitems.u_budget_owner.getDisplayValue()+"|"+budgetitems.kfs_number;
+		}
+		
+		
+	} ,
+	
+	
+	_privateFunction : function ( ) { // this function is not client callable
+		
+	}
+	
+} ) ;]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>sphelan</sys_created_by>
+        <sys_created_on>2018-04-06 22:41:26</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>77dfceb16f19db4051281ecbbb3ee481</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>FundingSource</sys_name>
+        <sys_package display_value="BOTS - New" source="x_63474_bots">fca917c14f111300cb281b818110c713</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="BOTS - New">fca917c14f111300cb281b818110c713</sys_scope>
+        <sys_update_name>sys_script_include_77dfceb16f19db4051281ecbbb3ee481</sys_update_name>
+        <sys_updated_by>sphelan</sys_updated_by>
+        <sys_updated_on>2018-04-06 23:26:22</sys_updated_on>
+    </sys_script_include>
+</record_update>

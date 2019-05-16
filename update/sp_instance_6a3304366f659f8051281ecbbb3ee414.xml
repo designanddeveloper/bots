@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_instance">
+    <sp_instance action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <class_name/>
+        <color>default</color>
+        <css/>
+        <glyph/>
+        <id/>
+        <order>1</order>
+        <roles/>
+        <short_description/>
+        <size>md</size>
+        <sp_column display_value="2">5da658986f3593c05cdc1cccbb3ee4db</sp_column>
+        <sp_widget display_value="BOTS Requests Single Counts V2">b6e0f3ee6fe19f8051281ecbbb3ee4f5</sp_widget>
+        <sys_class_name>sp_instance</sys_class_name>
+        <sys_created_by>sphelan</sys_created_by>
+        <sys_created_on>2018-04-22 01:16:34</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>6a3304366f659f8051281ecbbb3ee414</sys_id>
+        <sys_mod_count>10</sys_mod_count>
+        <sys_name>Pending Business Office Review</sys_name>
+        <sys_package display_value="BOTS - New" source="x_63474_bots">fca917c14f111300cb281b818110c713</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="BOTS - New">fca917c14f111300cb281b818110c713</sys_scope>
+        <sys_update_name>sp_instance_6a3304366f659f8051281ecbbb3ee414</sys_update_name>
+        <sys_updated_by>sphelan</sys_updated_by>
+        <sys_updated_on>2018-08-13 15:40:41</sys_updated_on>
+        <title>Pending Business Office Review</title>
+        <url/>
+        <widget_parameters><![CDATA[{
+	"table_name": {
+		"value": "x_63474_bots_bots_requests",
+		"displayValue": "x_63474_bots_bots_requests"
+	},
+	"title": {
+		"value": "Pending Business Office Review",
+		"displayValue": "Pending Business Office Review"
+	},
+	"encoded_query": {
+		"value": "active=true^state=5^funding_source.u_budget_ownerDYNAMIC90d1921e5f510100a9ad2572f2b477fe",
+		"displayValue": "active=true^state=5^funding_source.u_budget_ownerDYNAMIC90d1921e5f510100a9ad2572f2b477fe"
+	},
+	"view": {
+		"value": "At_Biz",
+		"displayValue": "At_Biz"
+	}
+}]]></widget_parameters>
+    </sp_instance>
+    <sys_translated_text action="delete_multiple" query="documentkey=6a3304366f659f8051281ecbbb3ee414"/>
+</record_update>

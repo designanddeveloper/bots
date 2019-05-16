@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_header_footer">
+    <sp_header_footer action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[function($scope, csmUnifiedDeviceType, $timeout, $uibModal,$location) {
+	/* widget controller */
+	var c = this;	
+
+	$scope.isMobileView = csmUnifiedDeviceType.isMobileView;
+
+	c.showCSMTermsandConditions = function() {
+		var modalInstance = $uibModal.open({
+			templateUrl: 'terms-conditions',
+			ariaLabelledBy: 'modal-title',
+			ariaDescribedBy: 'modal-body',
+			size: 'lg',
+			controller: function($scope, $sce) {
+				$scope.content=c.data._tc_content;
+				$scope.cancel = function() { modalInstance.dismiss('cancel'); };
+				$scope.convertHtml = $sce.trustAsHtml(c.data._tc_content);
+			}
+		});
+	}
+	//c.showCSMTermsandConditions();
+	//   $rootScope.$on('$locationChangeStart', function(e, newUrl, oldUrl) {
+	// 	if (newUrl !== oldUrl) {
+	// 		$('.navbar.csm-unified-footer').hide();
+	// 	}
+	//   });	
+
+	//  // This event is fired even before all AJAX requests on the page have completed
+	//  // Showing the footer after a timeout to allow the ajax requests to complete before the footer is shown
+	//   $rootScope.$on('$locationChangeSuccess', function(e, newUrl, oldUrl) {
+	// 	$timeout( function() {			
+	// 		$('.navbar.csm-unified-footer').show();				
+	// 	}, 3000);
+	//   });			
+
+
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.csm-navbar-terms-conditions{
+  margin:20px 15px !important;
+}
+.csm-hr-seperator{
+ width:100%; 
+}
+
+
+.csm-unified-footer {
+  width: 100%;
+  border-radius: 0px;
+  margin-top: 30px;
+}
+
+
+.csm-unified-footer-align-center-horizontal {
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.csm-unified-footer-terms-conditions-bar{
+   	text-align: center;
+	  font-weight: normal;
+  	/*margin-top: 5px;*/
+  	
+}
+.csm-unified-footer-address-bar {  
+  	text-align: center;
+  /*	margin-top: 5px;*/
+  	margin-bottom: 20px;
+}
+
+.csm-unified-footer-address-bar h5 {
+  	font-weight: normal;
+}
+.csm-unified-footer .panel-group .panel  + .panel {
+	margin-top: 0px;
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id>bots-unified-portal-footer</id>
+        <internal>false</internal>
+        <link/>
+        <name>BOTS Portal Footer</name>
+        <option_schema/>
+        <public>true</public>
+        <roles/>
+        <script><![CDATA[(function() {
+	/* populate the 'data' object */
+	var COMMUNITY_SYSID="5b49418bdb4aa200b1f6f78eaf96195f";
+	/* e.g., data.table = $sp.getValue('table'); */
+	//check for community portal
+	data.portal_sysid=$sp.getPortalRecord().getUniqueValue();
+	if(data.portal_sysid == COMMUNITY_SYSID)
+		data.iscommunity=true;
+	else
+		data.iscommunity=false;
+	// Load the Footer Menu Widget
+	var qsConfig = $sp.getValue("quick_start_config");
+	var qsConfigJson = qsConfig ? JSON.parse(qsConfig)[0] : {};
+	var footerMenuInstance = qsConfigJson.footerMenu ? qsConfigJson.footerMenu.sys_id : '';
+	data.footerMenu = $sp.getWidgetFromInstance(footerMenuInstance);
+
+	var getPrimaryCompanyContactInfo = function() {
+
+		var gr = new GlideRecord("core_company");
+		gr.addQuery("primary", "true");
+		gr.query();
+		if (gr.next()) {
+			var primaryCompanyContactInfo = {};
+
+			primaryCompanyContactInfo.phone = gr.phone ? gr.phone.getDisplayValue() : "";
+
+			primaryCompanyContactInfo.address = gr.street ? gr.street.getDisplayValue() : "";
+			primaryCompanyContactInfo.address += gr.city ? ", " + gr.city.getDisplayValue() : "";
+			primaryCompanyContactInfo.address += gr.state ? ", " + gr.state.getDisplayValue() : "";
+			primaryCompanyContactInfo.address += gr.zip ? " " + gr.zip.getDisplayValue() : "";
+
+			return primaryCompanyContactInfo;
+		}
+
+		return null;
+	};
+
+	data.contactInfo = getPrimaryCompanyContactInfo();
+	data.has_community_portal=GlidePluginManager.isActive('com.sn_communities');
+
+	if(data.has_community_portal){
+		data._tc_content="";
+		var gr=new GlideRecord("sn_communities_terms_conditions"); 
+		gr.addQuery('active', true);
+		gr.orderByDesc('sys_created_on');  
+		gr.setLimit(1); 
+		gr.query();  
+		if(gr.next()) {   
+			data._tc_content=gr.getDisplayValue('content');
+		}
+	}
+
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_header_footer</sys_class_name>
+        <sys_created_by>sphelan</sys_created_by>
+        <sys_created_on>2018-05-01 18:32:06</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>07868abd6fb11bc05cdc1cccbb3ee4d8</sys_id>
+        <sys_mod_count>5</sys_mod_count>
+        <sys_name>BOTS Portal Footer</sys_name>
+        <sys_package display_value="BOTS - New" source="x_63474_bots">fca917c14f111300cb281b818110c713</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="BOTS - New">fca917c14f111300cb281b818110c713</sys_scope>
+        <sys_update_name>sp_header_footer_07868abd6fb11bc05cdc1cccbb3ee4d8</sys_update_name>
+        <sys_updated_by>sphelan</sys_updated_by>
+        <sys_updated_on>2018-06-12 02:47:02</sys_updated_on>
+        <template><![CDATA[<nav class="navbar csm-navbar navbar-inverse csm-navbar-inverse csm-unified-footer" role="navigation">
+  <div class="container">
+    <div ng-class="::!isMobileView() ? 'csm-align-center-horizontal' : ''">
+
+      <!-- <div sp-navbar-toggle="" class="collapse navbar-collapse" id="sp-nav-bar"> -->
+      <div id="sp-nav-bar">
+        <div>
+          <sp-widget widget="data.footerMenu"></sp-widget>
+	           <hr ng-if= "::data.iscommunity && !isMobileView()" ng-if="::!isMobileView()" class="csm-hr-seperator"> 
+        </div>
+      </div>
+    <!--
+      <div ng-if= "::data.iscommunity" class="csm-unified-footer-terms-conditions-bar" ng-class="::!isMobileView() ? '':'csm-navbar-terms-conditions'">
+        <a class="csm-navbar-text" href="javascript:void(0);"  ng-click="c.showCSMTermsandConditions();">${Terms and Conditions}</a>
+      </div>
+      <div ng-show="::!isMobileView()" ng-if="::data.contactInfo" class="csm-unified-footer-address-bar">
+        <div ng-if="::data.contactInfo.address" class="csm-unified-footer-address-line2"><h5>{{::data.contactInfo.address}}</h5></div>
+        <div ng-if="::data.contactInfo.phone" class="csm-unified-footer-address-line1"><h5>{{::data.contactInfo.phone}}</h5></div>
+      </div>
+	-->
+    </div>
+  </div>
+
+</nav>
+<!-- Adding inline style to make the footer stick to the bottom of the page -->
+<style>
+  section.page {
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    display: -webkit-flex;
+    display: flex;
+  }
+  main.body {
+    flex: 1 0 auto;
+  }
+</style>]]></template>
+    </sp_header_footer>
+</record_update>

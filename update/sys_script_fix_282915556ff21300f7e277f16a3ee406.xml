@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_fix">
+    <sys_script_fix action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <before>false</before>
+        <description/>
+        <flush_cache>false</flush_cache>
+        <name>reset bots owner for clean load</name>
+        <record_for_rollback>false</record_for_rollback>
+        <run_once>true</run_once>
+        <script><![CDATA[var clean = new GlideRecord('x_63474_bots_bots_crosswalk');
+clean.addQuery('');
+clean.query();
+while(clean.next()) {
+	clean.u_additional_owners='';
+	clean.u_budget_owner='';
+	clean.update();
+}
+
+var grouppeople = new GlideRecord('sys_user_grmember');
+grouppeople.addQuery('group.u_sims_nameLIKEbudget-owner-');
+grouppeople.query();
+while(grouppeople.next()) {
+	grouppeople.deleteRecord();
+}]]></script>
+        <sys_class_name>sys_script_fix</sys_class_name>
+        <sys_created_by>sphelan</sys_created_by>
+        <sys_created_on>2018-06-18 19:00:53</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>282915556ff21300f7e277f16a3ee406</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>reset bots owner for clean load</sys_name>
+        <sys_package display_value="BOTS - New" source="x_63474_bots">fca917c14f111300cb281b818110c713</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="BOTS - New">fca917c14f111300cb281b818110c713</sys_scope>
+        <sys_update_name>sys_script_fix_282915556ff21300f7e277f16a3ee406</sys_update_name>
+        <sys_updated_by>sphelan</sys_updated_by>
+        <sys_updated_on>2018-06-18 19:00:53</sys_updated_on>
+        <unloadable>false</unloadable>
+    </sys_script_fix>
+</record_update>

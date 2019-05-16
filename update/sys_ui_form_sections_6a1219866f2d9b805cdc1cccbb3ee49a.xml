@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_ui_form_sections form_id="6a1219866f2d9b805cdc1cccbb3ee49a" sys_domain="global" table="x_63474_bots_bots_issue" version="3">
+        <sys_ui_form_section action="INSERT_OR_UPDATE">
+            <position>0</position>
+            <sys_created_by>sphelan</sys_created_by>
+            <sys_created_on>2018-04-19 23:05:44</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_id>6e12d9866f2d9b805cdc1cccbb3ee43e</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_overrides/>
+            <sys_ui_form display_value="x_63474_bots_bots_issue" name="x_63474_bots_bots_issue" sys_domain="global" view="Default view">6a1219866f2d9b805cdc1cccbb3ee49a</sys_ui_form>
+            <sys_ui_section caption="NULL" display_value="" name="x_63474_bots_bots_issue" sys_domain="global" view="Default view">aa1219866f2d9b805cdc1cccbb3ee49c</sys_ui_section>
+            <sys_updated_by>sphelan</sys_updated_by>
+            <sys_updated_on>2018-04-19 23:05:44</sys_updated_on>
+        </sys_ui_form_section>
+        <sys_ui_form action="INSERT_OR_UPDATE">
+            <name>x_63474_bots_bots_issue</name>
+            <roles/>
+            <sys_class_name>sys_ui_form</sys_class_name>
+            <sys_created_by>sphelan</sys_created_by>
+            <sys_created_on>2018-04-19 23:05:44</sys_created_on>
+            <sys_customer_update>false</sys_customer_update>
+            <sys_domain>global</sys_domain>
+            <sys_id>6a1219866f2d9b805cdc1cccbb3ee49a</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>x_63474_bots_bots_issue</sys_name>
+            <sys_overrides/>
+            <sys_package display_value="BOTS - New" source="x_63474_bots">fca917c14f111300cb281b818110c713</sys_package>
+            <sys_policy/>
+            <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+            <sys_scope display_value="BOTS - New">fca917c14f111300cb281b818110c713</sys_scope>
+            <sys_update_name>sys_ui_form_sections_6a1219866f2d9b805cdc1cccbb3ee49a</sys_update_name>
+            <sys_updated_by>sphelan</sys_updated_by>
+            <sys_updated_on>2018-04-19 23:05:44</sys_updated_on>
+            <sys_user/>
+            <view display_value="Default view" name="NULL">Default view</view>
+            <view_name/>
+        </sys_ui_form>
+    </sys_ui_form_sections>
+</record_update>

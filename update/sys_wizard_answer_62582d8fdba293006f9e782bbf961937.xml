@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_wizard_answer">
+    <sys_wizard_answer action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <answer>BOTS Issue</answer>
+        <button_label/>
+        <dependent_value/>
+        <element/>
+        <name>BOTS Issue</name>
+        <next_question/>
+        <order>100</order>
+        <payload_name/>
+        <question display_value="Task" name="Task">cd1902523721310041271f9543990e2a</question>
+        <roles/>
+        <script/>
+        <sys_class_name>sys_wizard_answer</sys_class_name>
+        <sys_created_by>sphelan</sys_created_by>
+        <sys_created_on>2018-06-11 20:19:40</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>62582d8fdba293006f9e782bbf961937</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>BOTS Issue</sys_name>
+        <sys_package display_value="Global" source="global">global</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="BOTS - New">fca917c14f111300cb281b818110c713</sys_scope>
+        <sys_update_name>sys_wizard_answer_62582d8fdba293006f9e782bbf961937</sys_update_name>
+        <sys_updated_by>sphelan</sys_updated_by>
+        <sys_updated_on>2018-06-11 20:19:40</sys_updated_on>
+        <table/>
+        <target_url>x_63474_bots_bots_issue.do</target_url>
+        <type>1</type>
+    </sys_wizard_answer>
+</record_update>

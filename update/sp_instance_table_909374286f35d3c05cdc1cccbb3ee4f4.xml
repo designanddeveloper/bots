@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_instance_table">
+    <sp_instance_table action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <class_name/>
+        <color>default</color>
+        <css/>
+        <display_field/>
+        <field_list/>
+        <filter/>
+        <glyph/>
+        <id/>
+        <maximum_entries>5</maximum_entries>
+        <order>1</order>
+        <order_by/>
+        <order_direction>asc</order_direction>
+        <roles/>
+        <short_description/>
+        <size>md</size>
+        <sp_column display_value="1">549374286f35d3c05cdc1cccbb3ee4f2</sp_column>
+        <sp_page/>
+        <sp_widget display_value="Data Table Exp">509374e46f35d3c05cdc1cccbb3ee418</sp_widget>
+        <sys_class_name>sp_instance_table</sys_class_name>
+        <sys_created_by>dyak</sys_created_by>
+        <sys_created_on>2018-04-27 15:17:09</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>909374286f35d3c05cdc1cccbb3ee4f4</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="BOTS - New" source="x_63474_bots">fca917c14f111300cb281b818110c713</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="BOTS - New">fca917c14f111300cb281b818110c713</sys_scope>
+        <sys_update_name>sp_instance_table_909374286f35d3c05cdc1cccbb3ee4f4</sys_update_name>
+        <sys_updated_by>dyak</sys_updated_by>
+        <sys_updated_on>2018-04-27 15:17:09</sys_updated_on>
+        <table/>
+        <title/>
+        <url/>
+        <widget_parameters/>
+    </sp_instance_table>
+    <sys_translated_text action="delete_multiple" query="documentkey=909374286f35d3c05cdc1cccbb3ee4f4"/>
+</record_update>

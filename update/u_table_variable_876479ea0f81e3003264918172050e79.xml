@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="u_table_variable">
+    <u_table_variable action="INSERT_OR_UPDATE">
+        <sys_class_name>u_table_variable</sys_class_name>
+        <sys_created_by>sphelan</sys_created_by>
+        <sys_created_on>2018-10-12 14:33:46</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>876479ea0f81e3003264918172050e79</sys_id>
+        <sys_mod_count>5</sys_mod_count>
+        <sys_name>BOTS Supply Items</sys_name>
+        <sys_package display_value="BOTS - New" source="x_63474_bots">fca917c14f111300cb281b818110c713</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="BOTS - New">fca917c14f111300cb281b818110c713</sys_scope>
+        <sys_update_name>u_table_variable_876479ea0f81e3003264918172050e79</sys_update_name>
+        <sys_updated_by>sphelan</sys_updated_by>
+        <sys_updated_on>2018-10-12 17:25:03</sys_updated_on>
+        <u_add_row_title>Add Another Item To Request</u_add_row_title>
+        <u_allow_row_add>true</u_allow_row_add>
+        <u_default_data/>
+        <u_default_data_script/>
+        <u_default_row_count>1</u_default_row_count>
+        <u_display_as_vertical_table>false</u_display_as_vertical_table>
+        <u_html_result_variable display_value="Item List - CheckOutView">e8e4352e0f81e3003264918172050e20</u_html_result_variable>
+        <u_json_result_variable display_value="JSON Output">6ce4352e0f81e3003264918172050e29</u_json_result_variable>
+        <u_macro_variable display_value="Items Of Request">8654f5ea0f81e3003264918172050e3b</u_macro_variable>
+        <u_max_rows>-1</u_max_rows>
+        <u_remove_row_title>Remove Row</u_remove_row_title>
+        <u_row_add_script/>
+        <u_row_delete_script><![CDATA[var CostcolumnID = $scope.getColumnID("cost");
+var QuanitycolumnID = $scope.getColumnID("quanity");
+var rows = $scope.data.table_options.row_count;
+
+
+var newtotal = 0;
+for (i=0;i<rows;i++)
+	{
+	newtotal = newtotal + $scope.table_data[i].fields[CostcolumnID].value * $scope.table_data[i].fields[QuanitycolumnID].value;
+}
+newtotal = newtotal.toFixed(2);
+$scope.page.g_form.setValue('total_cost', newtotal);
+]]></u_row_delete_script>
+        <u_title>BOTS Supply Items</u_title>
+    </u_table_variable>
+</record_update>

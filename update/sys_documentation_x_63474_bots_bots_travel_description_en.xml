@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_documentation element="description" label="Justification of Request" language="en" table="x_63474_bots_bots_travel">
+        <sys_documentation action="INSERT_OR_UPDATE">
+            <element>description</element>
+            <help/>
+            <hint/>
+            <label>Justification of Request</label>
+            <language>en</language>
+            <name>x_63474_bots_bots_travel</name>
+            <plural>Justification of Requests</plural>
+            <sys_class_name>sys_documentation</sys_class_name>
+            <sys_created_by>sphelan</sys_created_by>
+            <sys_created_on>2018-04-12 23:03:50</sys_created_on>
+            <sys_customer_update>false</sys_customer_update>
+            <sys_id>2a8e85776f15d3805cdc1cccbb3ee412</sys_id>
+            <sys_mod_count>1</sys_mod_count>
+            <sys_name>Justification of Request</sys_name>
+            <sys_package display_value="BOTS - New" source="x_63474_bots">fca917c14f111300cb281b818110c713</sys_package>
+            <sys_policy/>
+            <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+            <sys_scope display_value="BOTS - New">fca917c14f111300cb281b818110c713</sys_scope>
+            <sys_update_name>sys_documentation_x_63474_bots_bots_travel_description_en</sys_update_name>
+            <sys_updated_by>sphelan</sys_updated_by>
+            <sys_updated_on>2018-05-07 15:51:10</sys_updated_on>
+            <u_field_explanation><![CDATA[<ul style="list-style-position: inside;"><li>What business need does this request fulfill?</li><li>How will this request benefit DIT and UMD?</li><li>What are other details that would be good for the Budget Owner and/or Business Office to know?</li></ul>]]></u_field_explanation>
+            <url/>
+            <url_target/>
+        </sys_documentation>
+    </sys_documentation>
+</record_update>

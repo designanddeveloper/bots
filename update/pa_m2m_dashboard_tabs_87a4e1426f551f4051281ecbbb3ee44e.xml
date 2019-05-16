@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="pa_m2m_dashboard_tabs">
+    <pa_m2m_dashboard_tabs action="INSERT_OR_UPDATE">
+        <dashboard display_value="My BOTS Budget Review">d8e7458e6f911f4051281ecbbb3ee41a</dashboard>
+        <home>false</home>
+        <homepage/>
+        <order>1</order>
+        <sys_class_name>pa_m2m_dashboard_tabs</sys_class_name>
+        <sys_created_by>sphelan</sys_created_by>
+        <sys_created_on>2018-04-07 14:11:11</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_domain>global</sys_domain>
+        <sys_id>87a4e1426f551f4051281ecbbb3ee44e</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>d8e7458e6f911f4051281ecbbb3ee41a</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="BOTS - New" source="x_63474_bots">fca917c14f111300cb281b818110c713</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="BOTS - New">fca917c14f111300cb281b818110c713</sys_scope>
+        <sys_update_name>pa_m2m_dashboard_tabs_87a4e1426f551f4051281ecbbb3ee44e</sys_update_name>
+        <sys_updated_by>sphelan</sys_updated_by>
+        <sys_updated_on>2018-04-07 14:11:33</sys_updated_on>
+        <tab display_value="Needs My Attention">0fa4e1426f551f4051281ecbbb3ee44c</tab>
+    </pa_m2m_dashboard_tabs>
+</record_update>

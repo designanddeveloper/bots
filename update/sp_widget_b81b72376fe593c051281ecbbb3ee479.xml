@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[function($scope, $sce, $location, spUtil, spMacro, $rootScope, $uibModal, $http, $window) {
+	/* widget controller */
+	var c = this;
+	
+	
+	//OPEN THE POPUP AND SET THE INTIAL TAB BASED ON YOUR CURRENT OS SELECTED
+	$scope.openreport = function(somereport) {
+		//OK, NOW OPEN IT
+		if (somereport==1)
+			{
+		c.modalInstance = $uibModal.open({
+			templateUrl: 'report1.html',
+			scope: $scope,
+			size:"lg",
+			backdrop:'static',
+			keyboard:false
+		});
+			}
+		else if (somereport==2)
+			{
+		c.modalInstance = $uibModal.open({
+			templateUrl: 'report2.html',
+			scope: $scope,
+			size:"lg",
+			backdrop:'static',
+			keyboard:false
+		});
+			}
+		else if (somereport==3)
+			{
+		c.modalInstance = $uibModal.open({
+			templateUrl: 'report3.html',
+			scope: $scope,
+			size:"lg",
+			backdrop:'static',
+			keyboard:false
+		});
+			}
+	}
+	
+	
+	//CLOSE THE POPUP
+	$scope.closereport = function() {
+		c.modalInstance.close();
+	}
+	
+	
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css/>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id/>
+        <internal>false</internal>
+        <link/>
+        <name>Leadership Report Options</name>
+        <option_schema>[{"displayValue":"Task","name":"table_name","default_value":"incident","section":"other","label":"Table name","type":"string","value":"task"},{"name":"title","default_value":"My Cases","section":"other","label":"Title","type":"string"},{"name":"encoded_query","section":"other","label":"Encoded Query","type":"string"},{"hint":"default","name":"view","section":"other","default_value":"default","label":"View","type":"string"}]</option_schema>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+	
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>sphelan</sys_created_by>
+        <sys_created_on>2018-04-25 17:13:44</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>b81b72376fe593c051281ecbbb3ee479</sys_id>
+        <sys_mod_count>27</sys_mod_count>
+        <sys_name>Leadership Report Options</sys_name>
+        <sys_package display_value="BOTS - New" source="x_63474_bots">fca917c14f111300cb281b818110c713</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="BOTS - New">fca917c14f111300cb281b818110c713</sys_scope>
+        <sys_update_name>sp_widget_b81b72376fe593c051281ecbbb3ee479</sys_update_name>
+        <sys_updated_by>sphelan</sys_updated_by>
+        <sys_updated_on>2018-04-26 23:48:50</sys_updated_on>
+        <template><![CDATA[<div class="panel panel-default b">
+<div class="panel-heading">
+   <h2 class="panel-title" style="font-weight:bold;">Reports</h2>
+</div>
+<div class="panel-body" style="padding-top: 5px !important; text-align:center;">
+
+<div class="btn-group" data-toggle="buttons">
+  
+  <label class="btn btn-link active" onclick="swapvisibilty('r2')" style="box-shadow: inset 0 0px 0px 0 rgba(0, 0, 0, .0);">
+    <i id="r2" class="fa fa-check"></i><input type="radio" name="options" id="option2" autocomplete="off"> Trent Report By Type
+  </label>
+  
+  <label class="btn btn-link" onclick="swapvisibilty('r3')" style="box-shadow: inset 0 0px 0px 0 rgba(0, 0, 0, .0);">
+    <i id="r3" class="fa fa-check"></i><input type="radio" name="options" id="option3" autocomplete="off"> Request >$250k
+  </label>
+  <label class="btn btn-link" onclick="swapvisibilty('r4')" style="box-shadow: inset 0 0px 0px 0 rgba(0, 0, 0, .0);">
+    <i id="r4" class="fa fa-check"></i><input type="radio" name="options" id="option4" autocomplete="off"> Requests FY2017
+  </label>
+</div>
+  
+  
+<script>
+		function swapvisibilty(showthis) {
+
+			if (showthis == 'r2')
+			{
+				document.getElementById('xd9b987336f2993c051281ecbbb3ee451').style.display="inline";
+        		document.getElementById('x560dc33b6f2993c051281ecbbb3ee477').style.display="none";
+       			document.getElementById('x35dd8f7b6f2993c051281ecbbb3ee45e').style.display="none";
+              
+				document.getElementById('r2').style.display="inline";
+        		document.getElementById('r3').style.display="none";
+       			document.getElementById('r4').style.display="none";
+              
+              	document.getElementById('x22cd55d46ff117c051281ecbbb3ee4f1').style.display="none";
+			}
+ 			 if (showthis == 'r3')
+			{
+				document.getElementById('xd9b987336f2993c051281ecbbb3ee451').style.display="none";
+        		document.getElementById('x560dc33b6f2993c051281ecbbb3ee477').style.display="inline";
+       			document.getElementById('x35dd8f7b6f2993c051281ecbbb3ee45e').style.display="none";
+  
+  				document.getElementById('r2').style.display="none";
+        		document.getElementById('r3').style.display="inline";
+       			document.getElementById('r4').style.display="none";
+              
+              	document.getElementById('x22cd55d46ff117c051281ecbbb3ee4f1').style.display="none";
+			}
+  			if (showthis == 'r4')
+			{
+				document.getElementById('xd9b987336f2993c051281ecbbb3ee451').style.display="none";
+        		document.getElementById('x560dc33b6f2993c051281ecbbb3ee477').style.display="none";
+       			document.getElementById('x35dd8f7b6f2993c051281ecbbb3ee45e').style.display="inline";
+  
+  				document.getElementById('r2').style.display="none";
+        		document.getElementById('r3').style.display="none";
+       			document.getElementById('r4').style.display="inline";
+              
+              	document.getElementById('x22cd55d46ff117c051281ecbbb3ee4f1').style.display="none";
+			}
+
+        }
+  </script>  
+
+  
+  
+</div>
+</div> 
+]]></template>
+    </sp_widget>
+</record_update>

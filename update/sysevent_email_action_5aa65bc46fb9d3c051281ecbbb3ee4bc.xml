@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sysevent_email_action">
+    <sysevent_email_action action="INSERT_OR_UPDATE">
+        <action_insert>false</action_insert>
+        <action_update>false</action_update>
+        <active>true</active>
+        <advanced_condition/>
+        <affected_field_on_event/>
+        <category display_value="BOTS Notifications" name="BOTS Notifications">070fc4fa0f8b53403264918172050ead</category>
+        <collection>x_63474_bots_bots_order_request</collection>
+        <condition/>
+        <content_type>text/html</content_type>
+        <default_interval/>
+        <description/>
+        <digest_from/>
+        <digest_html/>
+        <digest_reply_to/>
+        <digest_separator_html><![CDATA[<p>&nbsp;</p>
+<hr />
+<p>&nbsp;</p>]]></digest_separator_html>
+        <digest_separator_text><![CDATA[\n--------------------------------------------------------------------------------\n]]></digest_separator_text>
+        <digest_subject/>
+        <digest_template/>
+        <digest_text/>
+        <digestable>false</digestable>
+        <event_name>x_63474_bots.order.busin.ofc.review</event_name>
+        <event_parm_1>false</event_parm_1>
+        <event_parm_2>false</event_parm_2>
+        <exclude_delegates>false</exclude_delegates>
+        <force_delivery>false</force_delivery>
+        <from/>
+        <generation_type>event</generation_type>
+        <importance/>
+        <include_attachments>false</include_attachments>
+        <item>event.parm1</item>
+        <item_table/>
+        <mandatory>false</mandatory>
+        <message/>
+        <message_html><![CDATA[<p><span id="docs-internal-guid-568e156c-fe20-411b-66e0-d4de81fc263d">Please note that a&nbsp;</span>${type}&nbsp;<span id="docs-internal-guid-568e156c-fe20-7ee9-45c6-ee85086268c1">has been submitted for&nbsp;${requested_for}&nbsp;<span id="docs-internal-guid-568e156c-fe21-26e0-491a-27151cc7c0d2">that is pending your review and approval as the Business Manager for </span></span>${funding_source.u_budget_short_name}-${funding_source.u_kfs_number}</p>
+<p><span id="docs-internal-guid-568e156c-fe1c-625d-bf20-34be8f839dfd">You can access this BOTS ticket directly</span>&nbsp;<a title="here" href="bots?id=bots_form&amp;table=x_63474_bots_bots_requests&amp;sys_id=${sys_id}">here</a>&nbsp;or through your dashboard&nbsp;<a title="Here" href="/bots?id=submitter_dashboard">here</a><span id="docs-internal-guid-568e156c-fdd9-eb11-9670-eee9223891f2">.&nbsp;</span></p>
+<p dir="ltr">Some review tips for quick reference:</p>
+<ul style="list-style-position: inside;">
+<li dir="ltr">Review the request in relation to your budget and see if the request was planned or unplanned.</li>
+<li dir="ltr">If you manage multiple accounts, ensure that the ticket is assigned to the correct account.</li>
+<li dir="ltr">If unplanned, do you have a surplus that can absorb the new request? Or, what realignments can be made?</li>
+<li dir="ltr">If unplanned and the cost will negatively impact your budget, consider routing it to leadership for review and/or assistance in determining a funding source.</li>
+</ul>
+<p>&nbsp;</p>]]></message_html>
+        <message_list/>
+        <message_text/>
+        <name>Business manager Review</name>
+        <omit_watermark>false</omit_watermark>
+        <order>100</order>
+        <push_message_only>false</push_message_only>
+        <recipient_fields>funding_source.u_business_manager</recipient_fields>
+        <recipient_groups/>
+        <recipient_users/>
+        <reply_to/>
+        <send_self>true</send_self>
+        <sms_alternate/>
+        <style/>
+        <subject>${type} for Review/Approval - ${request_identification}</subject>
+        <subscribable>false</subscribable>
+        <sys_class_name>sysevent_email_action</sys_class_name>
+        <sys_created_by>sdepally</sys_created_by>
+        <sys_created_on>2018-04-26 13:52:44</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_domain>global</sys_domain>
+        <sys_id>5aa65bc46fb9d3c051281ecbbb3ee4bc</sys_id>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_name>Business manager Review</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="BOTS - New" source="x_63474_bots">fca917c14f111300cb281b818110c713</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="BOTS - New">fca917c14f111300cb281b818110c713</sys_scope>
+        <sys_update_name>sysevent_email_action_5aa65bc46fb9d3c051281ecbbb3ee4bc</sys_update_name>
+        <sys_updated_by>sdepally</sys_updated_by>
+        <sys_updated_on>2018-08-07 14:18:08</sys_updated_on>
+        <sys_version>2</sys_version>
+        <template display_value="Unsubscribe and Preferences">7ed0481f3b0b2200c869c2c703efc487</template>
+        <type>email</type>
+        <weight>0</weight>
+    </sysevent_email_action>
+</record_update>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_grid_canvas_pane">
+    <sys_grid_canvas_pane action="INSERT_OR_UPDATE">
+        <grid_canvas display_value="PA New Tab">44884d8e6f911f4051281ecbbb3ee464</grid_canvas>
+        <height>5</height>
+        <portal_widget display_value="Created 2018-04-07 13:48:44">f1769a026f191f4051281ecbbb3ee4af</portal_widget>
+        <posx>10</posx>
+        <posy>3</posy>
+        <sys_class_name>sys_grid_canvas_pane</sys_class_name>
+        <sys_created_by>sphelan</sys_created_by>
+        <sys_created_on>2018-04-07 17:48:44</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>31769a026f191f4051281ecbbb3ee4b1</sys_id>
+        <sys_mod_count>26</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="BOTS - New" source="x_63474_bots">fca917c14f111300cb281b818110c713</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="BOTS - New">fca917c14f111300cb281b818110c713</sys_scope>
+        <sys_update_name>sys_grid_canvas_pane_31769a026f191f4051281ecbbb3ee4b1</sys_update_name>
+        <sys_updated_by>sphelan</sys_updated_by>
+        <sys_updated_on>2018-04-08 01:03:17</sys_updated_on>
+        <width>2</width>
+    </sys_grid_canvas_pane>
+</record_update>

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[function($location) {
+  /* widget controller */
+  var c = this;
+	
+	$location.url(c.data.whatpage);
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css/>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id/>
+        <internal>false</internal>
+        <link/>
+        <name>BOTS-dashboarddirection</name>
+        <option_schema>[{"displayValue":"Task","name":"table_name","default_value":"incident","section":"other","label":"Table name","type":"string","value":"task"},{"name":"title","default_value":"My Cases","section":"other","label":"Title","type":"string"},{"name":"encoded_query","section":"other","label":"Encoded Query","type":"string"},{"hint":"default","name":"view","section":"other","default_value":"default","label":"View","type":"string"}]</option_schema>
+        <public>false</public>
+        <roles>x_63474_bots.user</roles>
+        <script><![CDATA[(function() {
+	/* populate the 'data' object */
+	/* e.g., data.table = $sp.getValue('table'); */
+	
+	data.whatpage = '?id=submitter_dashboard';
+	
+	
+	if (gs.hasRole('admin'))
+		{
+		//if your an admin, lets just stop here and lod MY page
+	}
+	else
+		{
+		
+		if (gs.hasRole('x_63474_bots.budget-leadership'))
+			{
+			data.whatpage = '?id=leadership&table=x_63474_bots_bots_requests&filter=active%3Dtrue';
+		}
+		else
+			{
+			if (gs.hasRole('x_63474_bots.business-managers'))
+				{
+				data.whatpage = '?id=business_manager';
+			}
+			else
+				{
+				if (gs.hasRole('x_63474_bots.budget-owner'))
+					{
+					data.whatpage = '?id=budget_owner';
+				}
+			}
+		}
+		
+		/*
+		//do you have any drafts?
+		var draftcheck = new GlideRecord('x_63474_bots_bots_requests');
+		draftcheck.addQuery('state=1');
+		draftcheck.addQuery('requested_by',gs.getUserID());
+		draftcheck.query();
+		if (draftcheck.getRowCount() > 0)
+			{
+			//yes, default to My Dashboard
+		}
+		else
+			{
+			if (gs.hasRole('x_63474_bots.budget-owner'))
+				{
+				data.whatpage = '?id=budget_owner';
+			}
+			else
+				{
+				if (gs.hasRole('x_63474_bots.business-managers'))
+					{
+					data.whatpage = '?id=business_manager';
+				}
+				else
+					{
+					if (gs.hasRole('x_63474_bots.budget-leadership'))
+						{
+						data.whatpage = '?id=leadership';
+					}
+				}
+			}
+		}
+ 		*/
+		
+		
+	}
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>sphelan</sys_created_by>
+        <sys_created_on>2018-04-11 16:04:19</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>1fe4a21f6f5953805cdc1cccbb3ee44e</sys_id>
+        <sys_mod_count>7</sys_mod_count>
+        <sys_name>BOTS-dashboarddirection</sys_name>
+        <sys_package display_value="BOTS - New" source="x_63474_bots">fca917c14f111300cb281b818110c713</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="BOTS - New">fca917c14f111300cb281b818110c713</sys_scope>
+        <sys_update_name>sp_widget_1fe4a21f6f5953805cdc1cccbb3ee44e</sys_update_name>
+        <sys_updated_by>sphelan</sys_updated_by>
+        <sys_updated_on>2018-04-27 00:25:11</sys_updated_on>
+        <template><![CDATA[<div> 
+  
+</div>]]></template>
+    </sp_widget>
+</record_update>

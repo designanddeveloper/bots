@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_page">
+    <sp_page action="INSERT_OR_UPDATE">
+        <category>sample</category>
+        <css/>
+        <draft>false</draft>
+        <dynamic_title_structure/>
+        <id>404_bots</id>
+        <internal>false</internal>
+        <public>true</public>
+        <roles/>
+        <short_description>Display when we cannot find the requested page</short_description>
+        <sys_class_name>sp_page</sys_class_name>
+        <sys_created_by>sdepally</sys_created_by>
+        <sys_created_on>2018-04-17 16:42:13</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>4d276d916f215b8051281ecbbb3ee40c</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>404_bots</sys_name>
+        <sys_package display_value="BOTS - New" source="x_63474_bots">fca917c14f111300cb281b818110c713</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="BOTS - New">fca917c14f111300cb281b818110c713</sys_scope>
+        <sys_update_name>sp_page_4d276d916f215b8051281ecbbb3ee40c</sys_update_name>
+        <sys_updated_by>sdepally</sys_updated_by>
+        <sys_updated_on>2018-04-17 16:42:51</sys_updated_on>
+        <title> Not Found</title>
+    </sp_page>
+    <sys_translated_text action="delete_multiple" query="documentkey=4d276d916f215b8051281ecbbb3ee40c"/>
+</record_update>

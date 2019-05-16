@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element label="BOTS Item" max_length="40" name="x_63474_bots_bots_supply_item" type="collection">
+        <element attributes="ref_contributions=add_me" label="Intended Recipient" max_length="32" name="created_for" reference="sys_user" type="reference"/>
+        <element label="URL" max_length="1024" name="url" text_index="true" type="url"/>
+        <element label="Description" max_length="200" name="u_description" text_index="true" type="string"/>
+        <element label="Item No" max_length="40" name="u_item_no" text_index="true" type="string"/>
+        <element display="true" label="Number" max_length="40" name="u_number" read_only="true" text_index="true" type="string"/>
+        <element label="SubTotal" max_length="20" name="u_price" read_only="true" type="currency"/>
+        <element label="Cost Per Unit" max_length="20" name="u_price_cost" type="currency"/>
+        <element default="1" label="Quantity" max_length="40" name="u_quantity" type="integer"/>
+        <element label="Request" max_length="32" name="u_request" read_only="true" reference="x_63474_bots_bots_requests" type="reference"/>
+        <index name="index">
+            <element name="u_request"/>
+        </index>
+        <index name="index2">
+            <element name="created_for"/>
+        </index>
+    </element>
+</database>

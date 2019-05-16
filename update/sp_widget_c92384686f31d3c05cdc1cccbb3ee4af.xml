@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[function($uibModal, $scope, $interval) {
+	/* widget controller */
+	var c = this;
+	
+	c.acceptvendor = function (botsid) {
+		c.data.savevendor = "yes";
+		c.data.record = botsid;
+		c.server.update();
+	};
+	
+	c.ignorevendor = function (botsid) {
+		
+		c.data.ignorevendor = "yes";
+		c.data.record = botsid;
+		c.server.update();
+	};
+	
+	c.showuser = function (userid) {
+		c.data.sysUserID = userid;
+		c.server.update();
+		$interval(function(){
+		c.modalInstance = $uibModal.open({
+			templateUrl: 'UserDetails',
+			scope: $scope,
+			size:"lg",
+			//backdrop:'static',
+			keyboard:false
+		});
+			}, 500,1);
+	};
+	
+	
+	$scope.closeUserInfo = function() {
+		c.modalInstance.close();
+	};
+	
+	
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css>p:not(:last-child) {&#13;
+    border-bottom:1px solid black;&#13;
+}&#13;
+&#13;
+.list-group-item {&#13;
+  border: none;&#13;
+}&#13;
+&#13;
+.select2-container.select2-allowclear .select2-choice .select2-chosen {&#13;
+  margin-right: 60px;&#13;
+}&#13;
+&#13;
+.mia i {&#13;
+  font-size: 6rem;&#13;
+}&#13;
+&#13;
+.mia {&#13;
+  color: #808080;&#13;
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id>openbotsissues</id>
+        <internal>false</internal>
+        <link/>
+        <name>Any Open BOTS Issues</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+	/* populate the 'data' object */
+	/* e.g., data.table = $sp.getValue('table'); */
+	
+	if (input)
+		{
+		
+		if(input.sysUserID)
+			{
+			var sysUserGR = new GlideRecord("sys_user");
+			data.userExists = sysUserGR.get(input.sysUserID);
+			
+			if (data.userExists) {
+				data.name = sysUserGR.getValue("name");
+				data.email = sysUserGR.getValue("email") || "";
+				data.phone = sysUserGR.getValue("phone") || "";
+				data.title = sysUserGR.getValue("title") || "";
+				data.department = sysUserGR.department.getDisplayValue();
+				data.manager = sysUserGR.manager.getDisplayValue();
+				data.photo = sysUserGR.getValue("photo") || "";
+				
+				data.sys_id = sysUserGR.getValue("sys_id");
+				
+				//groups
+				var groups = [];
+				var grouplist = new GlideRecord('sys_user_grmember');
+				grouplist.addQuery('user',input.sysUserID);
+				//grouplist.addQuery('type','IN','E8e52aa356fd51f405cdc1cccbb3ee469');//BOTS
+				grouplist.orderBy('group.u_sims_name');
+				grouplist.query();
+				while(grouplist.next()) {
+					var group = {};
+						group.name = grouplist.group.getDisplayValue();
+						groups.push(group);
+					}
+					data.groups = groups;
+					data.groupcount = grouplist.getRowCount();
+				}
+			}
+			
+			if (input.savevendor)
+				{
+				//save vendor
+				var updatereq = new GlideRecord('x_63474_bots_bots_requests');
+				updatereq.addQuery('sys_id',input.record);
+				updatereq.query();
+				while(updatereq.next())
+					{
+					var newvendor = new GlideRecord('core_company');
+					newvendor.initialize();
+					
+					newvendor.name = updatereq.new_vendor_name;
+					newvendor.vendor = true;
+					newvendor.vendor_type = '4c4da8366f19df4051281ecbbb3ee445';
+					newvendor.website = updatereq.new_vendor_website;
+					newvendor.phone = updatereq.new_vendor_phone;
+					newvendor.street = updatereq.new_vendor_address;
+					if (updatereq.new_vendor_email != '')
+						{
+						newvendor.notes = "Email: "+updatereq.new_vendor_email+"\n"+updatereq.new_vendor_notes;
+					}
+					else
+						{
+						newvendor.notes = updatereq.new_vendor_notes;
+					}
+					
+					newvendor.insert();
+					
+					updatereq.vendor = newvendor.sys_id;
+					updatereq.is_new_vendor = 'No';
+					updatereq.update();
+					gs.addInfoMessage('The vendor has been saved for future requests. The request has been udpated per the new vendor record.');
+					
+				}
+				
+				//update other requests that had this same vendor name to the new vendor record
+				var otherreq = new GlideRecord('x_63474_bots_bots_requests');
+				otherreq.addQuery('new_vendor_name',newvendor.name);
+					otherreq.addQuery('is_new_vendor','Yes');
+				otherreq.query();
+				while(otherreq.next())
+					{
+					otherreq.vendor = newvendor.sys_id;
+					otherreq.is_new_vendor = 'No';
+					otherreq.update();
+				}
+				
+			}
+			
+			if (input.ignorevendor)
+				{
+				//ignore vendor
+				var updatereq = new GlideRecord('x_63474_bots_bots_requests');
+				updatereq.addQuery('sys_id',input.record);
+				updatereq.query();
+				while(updatereq.next())
+					{
+					updatereq.vendorignored = true;
+					updatereq.update();
+				}
+			}
+		}
+		
+		data.savevendor = '';
+		data.ignorevendor = '';
+		data.record = '';
+		
+		
+		var vendors = [];
+		var newvendors = new GlideRecord('x_63474_bots_bots_requests');
+		newvendors.addQuery('is_new_vendor','Yes');
+		newvendors.addQuery('vendorignored','false');
+		newvendors.orderBy('new_vendor_name');
+		newvendors.query();
+		while(newvendors.next()) {
+			var vendor = {};
+				
+				vendor.name = newvendors.getValue("new_vendor_name");
+				vendor.website = newvendors.getValue("new_vendor_website") || "";
+				vendor.phone = newvendors.getValue("phone") || "";
+				vendor.email = newvendors.getValue("new_vendor_email") || "";
+				vendor.currentstate = newvendors.state.getDisplayValue();
+				if(vendor.currentstate == 'Not Approved')
+					{
+					vendor.statestyle = "font-weight:bold;color:red;";
+				}
+				else if (vendor.currentstate == 'Approved')
+					{
+					vendor.statestyle = "color:green;";
+				}
+				else
+					{
+					vendor.statestyle = "font-weight:bold;";
+				}
+				vendor.table = newvendors.getValue("sys_class_name");
+				vendor.number = newvendors.getValue("number");
+				vendor.enteredby_id = newvendors.getValue("requested_by");
+				vendor.enteredby = newvendors.requested_by.getDisplayValue();
+				vendor.sys_id = newvendors.getValue("sys_id");
+				vendors.push(vendor);
+			}
+			data.vendors = vendors;
+			data.newvendors = newvendors.getRowCount();
+		})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>sphelan</sys_created_by>
+        <sys_created_on>2018-04-27 11:56:36</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>c92384686f31d3c05cdc1cccbb3ee4af</sys_id>
+        <sys_mod_count>98</sys_mod_count>
+        <sys_name>Any Open BOTS Issues</sys_name>
+        <sys_package display_value="BOTS - New" source="x_63474_bots">fca917c14f111300cb281b818110c713</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="BOTS - New">fca917c14f111300cb281b818110c713</sys_scope>
+        <sys_update_name>sp_widget_c92384686f31d3c05cdc1cccbb3ee4af</sys_update_name>
+        <sys_updated_by>sphelan</sys_updated_by>
+        <sys_updated_on>2018-10-17 12:14:21</sys_updated_on>
+        <template><![CDATA[<div ng-if="data.vendors.length > 0">
+   <h4 style='color:black;'>{{data.newvendors}} New Vendor Record Requests</h4>
+   <table class="table table-stripped">
+      <tr ng-repeat="vendor in data.vendors" >
+         <td nowrap="nowrap"><a href='?id=bots_form&table={{vendor.table}}&sys_id={{vendor.sys_id}}' class="alert-link">{{vendor.number}}</a>
+           <br>
+           <small style="{{vendor.statestyle}}">State: {{vendor.currentstate}}</small>
+        </td>
+         <td>
+           {{vendor.name}}<br>
+           <span ng-if="vendor.email != ''"><i style="color:#098E52;font-size:18px;cursor:default;margin-right:5px;" class="fa fa-envelope ng-scope"></i>{{vendor.email}}&nbsp;&nbsp;<san>
+           <span ng-if="vendor.phone != ''"><i style="color:#f0ad4e;font-size:18px;cursor:default;margin-right:5px;" class="fa fa-phone ng-scope"></i>{{vendor.phone}}&nbsp;&nbsp;</span>
+           <span ng-if="vendor.website != ''"><i style="color:#f0ad4e;font-size:18px;cursor:default;margin-right:5px;" class="fa fa-laptop ng-scope"></i>{{vendor.website}}&nbsp;&nbsp;</span>
+        </td>
+         <td><span style="cursor:pointer; text-decoration:underline;" ng-click="c.showuser(vendor.enteredby_id)">{{vendor.enteredby}}</span></td>
+         <td><button type="button" class="btn btn-success" ng-click="c.acceptvendor(vendor.sys_id)">Accept</button></td>
+         <td><button type="button" class="btn btn-warning" ng-click="c.ignorevendor(vendor.sys_id)">Ignore</button></td>
+      </tr>
+   </table>
+</div>
+<div ng-if="data.vendors.length == 0">
+   <h4 style='color:black;'>No Issues or New Vendor Requests Need Your Attention</h4>
+</div>]]></template>
+    </sp_widget>
+</record_update>

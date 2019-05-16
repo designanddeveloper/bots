@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="announcement">
+    <announcement action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <click_target>page</click_target>
+        <details/>
+        <details_link_text>View The  Requests On Funding Sources You Have Access To</details_link_text>
+        <details_page display_value="bots_myfindingsources">e26c65b0dbf0bf003fb0d92b5e96199a</details_page>
+        <details_url/>
+        <dismiss_options>dismissible</dismiss_options>
+        <display_first>true</display_first>
+        <display_style display_value="Normal">704dedd6e7d4030075c2a117c2f6a91b</display_style>
+        <from>2019-04-11 13:23:10</from>
+        <glyph>info-circle</glyph>
+        <glyph_alt_text/>
+        <name>New BOTS Features V1.2</name>
+        <public>true</public>
+        <roles>x_63474_bots.user</roles>
+        <sn_communities_announcement_type/>
+        <sn_communities_forums/>
+        <sn_communities_notification>false</sn_communities_notification>
+        <sn_communities_notification_sent>false</sn_communities_notification_sent>
+        <sn_communities_portals>5b49418bdb4aa200b1f6f78eaf96195f</sn_communities_portals>
+        <sn_communities_selected_forums/>
+        <summary>Hi all, following up from the DIT Newsletter announcement, please note that 2 new features are now available: Watchlist and a new "Show All Requests On My Funding Sources" dashboard. Thank you!</summary>
+        <sys_class_name>announcement</sys_class_name>
+        <sys_created_by>sphelan</sys_created_by>
+        <sys_created_on>2019-04-12 13:26:44</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>b3d5f24ddb343340965bd5ab5e9619f7</sys_id>
+        <sys_mod_count>7</sys_mod_count>
+        <sys_name>New BOTS Features V1.2</sys_name>
+        <sys_package display_value="BOTS - New" source="x_63474_bots">fca917c14f111300cb281b818110c713</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="BOTS - New">fca917c14f111300cb281b818110c713</sys_scope>
+        <sys_update_name>announcement_b3d5f24ddb343340965bd5ab5e9619f7</sys_update_name>
+        <sys_updated_by>sphelan</sys_updated_by>
+        <sys_updated_on>2019-04-16 22:56:56</sys_updated_on>
+        <title>New BOTS Features</title>
+        <to>2019-04-26 21:00:00</to>
+        <type>67eaf134e7a3320075c2a117c2f6a9d2,52fa79f8e763320075c2a117c2f6a991</type>
+    </announcement>
+    <sys_translated_text action="delete_multiple" query="documentkey=b3d5f24ddb343340965bd5ab5e9619f7"/>
+</record_update>

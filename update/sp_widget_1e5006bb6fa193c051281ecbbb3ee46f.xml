@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[function($scope, $uibModal, $interval) {
+	/* widget controller */
+	var c = this;
+	
+	/*c.acceptvendor = function (botsid) {
+		c.data.savevendor = "yes";
+		c.data.record = botsid;
+		c.server.update();
+	};
+	
+	c.ignorevendor = function (botsid) {
+		
+		c.data.ignorevendor = "yes";
+		c.data.record = botsid;
+		c.server.update();
+	};*/
+	
+	//if(c.data.newvendors >0 || c.data.issuecont > 0)
+	if(c.data.issuecont > 0)
+		{
+	c.modalInstance = $uibModal.open({
+		templateUrl: 'showbotsissues',
+		scope: $scope,
+		size:"lg",
+		//backdrop:'static',
+		keyboard:false
+	});
+		}
+	$scope.closeUserGuide = function() {
+		c.modalInstance.close();
+	};
+	
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css/>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id/>
+        <internal>false</internal>
+        <link/>
+        <name>Business Office Header</name>
+        <option_schema>[{"displayValue":"Task","name":"table_name","default_value":"incident","section":"other","label":"Table name","type":"string","value":"task"},{"name":"title","default_value":"My Cases","section":"other","label":"Title","type":"string"},{"name":"encoded_query","section":"other","label":"Encoded Query","type":"string"},{"hint":"default","name":"view","section":"other","default_value":"default","label":"View","type":"string"}]</option_schema>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+  /* populate the 'data' object */
+  /* e.g., data.table = $sp.getValue('table'); */
+
+	
+	
+	/*
+	if (input)
+		{
+		if (input.savevendor)
+			{
+			//save vendor
+			var updatereq = new GlideRecord('x_63474_bots_bots_requests');
+			updatereq.addQuery('sys_id',input.record);
+			updatereq.query();
+			while(updatereq.next())
+				{
+				var newvendor = new GlideRecord('core_company');
+				newvendor.initialize();
+				
+				newvendor.name = updatereq.new_vendor_name;
+				newvendor.vendor = true;
+				newvendor.vendor_type = '4c4da8366f19df4051281ecbbb3ee445';
+				newvendor.website = updatereq.new_vendor_website;
+				newvendor.phone = updatereq.new_vendor_phone;
+				newvendor.street = updatereq.new_vendor_address;
+				if (updatereq.new_vendor_email != '')
+					{
+					newvendor.notes = "Email: "+updatereq.new_vendor_email+"\n"+updatereq.new_vendor_notes;
+				}
+				else
+					{
+					newvendor.notes = updatereq.new_vendor_notes;
+				}
+				
+				
+				newvendor.insert();
+				
+				updatereq.vendor = newvendor.sys_id;
+				updatereq.is_new_vendor = 'No';
+				updatereq.update();
+				//gs.addInfoMessage('The vendor has been saved for future requests. The request has been udpated per the new vendor record.');
+			}
+		}
+		
+		if (input.ignorevendor)
+			{
+			//ignore vendor
+			var updatereq = new GlideRecord('x_63474_bots_bots_requests');
+			updatereq.addQuery('sys_id',input.record);
+			updatereq.query();
+			while(updatereq.next())
+				{
+				updatereq.vendorignored = true;
+				updatereq.update();
+			}
+		}
+	}
+	
+	data.savevendor = '';
+	data.ignorevendor = '';
+	data.record = '';
+	*/
+	var notices = [];
+	
+	var issues = new GlideRecord('x_63474_bots_bots_issue');
+	issues.addQuery('active=true');
+	issues.query();
+	while(issues.next()) {
+		var notice = {};
+			
+			notice.short_description = issues.getValue("short_description");
+			title = issues.getValue("short_description");
+			notice.sys_id = issues.getValue("sys_id");
+			if (title.indexOf('Template-fixme')<0)
+				{
+				notices.push(notice);
+			}
+		}
+		
+		data.notices = notices;
+		data.issuecont = issues.getRowCount();
+		/*
+		var vendors = [];
+		var newvendors = new GlideRecord('x_63474_bots_bots_requests');
+		newvendors.addQuery('is_new_vendor','Yes');
+	newvendors.addQuery('vendorignored','false');
+	newvendors.orderBy('new_vendor_name');
+		newvendors.query();
+		while(newvendors.next()) {
+			var vendor = {};
+				
+				vendor.name = newvendors.getValue("new_vendor_name");
+				vendor.table = newvendors.getValue("sys_class_name");
+				vendor.number = newvendors.getValue("number");
+				vendor.sys_id = newvendors.getValue("sys_id");
+				vendors.push(vendor);
+			}
+		data.vendors = vendors;
+		data.newvendors = newvendors.getRowCount();	
+	*/
+		})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>sphelan</sys_created_by>
+        <sys_created_on>2018-04-25 12:57:09</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>1e5006bb6fa193c051281ecbbb3ee46f</sys_id>
+        <sys_mod_count>11</sys_mod_count>
+        <sys_name>Business Office Header</sys_name>
+        <sys_package display_value="BOTS - New" source="x_63474_bots">fca917c14f111300cb281b818110c713</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="BOTS - New">fca917c14f111300cb281b818110c713</sys_scope>
+        <sys_update_name>sp_widget_1e5006bb6fa193c051281ecbbb3ee46f</sys_update_name>
+        <sys_updated_by>sphelan</sys_updated_by>
+        <sys_updated_on>2018-10-16 23:24:41</sys_updated_on>
+        <template><![CDATA[<div>
+  <div style="float:left;"><h3>Business Office Dashboard</h3></div>
+  <!--<div style="float:right;width:300px;padding-top:20px;"> <widget id="bots-search"></widget></div> -->
+ <!-- <div style="float:right"> <widget id="openbotsissues"></widget></div>-->
+</div>
+<div style="clear:both;"></div>
+<hr>]]></template>
+    </sp_widget>
+</record_update>

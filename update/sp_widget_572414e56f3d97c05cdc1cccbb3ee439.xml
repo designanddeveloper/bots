@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[function($scope, $sce, $location, spUtil, spMacro, $rootScope, $uibModal, $http, $window, $timeout) {
+	/* widget controller */
+	var c = this;
+	// set the current year
+	c.data.current_year = (new Date()).getFullYear();
+	
+	//OPEN THE POPUP AND SET THE INTIAL TAB BASED ON YOUR CURRENT OS SELECTED
+	$scope.openreport = function(somereport) {
+		//OK, NOW OPEN IT
+		if (somereport==1)
+			{
+		c.modalInstance = $uibModal.open({
+			templateUrl: 'report1.html',
+			scope: $scope,
+			size:"lg",
+			backdrop:'static',
+			keyboard:false
+		});
+			}
+		else if (somereport==2)
+			{
+		c.modalInstance = $uibModal.open({
+			templateUrl: 'report2.html',
+			scope: $scope,
+			size:"lg",
+			backdrop:'static',
+			keyboard:false
+		});
+			}
+		else if (somereport==3)
+			{
+		c.modalInstance = $uibModal.open({
+			templateUrl: 'report3.html',
+			scope: $scope,
+			size:"lg",
+			backdrop:'static',
+			keyboard:false
+		});
+			}
+	}
+	
+	
+	//CLOSE THE POPUP
+	$scope.closereport = function() {
+		c.modalInstance.close();
+	}
+	
+	// maybe, we don't need this function anymore? in this case, put the code in generate()
+	c.setLimits = function() {
+		// send them both in one command
+		// set default values first
+		var ll = c.data.limit_lower;
+		if (ll==null)
+			ll = "0";
+		var ul = c.data.limit_upper;
+		if (ul==null)
+			ul = "";
+    $rootScope.$broadcast('setLimit', ll+";"+ul);
+	}
+	
+  c.data.tabs = {"r4":'x400ae4656ffd97c05cdc1cccbb3ee4f1',
+              "r2":'x840ae4656ffd97c05cdc1cccbb3ee4f4',
+              "r3":'x0c0ae4656ffd97c05cdc1cccbb3ee4f2',
+              "r1":'x040ae4656ffd97c05cdc1cccbb3ee4ef'};
+	
+	c.generate = function() {
+		if (c.data.report=='r3')
+		  c.setLimits();
+		if (c.data.report=='r4') {
+			$rootScope.$broadcast('setFY', c.data.fy);
+		}
+		// for r2 - set report immediately, for r3 and r4 - wait for a signal
+		if (c.data.report=='r2')
+			c.setReport();
+	}
+
+	c.setReport = function() {
+		for (var key in c.data.tabs) {
+			document.getElementById(c.data.tabs[key]).style.display= (key==c.data.report ? "inline" : "none");
+	 }
+	}
+	
+	$rootScope.$on('setReport', function(event, data) {
+		c.setReport();
+	});		
+
+}
+]]></client_script>
+        <controller_as>c</controller_as>
+        <css/>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id>leadership_report_options_exp</id>
+        <internal>false</internal>
+        <link/>
+        <name>Leadership Report Options EXP</name>
+        <option_schema>[{"displayValue":"Task","name":"table_name","default_value":"incident","section":"other","label":"Table name","type":"string","value":"task"},{"name":"title","default_value":"My Cases","section":"other","label":"Title","type":"string"},{"name":"encoded_query","section":"other","label":"Encoded Query","type":"string"},{"hint":"default","name":"view","section":"other","default_value":"default","label":"View","type":"string"}]</option_schema>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+	
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>dyak</sys_created_by>
+        <sys_created_on>2018-04-30 15:33:55</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>572414e56f3d97c05cdc1cccbb3ee439</sys_id>
+        <sys_mod_count>170</sys_mod_count>
+        <sys_name>Leadership Report Options EXP</sys_name>
+        <sys_package display_value="BOTS - New" source="x_63474_bots">fca917c14f111300cb281b818110c713</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="BOTS - New">fca917c14f111300cb281b818110c713</sys_scope>
+        <sys_update_name>sp_widget_572414e56f3d97c05cdc1cccbb3ee439</sys_update_name>
+        <sys_updated_by>dyak</sys_updated_by>
+        <sys_updated_on>2018-05-04 18:33:40</sys_updated_on>
+        <template><![CDATA[<div class="panel panel-default b">
+<div class="panel-heading">
+   <h2 class="panel-title" style="font-weight:bold;">Reports</h2>
+</div>
+<div class="panel-body" style="padding-top: 5px !important; text-align:center;">
+
+<div ng-init="data.report='r2'">
+  
+  <label class="pull-left">
+    <input type="radio" name="options" id="option2" checked ng-model="data.report" value="r2"/>
+    &nbsp;Trend Report By Type
+  </label>
+  
+  <label class="pull-left">
+    <input type="radio" name="options" id="option3" ng-model="data.report" value="r3">
+    &nbsp;Request by $ Amount
+  </label>
+    <div class="pull-left" ng-show="data.report=='r3'">
+    <p>
+    &gt;$<input ng-init="data.limit_lower=250000" ng-model="data.limit_lower" style="width:90%;" type="number" min="0"/>
+    </p>
+    <p>
+    &lt;$<input ng-init="data.limit_upper=''" ng-model="data.limit_upper" style="width:90%;" type="number" min="0">
+    </p>
+      <p ng-show="data.limit_lower>data.limit_upper && data.limit_upper!=null && data.limit_upper!=''" 
+         style="width:90%; color:red;">
+        Upper limit must be empty<br/>
+        or greater than lower limit!
+      </p>
+    </div>
+  
+  <label class="pull-left">
+    <input type="radio" name="options" id="option4" ng-model="data.report" value="r4"/>
+    &nbsp;Requests by Funding Source
+  </label>
+    <div ng-show="data.report=='r4'">
+      <label>Select Fiscal Year:&nbsp;
+        <select ng-model="data.fy" ng-init="data.fy=''+data.current_year" convert-to-number>
+          <option value="{{data.current_year-2}}">{{data.current_year-2}}</option>
+          <option value="{{data.current_year-1}}">{{data.current_year-1}}</option>
+          <option value="{{data.current_year}}">{{data.current_year}}</option>
+        </select>
+      </label>
+      <!-- TODO: generate this dropdown dynamically, starting from the current year back -->
+    </div>
+ 
+  <button type="submit" ng-click="c.generate()" class="btn btn-primary">Generate Report</button>
+</div>
+  
+</div>
+</div> 
+]]></template>
+    </sp_widget>
+</record_update>

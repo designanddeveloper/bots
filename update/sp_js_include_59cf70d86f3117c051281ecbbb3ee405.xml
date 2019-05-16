@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_js_include">
+    <sp_js_include action="INSERT_OR_UPDATE">
+        <display_name>interface function</display_name>
+        <source>local</source>
+        <sys_class_name>sp_js_include</sys_class_name>
+        <sys_created_by>sphelan</sys_created_by>
+        <sys_created_on>2018-04-26 21:35:01</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>59cf70d86f3117c051281ecbbb3ee405</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>interface function</sys_name>
+        <sys_package display_value="BOTS - New" source="x_63474_bots">fca917c14f111300cb281b818110c713</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="BOTS - New">fca917c14f111300cb281b818110c713</sys_scope>
+        <sys_ui_script display_value="sn_csm_uni_theme.csm_util">87b42b83535032007a97e192d5dc3435</sys_ui_script>
+        <sys_update_name>sp_js_include_59cf70d86f3117c051281ecbbb3ee405</sys_update_name>
+        <sys_updated_by>sphelan</sys_updated_by>
+        <sys_updated_on>2018-04-26 21:35:01</sys_updated_on>
+        <url/>
+    </sp_js_include>
+</record_update>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_policy_action">
+    <sys_ui_policy_action action="INSERT_OR_UPDATE">
+        <cleared>false</cleared>
+        <disabled>ignore</disabled>
+        <field>send_to_leadership</field>
+        <mandatory>ignore</mandatory>
+        <sys_class_name>sys_ui_policy_action</sys_class_name>
+        <sys_created_by>sphelan</sys_created_by>
+        <sys_created_on>2018-04-25 20:05:49</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>4f622f7f6f6993c051281ecbbb3ee437</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>send_to_leadership</sys_name>
+        <sys_package display_value="BOTS - New" source="x_63474_bots">fca917c14f111300cb281b818110c713</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="BOTS - New">fca917c14f111300cb281b818110c713</sys_scope>
+        <sys_update_name>sys_ui_policy_action_4f622f7f6f6993c051281ecbbb3ee437</sys_update_name>
+        <sys_updated_by>sphelan</sys_updated_by>
+        <sys_updated_on>2018-04-25 20:05:49</sys_updated_on>
+        <table>x_63474_bots_bots_requests</table>
+        <ui_policy display_value="Hide Leadership Flag Field">db42eb7f6f6993c051281ecbbb3ee422</ui_policy>
+        <visible>false</visible>
+    </sys_ui_policy_action>
+</record_update>

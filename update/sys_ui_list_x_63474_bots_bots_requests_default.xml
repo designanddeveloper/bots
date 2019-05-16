@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_ui_list parent="" relationship="" sys_domain="global" table="x_63474_bots_bots_requests" version="2" view="default">
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>number</element>
+            <list_id display_value="x_63474_bots_bots_requests" element="NULL" name="x_63474_bots_bots_requests" parent="NULL" relationship="NULL" sys_domain="global" view="9177dd5adb6293406f9e782bbf96198d">0257cee06ff157c051281ecbbb3ee4e7</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>0</position>
+            <sum>false</sum>
+            <sys_created_by>sphelan</sys_created_by>
+            <sys_created_on>2018-04-27 21:23:10</sys_created_on>
+            <sys_id>4657cee06ff157c051281ecbbb3ee4e7</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>sphelan</sys_updated_by>
+            <sys_updated_on>2018-04-27 21:23:10</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>type</element>
+            <list_id display_value="x_63474_bots_bots_requests" element="NULL" name="x_63474_bots_bots_requests" parent="NULL" relationship="NULL" sys_domain="global" view="9177dd5adb6293406f9e782bbf96198d">0257cee06ff157c051281ecbbb3ee4e7</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>1</position>
+            <sum>false</sum>
+            <sys_created_by>sphelan</sys_created_by>
+            <sys_created_on>2018-04-27 21:23:10</sys_created_on>
+            <sys_id>c657cee06ff157c051281ecbbb3ee4e7</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>sphelan</sys_updated_by>
+            <sys_updated_on>2018-04-27 21:23:10</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>requested_for</element>
+            <list_id display_value="x_63474_bots_bots_requests" element="NULL" name="x_63474_bots_bots_requests" parent="NULL" relationship="NULL" sys_domain="global" view="9177dd5adb6293406f9e782bbf96198d">0257cee06ff157c051281ecbbb3ee4e7</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>2</position>
+            <sum>false</sum>
+            <sys_created_by>sphelan</sys_created_by>
+            <sys_created_on>2018-04-27 21:23:10</sys_created_on>
+            <sys_id>4a57cee06ff157c051281ecbbb3ee4e7</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>sphelan</sys_updated_by>
+            <sys_updated_on>2018-04-27 21:23:10</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>short_description</element>
+            <list_id display_value="x_63474_bots_bots_requests" element="NULL" name="x_63474_bots_bots_requests" parent="NULL" relationship="NULL" sys_domain="global" view="9177dd5adb6293406f9e782bbf96198d">0257cee06ff157c051281ecbbb3ee4e7</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>3</position>
+            <sum>false</sum>
+            <sys_created_by>sphelan</sys_created_by>
+            <sys_created_on>2018-04-27 21:23:10</sys_created_on>
+            <sys_id>ca57cee06ff157c051281ecbbb3ee4e7</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>sphelan</sys_updated_by>
+            <sys_updated_on>2018-04-27 21:23:10</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>funding_source</element>
+            <list_id display_value="x_63474_bots_bots_requests" element="NULL" name="x_63474_bots_bots_requests" parent="NULL" relationship="NULL" sys_domain="global" view="9177dd5adb6293406f9e782bbf96198d">0257cee06ff157c051281ecbbb3ee4e7</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>4</position>
+            <sum>false</sum>
+            <sys_created_by>sphelan</sys_created_by>
+            <sys_created_on>2018-04-27 21:23:10</sys_created_on>
+            <sys_id>4e57cee06ff157c051281ecbbb3ee4e7</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>sphelan</sys_updated_by>
+            <sys_updated_on>2018-04-27 21:23:10</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>total_cost</element>
+            <list_id display_value="x_63474_bots_bots_requests" element="NULL" name="x_63474_bots_bots_requests" parent="NULL" relationship="NULL" sys_domain="global" view="9177dd5adb6293406f9e782bbf96198d">0257cee06ff157c051281ecbbb3ee4e7</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>5</position>
+            <sum>false</sum>
+            <sys_created_by>sphelan</sys_created_by>
+            <sys_created_on>2018-04-27 21:23:10</sys_created_on>
+            <sys_id>ce57cee06ff157c051281ecbbb3ee4e7</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>sphelan</sys_updated_by>
+            <sys_updated_on>2018-04-27 21:23:10</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>opened_at</element>
+            <list_id display_value="x_63474_bots_bots_requests" element="NULL" name="x_63474_bots_bots_requests" parent="NULL" relationship="NULL" sys_domain="global" view="9177dd5adb6293406f9e782bbf96198d">0257cee06ff157c051281ecbbb3ee4e7</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>6</position>
+            <sum>false</sum>
+            <sys_created_by>sphelan</sys_created_by>
+            <sys_created_on>2018-04-27 21:23:10</sys_created_on>
+            <sys_id>4257cee06ff157c051281ecbbb3ee4e8</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>sphelan</sys_updated_by>
+            <sys_updated_on>2018-04-27 21:23:10</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>state</element>
+            <list_id display_value="x_63474_bots_bots_requests" element="NULL" name="x_63474_bots_bots_requests" parent="NULL" relationship="NULL" sys_domain="global" view="9177dd5adb6293406f9e782bbf96198d">0257cee06ff157c051281ecbbb3ee4e7</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>7</position>
+            <sum>false</sum>
+            <sys_created_by>sphelan</sys_created_by>
+            <sys_created_on>2018-04-27 21:23:10</sys_created_on>
+            <sys_id>c257cee06ff157c051281ecbbb3ee4e8</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>sphelan</sys_updated_by>
+            <sys_updated_on>2018-04-27 21:23:10</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element/>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <name>x_63474_bots_bots_requests</name>
+            <parent/>
+            <position/>
+            <relationship/>
+            <sum>false</sum>
+            <sys_class_name>sys_ui_list</sys_class_name>
+            <sys_created_by>sphelan</sys_created_by>
+            <sys_created_on>2018-04-27 21:23:10</sys_created_on>
+            <sys_customer_update>false</sys_customer_update>
+            <sys_domain>global</sys_domain>
+            <sys_id>0257cee06ff157c051281ecbbb3ee4e7</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>x_63474_bots_bots_requests</sys_name>
+            <sys_package display_value="BOTS - New" source="x_63474_bots">fca917c14f111300cb281b818110c713</sys_package>
+            <sys_policy/>
+            <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+            <sys_scope display_value="BOTS - New">fca917c14f111300cb281b818110c713</sys_scope>
+            <sys_update_name>sys_ui_list_x_63474_bots_bots_requests_default</sys_update_name>
+            <sys_updated_by>sphelan</sys_updated_by>
+            <sys_updated_on>2018-04-27 21:23:10</sys_updated_on>
+            <sys_user/>
+            <view display_value="Default" name="default">9177dd5adb6293406f9e782bbf96198d</view>
+            <view_name/>
+        </sys_ui_list>
+    </sys_ui_list>
+</record_update>

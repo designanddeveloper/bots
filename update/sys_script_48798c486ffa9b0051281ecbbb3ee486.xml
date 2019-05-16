@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_script">
+    <sys_script action="INSERT_OR_UPDATE">
+        <abort_action>false</abort_action>
+        <access>package_private</access>
+        <action_delete>false</action_delete>
+        <action_insert>false</action_insert>
+        <action_query>false</action_query>
+        <action_update>true</action_update>
+        <active>true</active>
+        <add_message>false</add_message>
+        <advanced>true</advanced>
+        <change_fields>false</change_fields>
+        <client_callable>false</client_callable>
+        <collection>x_63474_bots_bots_crosswalk</collection>
+        <condition/>
+        <description/>
+        <execute_function>false</execute_function>
+        <filter_condition table="x_63474_bots_bots_crosswalk">u_budget_ownerISEMPTY^EQ<item endquery="false" field="u_budget_owner" goto="false" newquery="false" operator="ISEMPTY" or="false" value=""/>
+            <item endquery="true" field="" goto="false" newquery="false" operator="=" or="false" value=""/>
+        </filter_condition>
+        <is_rest>false</is_rest>
+        <message/>
+        <name>Update budgetOwner if empty</name>
+        <order>100</order>
+        <priority>100</priority>
+        <rest_method/>
+        <rest_method_text/>
+        <rest_service/>
+        <rest_service_text/>
+        <rest_variables/>
+        <role_conditions/>
+        <script><![CDATA[(function executeRule(current, previous /*null when async*/) {
+	
+	// Add your code here
+	var list = current.getValue('u_additional_owners');
+	
+	var arrayList = list.split(',');
+	var usersCount = list.split(',').length;
+	if(usersCount == 1){
+		current.u_budget_owner = current.u_additional_owners;
+		current.u_additional_owners = '';
+	}
+	else{
+		
+		var itemRemove = arrayList[0];
+		current.u_budget_owner = itemRemove;
+		var newList = [];
+		for(i=1;i<=usersCount;i++){
+			newList.push(arrayList[i]);
+		}
+		var users = newList.toString();
+		current.setValue('u_additional_owners',users);
+		
+		
+	}
+	
+	
+})(current, previous);]]></script>
+        <sys_class_name>sys_script</sys_class_name>
+        <sys_created_by>sdepally</sys_created_by>
+        <sys_created_on>2018-06-14 16:07:35</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_domain>global</sys_domain>
+        <sys_id>48798c486ffa9b0051281ecbbb3ee486</sys_id>
+        <sys_mod_count>12</sys_mod_count>
+        <sys_name>Update budgetOwner if empty</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="BOTS - New" source="x_63474_bots">fca917c14f111300cb281b818110c713</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="BOTS - New">fca917c14f111300cb281b818110c713</sys_scope>
+        <sys_update_name>sys_script_48798c486ffa9b0051281ecbbb3ee486</sys_update_name>
+        <sys_updated_by>sdepally</sys_updated_by>
+        <sys_updated_on>2018-06-14 17:33:27</sys_updated_on>
+        <template/>
+        <when>before</when>
+    </sys_script>
+</record_update>

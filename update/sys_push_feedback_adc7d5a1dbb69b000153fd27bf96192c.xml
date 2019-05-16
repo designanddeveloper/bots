@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_push_feedback">
+    <sys_push_feedback action="INSERT_OR_UPDATE">
+        <failure_updated_on>2018-06-19 13:32:03</failure_updated_on>
+        <sys_class_name>sys_push_feedback</sys_class_name>
+        <sys_created_by>system</sys_created_by>
+        <sys_created_on>2018-06-19 13:32:03</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>adc7d5a1dbb69b000153fd27bf96192c</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>316BB00991422F8A7C9DBE126E4BFA5924E303F6DC243AA6768005AF0E56BAD8</sys_name>
+        <sys_package display_value="BOTS - New" source="x_63474_bots">fca917c14f111300cb281b818110c713</sys_package>
+        <sys_policy/>
+        <sys_push_application_id display_value="ServiceNow Classic Mobile Application">ab704041ff1102009738ffffffffff33</sys_push_application_id>
+        <sys_push_platform_id display_value="Apple">20e71f30ff0002009738ffffffffff6b</sys_push_platform_id>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="BOTS - New">fca917c14f111300cb281b818110c713</sys_scope>
+        <sys_update_name>sys_push_feedback_adc7d5a1dbb69b000153fd27bf96192c</sys_update_name>
+        <sys_updated_by>system</sys_updated_by>
+        <sys_updated_on>2018-06-19 13:32:03</sys_updated_on>
+        <token>316BB00991422F8A7C9DBE126E4BFA5924E303F6DC243AA6768005AF0E56BAD8</token>
+        <when_failed>2018-06-15 15:21:37</when_failed>
+    </sys_push_feedback>
+</record_update>

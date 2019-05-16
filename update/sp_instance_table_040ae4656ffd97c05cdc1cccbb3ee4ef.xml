@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_instance_table">
+    <sp_instance_table action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <class_name/>
+        <color>default</color>
+        <css/>
+        <display_field/>
+        <field_list>number,type,total_cost,funding_source,requested_for,state</field_list>
+        <filter table="x_63474_bots_bots_requests">active=true^state=2<item endquery="false" field="active" goto="false" newquery="false" operator="=" or="false" value="true"/>
+            <item endquery="false" field="state" goto="false" newquery="false" operator="=" or="false" value="2"/>
+        </filter>
+        <glyph/>
+        <id/>
+        <maximum_entries>5</maximum_entries>
+        <order>2</order>
+        <order_by>number</order_by>
+        <order_direction>asc</order_direction>
+        <roles/>
+        <short_description/>
+        <size>md</size>
+        <sp_column display_value="2">480ae4656ffd97c05cdc1cccbb3ee4ed</sp_column>
+        <sp_page display_value="bots_form">a8d454236f95938051281ecbbb3ee4b4</sp_page>
+        <sp_widget display_value="Data Table Exp-BO">4b244d336fb9dfc05cdc1cccbb3ee488</sp_widget>
+        <sys_class_name>sp_instance_table</sys_class_name>
+        <sys_created_by>dyak</sys_created_by>
+        <sys_created_on>2018-04-30 17:09:16</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>040ae4656ffd97c05cdc1cccbb3ee4ef</sys_id>
+        <sys_mod_count>9</sys_mod_count>
+        <sys_name>Table based on set filter</sys_name>
+        <sys_package display_value="BOTS - New" source="x_63474_bots">fca917c14f111300cb281b818110c713</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="BOTS - New">fca917c14f111300cb281b818110c713</sys_scope>
+        <sys_update_name>sp_instance_table_040ae4656ffd97c05cdc1cccbb3ee4ef</sys_update_name>
+        <sys_updated_by>sphelan</sys_updated_by>
+        <sys_updated_on>2018-08-14 18:53:05</sys_updated_on>
+        <table>x_63474_bots_bots_requests</table>
+        <title>Table based on set filter</title>
+        <url/>
+        <widget_parameters><![CDATA[{
+	"use_instance_title": {
+		"value": "false",
+		"displayValue": "false"
+	},
+	"enable_filter": {
+		"value": "true",
+		"displayValue": "true"
+	}
+}]]></widget_parameters>
+    </sp_instance_table>
+    <sys_translated_text action="delete_multiple" query="documentkey=040ae4656ffd97c05cdc1cccbb3ee4ef"/>
+</record_update>

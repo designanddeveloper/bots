@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[function ($scope, $sce, $location, spUtil, spMacro, $rootScope, $uibModal, $http, $window) {
+	/* widget controller */
+	var c = this;
+	
+	//OPEN THE POPUP AND SET THE INTIAL TAB BASED ON YOUR CURRENT OS SELECTED
+	c.openmodalcrosswalk = function(group) {
+		
+		//OK, NOW OPEN IT
+		c.modalInstance = $uibModal.open({
+			//templateUrl: 'modalcrosswalk',
+			//scope: $scope
+			templateUrl: 'showfundingsourcelist.html',
+				scope: $scope,
+				//size:"lg",
+				//backdrop:'static',
+				keyboard:false
+		});
+	}
+	
+	//CLOSE THE POPUP
+	c.closeModal2 = function() {
+		c.modalInstance.close();
+	}
+	
+	//TRUST MY HTML VALUE OF THE VARIABLE FULLY - DO NOT SANTAIZE IT
+	//$scope.data.wincomputelist = $sce.trustAsHtml($scope.data.winlist);
+	//$scope.data.rhelcomputelist = $sce.trustAsHtml($scope.data.rhellist);
+	
+		
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css/>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id/>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name> Funding Sources I Can Bill To</name>
+        <option_schema>[{"displayValue":"Task","name":"table_name","default_value":"incident","section":"other","label":"Table name","type":"string","value":"task"},{"name":"title","default_value":"My Cases","section":"other","label":"Title","type":"string"},{"name":"encoded_query","section":"other","label":"Encoded Query","type":"string"},{"hint":"default","name":"view","section":"other","default_value":"default","label":"View","type":"string"}]</option_schema>
+        <public>true</public>
+        <roles/>
+        <script><![CDATA[(function() {
+	/* populate the 'data' object */
+	/* e.g., data.table = $sp.getValue('table'); */
+	
+	
+	var fundingsources = [];
+
+	
+var crosswalk = new GlideRecord('x_63474_bots_bots_crosswalk');
+crosswalk.addQuery('sys_id','IN', MyFundingSources());
+crosswalk.orderBy('u_budget_long_name');
+crosswalk.query();
+while(crosswalk.next()) {
+	var fundinglist = {};
+	fundinglist.u_budget_long_name = crosswalk.u_budget_long_name.toString();
+	fundinglist.sys_id = crosswalk.sys_id.toString();
+	fundinglist.u_kfs_number = crosswalk.u_kfs_number.toString();
+	fundinglist.u_budget_owner = crosswalk.u_budget_owner.getDisplayValue();
+	fundinglist.u_business_manager = crosswalk.u_business_manager.getDisplayValue();
+	fundinglist.active = crosswalk.active.toString();
+	
+	fundingsources.push(fundinglist);
+}
+data.fundingsources = fundingsources;
+	
+
+
+	
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>sphelan</sys_created_by>
+        <sys_created_on>2019-04-11 13:27:34</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>8e5d6174dbf0bf003fb0d92b5e96193a</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name> Funding Sources I Can Bill To</sys_name>
+        <sys_package display_value="BOTS - New" source="x_63474_bots">fca917c14f111300cb281b818110c713</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="BOTS - New">fca917c14f111300cb281b818110c713</sys_scope>
+        <sys_update_name>sp_widget_8e5d6174dbf0bf003fb0d92b5e96193a</sys_update_name>
+        <sys_updated_by>sphelan</sys_updated_by>
+        <sys_updated_on>2019-04-11 13:32:37</sys_updated_on>
+        <template><![CDATA[<div>
+<a style="text-decoration:none;"  ng-click="c.openmodalcrosswalk()" data-text="AWS EC2 Server Choices">
+<div alt="request" class="btn btn-primary btn-block" style="width:300px;float:right;">   
+  <i class="fa fa-lightbulb-o"></i> Show My Funding Sources 
+</div>  
+  </a> 
+</div>]]></template>
+    </sp_widget>
+</record_update>

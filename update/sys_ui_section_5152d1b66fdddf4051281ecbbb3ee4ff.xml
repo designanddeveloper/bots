@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_ui_section caption="Description" section_id="5152d1b66fdddf4051281ecbbb3ee4ff" sys_domain="global" table="x_63474_bots_bots_travel" version="3" view="">
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>short_description</element>
+            <position>0</position>
+            <sys_created_by>sphelan</sys_created_by>
+            <sys_created_on>2018-04-12 23:04:02</sys_created_on>
+            <sys_id>119ec5776f15d3805cdc1cccbb3ee473</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Description" display_value="Description" name="x_63474_bots_bots_travel" sys_domain="global" view="Default view">5152d1b66fdddf4051281ecbbb3ee4ff</sys_ui_section>
+            <sys_updated_by>sphelan</sys_updated_by>
+            <sys_updated_on>2018-04-12 23:04:02</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>u_link</element>
+            <position>1</position>
+            <sys_created_by>sphelan</sys_created_by>
+            <sys_created_on>2018-04-12 23:04:02</sys_created_on>
+            <sys_id>919ec5776f15d3805cdc1cccbb3ee473</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Description" display_value="Description" name="x_63474_bots_bots_travel" sys_domain="global" view="Default view">5152d1b66fdddf4051281ecbbb3ee4ff</sys_ui_section>
+            <sys_updated_by>sphelan</sys_updated_by>
+            <sys_updated_on>2018-04-12 23:04:02</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>description</element>
+            <position>2</position>
+            <sys_created_by>sphelan</sys_created_by>
+            <sys_created_on>2018-04-12 23:04:02</sys_created_on>
+            <sys_id>159ec5776f15d3805cdc1cccbb3ee473</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Description" display_value="Description" name="x_63474_bots_bots_travel" sys_domain="global" view="Default view">5152d1b66fdddf4051281ecbbb3ee4ff</sys_ui_section>
+            <sys_updated_by>sphelan</sys_updated_by>
+            <sys_updated_on>2018-04-12 23:04:02</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_section action="INSERT_OR_UPDATE">
+            <caption>Description</caption>
+            <header>false</header>
+            <name>x_63474_bots_bots_travel</name>
+            <roles/>
+            <sys_class_name>sys_ui_section</sys_class_name>
+            <sys_created_by>sphelan</sys_created_by>
+            <sys_created_on>2018-04-09 20:46:30</sys_created_on>
+            <sys_customer_update>false</sys_customer_update>
+            <sys_domain>global</sys_domain>
+            <sys_id>5152d1b66fdddf4051281ecbbb3ee4ff</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>Description</sys_name>
+            <sys_overrides/>
+            <sys_package display_value="BOTS - New" source="x_63474_bots">fca917c14f111300cb281b818110c713</sys_package>
+            <sys_policy/>
+            <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+            <sys_scope display_value="BOTS - New">fca917c14f111300cb281b818110c713</sys_scope>
+            <sys_update_name>sys_ui_section_5152d1b66fdddf4051281ecbbb3ee4ff</sys_update_name>
+            <sys_updated_by>sphelan</sys_updated_by>
+            <sys_updated_on>2018-04-09 20:46:30</sys_updated_on>
+            <sys_user/>
+            <title>false</title>
+            <view display_value="Default view" name="NULL">Default view</view>
+            <view_name/>
+        </sys_ui_section>
+    </sys_ui_section>
+</record_update>

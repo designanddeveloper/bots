@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_instance_table">
+    <sp_instance_table action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <class_name/>
+        <color>default</color>
+        <css/>
+        <display_field/>
+        <field_list>number,type,funding_source,total_cost,requested_by,short_description,vendor,sys_updated_on</field_list>
+        <filter table="x_63474_bots_bots_requests">active=true^assigned_toDYNAMIC90d1921e5f510100a9ad2572f2b477fe^ORadditional_assignee_listDYNAMIC90d1921e5f510100a9ad2572f2b477fe^state=6<item endquery="false" field="active" goto="false" newquery="false" operator="=" or="false" value="true"/>
+            <item endquery="false" field="assigned_to" goto="false" newquery="false" operator="DYNAMIC" or="false" value="90d1921e5f510100a9ad2572f2b477fe"/>
+            <item endquery="false" field="additional_assignee_list" goto="false" newquery="false" operator="DYNAMIC" or="true" value="90d1921e5f510100a9ad2572f2b477fe"/>
+            <item endquery="false" field="state" goto="false" newquery="false" operator="=" or="false" value="6"/>
+        </filter>
+        <glyph/>
+        <id/>
+        <maximum_entries>10</maximum_entries>
+        <order>1</order>
+        <order_by>sys_updated_on</order_by>
+        <order_direction>desc</order_direction>
+        <roles/>
+        <short_description/>
+        <size>md</size>
+        <sp_column display_value="1">b51b5a7b6f2593c051281ecbbb3ee4ac</sp_column>
+        <sp_page display_value="bots_form">a8d454236f95938051281ecbbb3ee4b4</sp_page>
+        <sp_widget display_value="Data Table from Instance Definition">38058ff1cb11020000f8d856634c9c8c</sp_widget>
+        <sys_class_name>sp_instance_table</sys_class_name>
+        <sys_created_by>sphelan</sys_created_by>
+        <sys_created_on>2018-04-25 14:54:12</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>f82bda3b6f2593c051281ecbbb3ee4b7</sys_id>
+        <sys_mod_count>6</sys_mod_count>
+        <sys_name>Requests Requiring My Review</sys_name>
+        <sys_package display_value="BOTS - New" source="x_63474_bots">fca917c14f111300cb281b818110c713</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="BOTS - New">fca917c14f111300cb281b818110c713</sys_scope>
+        <sys_update_name>sp_instance_table_f82bda3b6f2593c051281ecbbb3ee4b7</sys_update_name>
+        <sys_updated_by>sdepally</sys_updated_by>
+        <sys_updated_on>2018-05-03 21:04:48</sys_updated_on>
+        <table>x_63474_bots_bots_requests</table>
+        <title>Requests Requiring My Review</title>
+        <url/>
+        <widget_parameters/>
+    </sp_instance_table>
+    <sys_translated_text action="delete_multiple" query="documentkey=f82bda3b6f2593c051281ecbbb3ee4b7"/>
+</record_update>

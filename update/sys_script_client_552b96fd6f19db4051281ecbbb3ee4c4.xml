@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_script_client">
+    <sys_script_client action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <applies_extended>true</applies_extended>
+        <condition/>
+        <description/>
+        <field>funding_source</field>
+        <global>true</global>
+        <isolate_script>false</isolate_script>
+        <messages/>
+        <name>FundingSourceCheck-Onload</name>
+        <order/>
+        <script><![CDATA[function onLoad() {
+	//Type appropriate comment here, and begin script below
+
+		var ga = new GlideAjax('FundingSource');
+		ga.addParam('sysparm_name','initialize');
+		ga.addParam('sysparm_name','FundingDetails');
+		ga.addParam('fundingsource',g_form.getValue('funding_source'));
+		ga.getXML(budgetdetails);
+
+	}
+	
+	function budgetdetails(response)
+	{
+		var answer = response.responseXML.documentElement.getAttribute("answer");
+		answer = answer.split('|');
+		g_form.showFieldMsg('funding_source','Budget Owner: '+answer[0],'info');
+		
+		//var kfsgood = new GlideAjax('FundingSource');
+		//kfsgood.addParam('sysparm_name','initialize');
+		//kfsgood.addParam('sysparm_name','KFSCheck');
+		//kfsgood.addParam('kfsnumber',answer[1]);
+		//kfsgood.getXML(kfsdetails);
+		
+		
+	}
+	
+	function kfsdetails(response)
+	{
+		var answer = response.responseXML.documentElement.getAttribute("answer");
+		answer = answer.split('|');
+		g_form.showFieldMsg('funding_source','KFS#'+answer[0]+' is '+answer[1], 'info');
+	}]]></script>
+        <sys_class_name>sys_script_client</sys_class_name>
+        <sys_created_by>sphelan</sys_created_by>
+        <sys_created_on>2018-04-06 23:30:41</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_domain>global</sys_domain>
+        <sys_id>552b96fd6f19db4051281ecbbb3ee4c4</sys_id>
+        <sys_mod_count>6</sys_mod_count>
+        <sys_name>FundingSourceCheck-Onload</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="BOTS - New" source="x_63474_bots">fca917c14f111300cb281b818110c713</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="BOTS - New">fca917c14f111300cb281b818110c713</sys_scope>
+        <sys_update_name>sys_script_client_552b96fd6f19db4051281ecbbb3ee4c4</sys_update_name>
+        <sys_updated_by>joshua.ortonio@crossfuze.com</sys_updated_by>
+        <sys_updated_on>2018-06-26 14:06:03</sys_updated_on>
+        <table>x_63474_bots_bots_requests</table>
+        <type>onLoad</type>
+        <ui_type>10</ui_type>
+        <view/>
+    </sys_script_client>
+</record_update>

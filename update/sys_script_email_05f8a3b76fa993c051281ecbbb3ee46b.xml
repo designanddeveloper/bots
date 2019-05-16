@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_email">
+    <sys_script_email action="INSERT_OR_UPDATE">
+        <name>usr_approved-rejected</name>
+        <new_lines_to_html>false</new_lines_to_html>
+        <script><![CDATA[(function runMailScript(current, template, email, email_action, event) {
+
+          // Add your code here
+	var app = new GlideRecord('sysapproval_approver');
+	app.addQuery('document_id',current.getUniqueValue());
+	app.addEncodedQuery('state=approved^ORstate=rejected');
+	app.orderByDesc('sys_updated_on');
+	app.query();
+	if(app.next()){
+		//gs.info(app.approver.name);
+		template.print(app.approver.name);
+	}
+
+})(current, template, email, email_action, event);]]></script>
+        <sys_class_name>sys_script_email</sys_class_name>
+        <sys_created_by>sdepally</sys_created_by>
+        <sys_created_on>2018-04-25 20:35:54</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>05f8a3b76fa993c051281ecbbb3ee46b</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>usr_approved-rejected</sys_name>
+        <sys_package display_value="BOTS - New" source="x_63474_bots">fca917c14f111300cb281b818110c713</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="BOTS - New">fca917c14f111300cb281b818110c713</sys_scope>
+        <sys_update_name>sys_script_email_05f8a3b76fa993c051281ecbbb3ee46b</sys_update_name>
+        <sys_updated_by>sdepally</sys_updated_by>
+        <sys_updated_on>2018-04-25 20:35:54</sys_updated_on>
+    </sys_script_email>
+</record_update>

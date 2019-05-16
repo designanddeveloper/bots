@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_instance">
+    <sp_instance action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <class_name/>
+        <color>default</color>
+        <css/>
+        <glyph/>
+        <id/>
+        <order>1</order>
+        <roles/>
+        <short_description/>
+        <size>md</size>
+        <sp_column display_value="1">55a658986f3593c05cdc1cccbb3ee4da</sp_column>
+        <sp_widget display_value="SN Report Widget">dac51ed64f726200e3d8a3618110c7d6</sp_widget>
+        <sys_class_name>sp_instance</sys_class_name>
+        <sys_created_by>sphelan</sys_created_by>
+        <sys_created_on>2018-08-13 16:41:38</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>87929d1f6ffb5fc0f7e277f16a3ee49a</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="BOTS - New" source="x_63474_bots">fca917c14f111300cb281b818110c713</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="BOTS - New">fca917c14f111300cb281b818110c713</sys_scope>
+        <sys_update_name>sp_instance_87929d1f6ffb5fc0f7e277f16a3ee49a</sys_update_name>
+        <sys_updated_by>sphelan</sys_updated_by>
+        <sys_updated_on>2018-08-13 16:41:55</sys_updated_on>
+        <title/>
+        <url/>
+        <widget_parameters><![CDATA[{
+	"report": {
+		"value": "c1a88f736f2993c051281ecbbb3ee41b",
+		"displayValue": "Last 12 Months Trend By Type"
+	},
+	"link_to": {
+		"value": "",
+		"displayValue": ""
+	}
+}]]></widget_parameters>
+    </sp_instance>
+    <sys_translated_text action="delete_multiple" query="documentkey=87929d1f6ffb5fc0f7e277f16a3ee49a"/>
+</record_update>

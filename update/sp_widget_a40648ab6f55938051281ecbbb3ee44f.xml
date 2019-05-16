@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[function() {
+  /* widget controller */
+  var c = this;
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.row {&#13;
+    margin-left: -15px;&#13;
+    margin-right: -15px;&#13;
+}&#13;
+.col-xs-12 {&#13;
+    width: 100%;&#13;
+}&#13;
+.col-xs-1, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9, .col-xs-10, .col-xs-11, .col-xs-12 {&#13;
+    float: left;&#13;
+}&#13;
+.col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {&#13;
+    position: relative;&#13;
+    min-height: 1px;&#13;
+    padding-left: 15px;&#13;
+    padding-right: 15px;&#13;
+}&#13;
+HTML[data-doctype=true] .custom-form-group.form-group {&#13;
+    margin-top: 15px;&#13;
+    margin-bottom: 15px;&#13;
+}&#13;
+table {&#13;
+    background-color: #ffffff;&#13;
+}&#13;
+table {&#13;
+    border-collapse: collapse;&#13;
+    border-spacing: 0;&#13;
+}&#13;
+TABLE {&#13;
+    background-color: white;&#13;
+}&#13;
+TABLE {&#13;
+    background-color: white;&#13;
+}&#13;
+* {&#13;
+    -webkit-box-sizing: border-box;&#13;
+    -moz-box-sizing: border-box;&#13;
+    box-sizing: border-box;&#13;
+}&#13;
+user agent stylesheet&#13;
+table {&#13;
+    display: table;&#13;
+    border-collapse: separate;&#13;
+    border-spacing: 2px;&#13;
+    border-color: grey;&#13;
+}&#13;
+&#13;
+.process-breadcrumb.process-breadcrumb-border {&#13;
+    border: 1px solid #bdc0c4;&#13;
+}&#13;
+.process-breadcrumb {&#13;
+    list-style: none;&#13;
+    padding-left: 0;&#13;
+    white-space: nowrap;&#13;
+    height: 46px;&#13;
+    width: 100%;&#13;
+    padding-right: 45px;&#13;
+    display: table;&#13;
+}&#13;
+ul, ol {&#13;
+    margin-top: 0;&#13;
+    margin-bottom: 9px;&#13;
+}&#13;
+* {&#13;
+    -webkit-box-sizing: border-box;&#13;
+    -moz-box-sizing: border-box;&#13;
+    box-sizing: border-box;&#13;
+}&#13;
+user agent stylesheet&#13;
+ol {&#13;
+    display: block;&#13;
+    list-style-type: decimal;&#13;
+    -webkit-margin-before: 1em;&#13;
+    -webkit-margin-after: 1em;&#13;
+    -webkit-margin-start: 0px;&#13;
+    -webkit-margin-end: 0px;&#13;
+    -webkit-padding-start: 40px;&#13;
+}&#13;
+&#13;
+&#13;
+user agent stylesheet&#13;
+li {&#13;
+    display: list-item;&#13;
+    text-align: -webkit-match-parent;&#13;
+}&#13;
+&#13;
+.process-breadcrumb &gt; li.disabled &gt; a, .process-breadcrumb &gt; li.disabled &gt; a:visited, .process-breadcrumb &gt; li.disabled &gt; a:hover {&#13;
+    color: #b3bcc7;&#13;
+    border-bottom-color: transparent;&#13;
+    cursor: default;&#13;
+}&#13;
+.process-breadcrumb &gt; li:first-child &gt; a {&#13;
+    padding-left: 15px;&#13;
+}&#13;
+.process-breadcrumb &gt; li &gt; a, .process-breadcrumb &gt; li &gt; a:visited, .process-breadcrumb &gt; li &gt; a:hover {&#13;
+    color: #343d47;&#13;
+    text-decoration: none;&#13;
+}&#13;
+.process-breadcrumb &gt; li {&#13;
+    display: table-cell;&#13;
+    position: relative;&#13;
+}&#13;
+.process-breadcrumb &gt; li &gt; a {&#13;
+    display: block;&#13;
+    padding: 14px 15px 12px 38px;&#13;
+    transition: all 1s;&#13;
+    text-align: center;&#13;
+}&#13;
+a {&#13;
+    color: #278efc;&#13;
+    text-decoration: none;&#13;
+}&#13;
+a {&#13;
+    background: transparent;&#13;
+}&#13;
+&#13;
+.process-breadcrumb &gt; li:after {&#13;
+    -moz-transform: rotate(45deg);&#13;
+    -ms-transform: rotate(45deg);&#13;
+    -webkit-transform: rotate(45deg);&#13;
+    transform: rotate(45deg);&#13;
+}&#13;
+.process-breadcrumb &gt; li:not(:last-child):after {&#13;
+    display: block;&#13;
+    height: 32px;&#13;
+    width: 32px;&#13;
+    position: absolute;&#13;
+    top: 6px;&#13;
+    right: -18px;&#13;
+    border-top: 1px solid #bdc0c4;&#13;
+    border-right: 1px solid #bdc0c4;&#13;
+    background-color: transparent;&#13;
+    content: ' ';&#13;
+}&#13;
+&#13;
+&#13;
+.active {&#13;
+    font-weight: bold;&#13;
+    font-size: 15px;&#13;
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id>botchervons</id>
+        <internal>false</internal>
+        <link/>
+        <name>BOTChervons</name>
+        <option_schema>[{"displayValue":"Task","name":"table_name","default_value":"incident","section":"other","label":"Table name","type":"string","value":"task"},{"name":"title","default_value":"My Cases","section":"other","label":"Title","type":"string"},{"name":"encoded_query","section":"other","label":"Encoded Query","type":"string"},{"hint":"default","name":"view","section":"other","default_value":"default","label":"View","type":"string"}]</option_schema>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+	/* populate the 'data' object */
+	/* e.g., data.table = $sp.getValue('table'); */
+	
+	var findstate = new GlideRecord('x_63474_bots_bots_requests');
+	findstate.get($sp.getParameter("sys_id"));
+	
+	data.isrequest = 'false';
+  if (findstate.getRowCount() != 0)
+		{
+			data.isrequest = 'true';
+		}
+	if (findstate.state == '1')//Initial aka step1
+		{
+		data.classone = 'active';
+		data.classtwo = 'disabled';
+		data.classthree = 'disabled';
+		data.classfour = 'disabled';
+		data.classfive = 'disabled';
+		
+		data.stateone = 'current';
+		data.statetwo = 'future';
+		data.statethree = 'future';
+		data.statefour = 'future';
+		data.statefive = 'future';
+		
+		data.currentone = 'step';
+		data.currenttwo = 'false';
+		data.currentthree = 'false';
+		data.currentfour = 'false';
+		data.currentfive = 'false';
+		data.selectedone = 'true';
+		data.selectedtwo = 'false';
+		data.selectedthree = 'false';
+		data.selectedfour = 'false';
+		data.selectedfive = 'false';
+		
+	}
+	else if (findstate.state == '2')//Approve aka step2
+		{
+		data.classone = 'disabled';
+		data.classtwo = 'active';
+		data.classthree = 'disabled';
+		data.classfour = 'disabled';
+		data.classfive = 'disabled';
+		
+		data.stateone = 'past';
+		data.statetwo = 'current';
+		data.statethree = 'future';
+		data.statefour = 'future';
+		data.statefive = 'future';
+		
+		data.currentone = 'false';
+		data.currenttwo = 'step';
+		data.currentthree = 'false';
+		data.currentfour = 'false';
+		data.currentfive = 'false';
+		data.selectedone = 'false';
+		data.selectedtwo = 'true';
+		data.selectedthree = 'false';
+		data.selectedfour = 'false';
+		data.selectedfive = 'false';
+		
+	}
+	else if (findstate.state == '5' || findstate.state == '6')//Review BM  or Review LD aka step3
+		{
+		data.classone = 'disabled';
+		data.classtwo = 'disabled';
+		data.classthree = 'active';
+		data.classfour = 'disabled';
+		data.classfive = 'disabled';
+		
+		data.stateone = 'past';
+		data.statetwo = 'past';
+		data.statethree = 'current';
+		data.statefour = 'future';
+		data.statefive = 'future';
+		
+		data.currentone = 'false';
+		data.currenttwo = 'false';
+		data.currentthree = 'step';
+		data.currentfour = 'false';
+		data.currentfive = 'false';
+		data.selectedone = 'false';
+		data.selectedtwo = 'false';
+		data.selectedthree = 'true';
+		data.selectedfour = 'false';
+		data.selectedfive = 'false';
+	}
+	else if (findstate.state == '4')//Closed aka step4
+		{
+		data.classone = 'disabled';
+		data.classtwo = 'disabled';
+		data.classthree = 'disabled';
+		data.classfour = 'active';
+		data.classfive = 'disabled';
+		
+		data.stateone = 'past';
+		data.statetwo = 'past';
+		data.statethree = 'past';
+		data.statefour = 'current';
+		data.statefive = 'past';
+		
+		data.currentone = 'false';
+		data.currenttwo = 'false';
+		data.currentthree = 'false';
+		data.currentfour = 'step';
+		data.currentfive = 'false';
+		data.selectedone = 'false';
+		data.selectedtwo = 'false';
+		data.selectedthree = 'false';
+		data.selectedfour = 'true';
+		data.selectedfive = 'false';
+		
+	}
+	else if (findstate.state == '3')//Canceled aka step5
+		{
+		data.classone = 'disabled';
+		data.classtwo = 'disabled';
+		data.classthree = 'disabled';
+		data.classfour = 'disabled';
+		data.classfive = 'active';
+		
+		data.stateone = 'past';
+		data.statetwo = 'past';
+		data.statethree = 'past';
+		data.statefour = 'past';
+		data.statefive = 'current';
+		
+		data.currentone = 'false';
+		data.currenttwo = 'false';
+		data.currentthree = 'false';
+		data.currentfour = 'false';
+		data.currentfive = 'step';
+		data.selectedone = 'false';
+		data.selectedtwo = 'false';
+		data.selectedthree = 'false';
+		data.selectedfour = 'false';
+		data.selectedfive = 'true';
+		
+	}
+	
+	
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>sphelan</sys_created_by>
+        <sys_created_on>2018-04-11 23:09:56</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>a40648ab6f55938051281ecbbb3ee44f</sys_id>
+        <sys_mod_count>17</sys_mod_count>
+        <sys_name>BOTChervons</sys_name>
+        <sys_package display_value="BOTS - New" source="x_63474_bots">fca917c14f111300cb281b818110c713</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="BOTS - New">fca917c14f111300cb281b818110c713</sys_scope>
+        <sys_update_name>sp_widget_a40648ab6f55938051281ecbbb3ee44f</sys_update_name>
+        <sys_updated_by>sphelan</sys_updated_by>
+        <sys_updated_on>2018-10-30 21:52:23</sys_updated_on>
+        <template><![CDATA[<div class="row" ng-if="data.isrequest == 'true'">
+  <div class="col-xs-12">
+    <div class="custom-form-group  form-group ng-scope" sn-ng-formatter="" sn-ng-compiled="true">
+      <table style="width: 100%;" class="" role="presentation">
+        <tbody>
+          <tr>
+            <td>
+              <ol class="process-breadcrumb process-breadcrumb-border" role="listbox">
+                <li class="{{data.classone}}" data-state="{{data.stateone}}" aria-current="{{data.currentone}}" role="option" aria-selected="{{data.selectedone}}">
+                  <a href="javascript:void(0);" role="presentation" aria-label="Request">Request</a>
+                </li>
+                <li class="{{data.classtwo}}" data-state="{{data.statetwo}}" aria-current="{{data.currenttwo}}" role="option" aria-selected="{{data.selectedtwo}}">
+                  <a href="javascript:void(0);" role="presentation" aria-label="Budget Owner Approval">Budget Owner Approval</a>
+                </li>
+                <li class="{{data.classthree}}" data-state="{{data.statethree}}" aria-current="{{data.currentthree}}" role="option" aria-selected="{{data.selectedthree}}">
+                  <a href="javascript:void(0);" role="presentation" aria-label="Business Office Review">Business Office Review</a>
+                </li>
+                <li class="{{data.classfour}}" data-state="{{data.statefour}}" aria-current="{{data.currentfour}}" role="option" aria-selected="{{data.selectedfour}}">
+                  <a href="javascript:void(0);" role="presentation" aria-label="Approved">Approved</a>
+                </li>
+                <li class="{{data.classfive}}" data-state="{{data.statefive}}" aria-current="{{data.currentfive}}" role="option" aria-selected="{{data.selectedfive}}">
+                  <a href="javascript:void(0);" role="presentation" aria-label="Not Approved">Not Approved</a>
+                </li>
+              </ol>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>]]></template>
+    </sp_widget>
+</record_update>

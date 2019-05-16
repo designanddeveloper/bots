@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_ng_template">
+    <sp_ng_template action="INSERT_OR_UPDATE">
+        <id>report1.html</id>
+        <sp_widget display_value="Leadership Report Options">b81b72376fe593c051281ecbbb3ee479</sp_widget>
+        <sys_class_name>sp_ng_template</sys_class_name>
+        <sys_created_by>sphelan</sys_created_by>
+        <sys_created_on>2018-04-25 17:15:30</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>b27b36776fe593c051281ecbbb3ee420</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>report1.html</sys_name>
+        <sys_package display_value="BOTS - New" source="x_63474_bots">fca917c14f111300cb281b818110c713</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="BOTS - New">fca917c14f111300cb281b818110c713</sys_scope>
+        <sys_update_name>sp_ng_template_b27b36776fe593c051281ecbbb3ee420</sys_update_name>
+        <sys_updated_by>sphelan</sys_updated_by>
+        <sys_updated_on>2018-04-25 17:15:30</sys_updated_on>
+        <template><![CDATA[<div class="panel panel-default b">
+  <div class="panel-heading">
+    <h4 class="panel-title">{{c.data.title}}</h4>
+  </div>
+  <div class="panel-body m-b-lg wrapper-xl">
+    <div class="row m-b-lg b-b">
+     
+ 
+      
+    </div>
+  </div>
+  <div class="panel-footer text-right ">
+    <button class="btn btn-primary" ng-click="closeModal()">${Close}</button>
+  </div>
+</div>
+<style>
+  .modalSet{
+  margin-top:3% !important;
+}
+</style>]]></template>
+    </sp_ng_template>
+</record_update>

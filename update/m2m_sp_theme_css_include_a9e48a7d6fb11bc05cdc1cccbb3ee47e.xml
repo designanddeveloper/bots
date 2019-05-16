@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="m2m_sp_theme_css_include">
+    <m2m_sp_theme_css_include action="INSERT_OR_UPDATE">
+        <order/>
+        <sp_css_include display_value="BOTS CSS">10d44a7d6fb11bc05cdc1cccbb3ee4bf</sp_css_include>
+        <sp_theme display_value="BOTS Default">5da4c63d6fb11bc05cdc1cccbb3ee423</sp_theme>
+        <sys_class_name>m2m_sp_theme_css_include</sys_class_name>
+        <sys_created_by>sphelan</sys_created_by>
+        <sys_created_on>2018-05-01 18:24:54</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>a9e48a7d6fb11bc05cdc1cccbb3ee47e</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>BOTS CSS.BOTS Default</sys_name>
+        <sys_package display_value="BOTS - New" source="x_63474_bots">fca917c14f111300cb281b818110c713</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="BOTS - New">fca917c14f111300cb281b818110c713</sys_scope>
+        <sys_update_name>m2m_sp_theme_css_include_a9e48a7d6fb11bc05cdc1cccbb3ee47e</sys_update_name>
+        <sys_updated_by>sphelan</sys_updated_by>
+        <sys_updated_on>2018-05-01 18:24:54</sys_updated_on>
+    </m2m_sp_theme_css_include>
+</record_update>

@@ -1,0 +1,668 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_ng_template">
+    <sp_ng_template action="INSERT_OR_UPDATE">
+        <id>bots-user-guide</id>
+        <sp_widget display_value="BOTS Portal Header">d1a5ce7d6fb11bc05cdc1cccbb3ee403</sp_widget>
+        <sys_class_name>sp_ng_template</sys_class_name>
+        <sys_created_by>sphelan</sys_created_by>
+        <sys_created_on>2018-05-23 18:24:32</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>45669f386f5edb0051281ecbbb3ee4c0</sys_id>
+        <sys_mod_count>17</sys_mod_count>
+        <sys_name>bots-user-guide</sys_name>
+        <sys_package display_value="BOTS - New" source="x_63474_bots">fca917c14f111300cb281b818110c713</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="BOTS - New">fca917c14f111300cb281b818110c713</sys_scope>
+        <sys_update_name>sp_ng_template_45669f386f5edb0051281ecbbb3ee4c0</sys_update_name>
+        <sys_updated_by>sphelan</sys_updated_by>
+        <sys_updated_on>2018-06-11 14:11:19</sys_updated_on>
+        <template><![CDATA[<div class="panel panel-default b">
+		<div class="panel-heading">
+			<h4 class="panel-title">KB0013761: BOTS User Guide v1.0.0<!--{{c.data.botsuserguidekbNumber}} - {{c.data.botsuserguidetitle}}--><!--<i ng-click="closeModal()" class="btn btn-default btn-sm fa fa-close pull-right" aria-hidden="true"></i>--></h4>
+    </div>
+		<div class="panel-body m-b-lg" style="margin:0px; padding:0px; padding-left:10px;">
+			<!--<div class="row m-b-lg b-b">
+        <span class="author pad-right" ng-if="data.author">
+          <glyph sn-char="user" class="pad-right" />
+          ${Authored by {{::data.author}}}
+    </span>
+        <span ng-if="data.sys_view_count == 1" class="views pad-right">
+          <span class="pad-right">&#8226;</span> <glyph sn-char="eye-open" class="pad-right" />
+          ${{{::data.sys_view_count}} View}
+    </span>
+        <span ng-if="data.sys_view_count > 1" class="views pad-right">
+          <span class="pad-right">&#8226;</span> <glyph sn-char="eye-open" class="pad-right" />
+          ${{{::data.sys_view_count}} Views}
+    </span>
+        <span class="published pad-right">
+          <span class="pad-right">&#8226;</span> <glyph sn-char="calendar" class="pad-right" />
+          <sn-day-ago date="data.publishedUtc"/>
+    </span>
+        <span ng-if="data.rating > 0 && !data.direct" title="{{::data.rating}} rating">
+          <span class="pad-right">&#8226;</span> <uib-rating ng-model="::data.rating" max="5" readonly="true"/>
+    </span>
+    </div> -->
+    
+    <!--<div class="kb_article" ng-if="!data.direct" ng-bind-html="c.data.botsuserguidehtml" style="overflow-x:auto;"></div>-->
+    <div>
+
+      <p><img style="border-width: initial; border-image-width: initial; display: block; margin-left: auto; margin-right: auto; width:150px; height:150px;" src="https://lh4.googleusercontent.com/7e4tpmpCuIJ7xN3FxTIDTftVdyaNyFft4oGC8Bxgteaur_mzDEvWP7j1zYsWA_op_WHYitVmvCQ814OiMhhVF4bPAm30gn2LehxSR3f6Uk3BJJo7UQCa2sga9-HNLYnu6xx81Hx2" width="194" height="194" /></p>
+
+<div id="accordion">
+  
+  
+  <div class="card">
+    <div id="headingTwo" class="card-header"> 
+      <h5 class="mb-0"><button class="btn btn-link" data-toggle="collapse" data-target="#collapseTwo">Request Submitter Interface <i class="fa fa-angle-down rotate-icon"></i></button></h5>
+      </div>
+    <div id="collapseTwo" class="collapse" data-parent="#accordion">
+      <div class="card-body">
+        <p>You can review your active and previous requests. A user may also submit a:</p>
+        <ul style="list-style-position: inside;">
+          <li>General Office Supply Request with individual items</li>
+          <li>Purchase Request with/without individual supply items</li>
+          <li>Travel Request (attachment of Travel Approval Request Form or TARF file)</li>
+        </ul>
+        <!--<p style="text-align: center;"><img style="border-width: initial; border-image-width: initial;" src="https://lh6.googleusercontent.com/WBeH515OIvoBFg-JhVLh6NiZPFeT3pr3s3B4iX-CzLQA0hh3MWPjOs1y39xQCD1fCVNicK3Cl37WE1uFZbHcXiARRWF5zv2D8flV8QFoK73zMBj_RPzPjIAZDhKNVLLYbjVpgZ3_" width="624" height="199" /></p>-->
+        <p><span style="color: #ff0000;">Note:</span> The user when filling out the request can submit for approvals or save as a draft and submit at a later time. A TARF file is not required to save as draft on a Travel Request</p>
+        <p><span style="color: #ff0000;">Note:</span> If based on your role in the system and have access to other dashboards they will be listed under the dashboard menu item. &nbsp;The system will default the dashboard view to your highest role.</p>
+        <p><span style="color: #ff0000;">Note:</span> The active tab on initial view is determined by your items state</p>
+        <ul style="list-style-position: inside;">
+          <li>If you have any Drafts that tab will be active</li>
+          <li>If you have no drafts but have items In-Progress that tab will be active</li>
+        </ul>
+        <div>
+          <table>
+            <colgroup>
+            <col width="335" />
+            <col width="289" />
+            </colgroup>
+            <tbody>
+              <tr>
+                <td><p>To submit a request click on the 'New Request' menu item and select the request form you want to submit. You may also bookmark the BOTS Catalog at: <a href="https://umd.service-now.com/bots?id=bots_catalog" rel="nofollow">https://umd.service-now.com/bots?id=bots_catalog</a></p></td>
+                <td><p><img style="border-width: initial; border-image-width: initial;" src="https://lh3.googleusercontent.com/H1YZUSapu7FVxNsawem4NEAq6rDzX5O4J-sqUCLabO5X9fgkT5oYPY5gkLMPJHZNBmMx2losX1WaJUanEEnSd5QikWvc7DCDCNEQLFJhXU0qW7WAEmDOLqqewnt9xvuPqBW1BuYL" width="266" height="179" /></p></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+  
+  
+  
+  
+  
+  <div class="card">
+    <div id="headingThree" class="card-header" > 
+      <h5 class="mb-0"><button class="btn btn-link" data-toggle="collapse" data-target="#collapseThree">The Funding Source Field <i class="fa fa-angle-down rotate-icon"></i></button></h5>
+     </div>
+    <div id="collapseThree" class="collapse" data-parent="#accordion">
+      <div class="card-body">
+        <p>&nbsp;The Funding Source dropdown will only list sources that you have access to.</p>
+        <ol style="list-style-position: inside;">
+          <li>Budget Submitters can only see those sources they have access to</li>
+          <li>Budget Owners / Business Office can view all to reroute an submitted request for approval</li>
+        </ol>
+        <!--<p><img style="border-width: initial; border-image-width: initial;" src="https://lh3.googleusercontent.com/T9MijaAUNKu_iik6eTU1R96vQl0WP-nquW1lxsGyG5PSHlelkMji7FES-os6RD-Q0FB-A9KMS8HM7w8Yi5-5X3Ax4GO8R2qWlt52dx7G90f3yGXtJrFqy00i-crTCQF0APa4EYDu" width="624" height="152" /></p>-->
+        <p>The drop down is multi field showing you</p>
+        <ol style="list-style-position: inside;">
+          <li>The official name of the funding source</li>
+          <li>The Budget Owner</li>
+          <li>The account number (KFS#)</li>
+        </ol>
+        <p>&nbsp;You may search this list by typing in the funding source filed for any text in finding record</p>
+        <div>
+          <table>
+            <colgroup>
+            <col width="*" />
+            <col width="*" />
+            <col width="*" />
+            </colgroup>
+            <tbody>
+              <tr>
+                <td><p><img style="border-width: initial; border-image-width: initial;" src="https://lh3.googleusercontent.com/mtC7lJn5JItK7hChu-pfEntBim8Z5qdG1sLiAgPQgW-J9aiYjFO5Mwn8Y1H8zDoQpNzuhBKXYjmYKZ7NdU6Ae_rDqSl6aMOH776mtMhBMfEkdNnxp1CzNV09kF36mXOG2F7bA1oo" width="194" height="101" /></p></td>
+                <td colspan="2"><p><img style="border-width: initial; border-image-width: initial;" src="https://lh4.googleusercontent.com/VFASb5cODqaN9etQ3CTr1jExf5T71heJKRjWRNLtoDIf7qthtb6A6zseYj5EYMr6nePP4waJ_R9sUMU-oILY899QVjWXTwHucCDYpxD7KURHm36FDOJuWfuJrNSyzTKzavlIrGMz" width="353" height="118" /></p></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+  
+  
+  
+  
+  <div class="card">
+    <div id="headingFour" class="card-header" > 
+      <h5 class="mb-0"><button class="btn btn-link" data-toggle="collapse" data-target="#collapseFour">The Vendor Field <i class="fa fa-angle-down rotate-icon"></i></button></h5>
+    </div>
+    <div id="collapseFour" class="collapse" data-parent="#accordion">
+      <div class="card-body">
+        <p>You may search by typing in the vendor field and any matches will be listed. &nbsp;If the vendor can not be found, you may press the new vendor option and enter the details manually. &nbsp;The Business Office will then have the option to add the vendor to the dropdown list for future requests.</p>
+          <table style="height: 166px;" width="770">
+            <colgroup>
+            </colgroup>
+            <tbody>
+              <tr>
+                <td><ul style="list-style-position: inside;">
+                    <li style="list-style-type: disc;">
+                      Vendor Name
+                    </li>
+                    <li style="list-style-type: disc;">
+                      Vendor Email
+                    </li>
+                    <li style="list-style-type: disc;">
+                      Vendor Phone
+                    </li>
+                  </ul></td>
+                <td><ul style="list-style-position: inside;">
+                    <li style="list-style-type: disc;">
+                      Vendor Website URL
+                    </li>
+                    <li style="list-style-type: disc;">
+                      Vendor Mailing Address
+                    </li>
+                    <li style="list-style-type: disc;">
+                      Any Vendor Notes You Want To Add
+                    </li>
+                  </ul></td>
+              </tr>
+            </tbody>
+          </table>
+      </div>
+    </div>
+  </div>
+  
+  
+  
+  
+  
+  <div class="card">
+    <div id="headingFive" class="card-header" > 
+      <h5 class="mb-0"><button class="btn btn-link" data-toggle="collapse" data-target="#collapseFive">The Short Description Field <i class="fa fa-angle-down rotate-icon"></i></button></h5>
+     </div>
+    <div id="collapseFive" class="collapse" data-parent="#accordion">
+      <div class="card-body">
+        <p>This field is designed to be the title of the request and to aid you or the approver as they look at a list of requests in the system.</p>
+        <p>&nbsp;</p>
+      </div>
+    </div>
+  </div>
+  
+  
+  
+  
+  <div class="card">
+    <div id="headingSix" class="card-header" > 
+      <h5 class="mb-0"><button class="btn btn-link" data-toggle="collapse" data-target="#collapseSix">Individual Items of the Request (General Office Supply and Purchase Requests Only) <i class="fa fa-angle-down rotate-icon"></i></button></h5>
+    </div>
+    <div id="collapseSix" class="collapse" data-parent="#accordion">
+      <div class="card-body">
+        <p>This is a table interface to create an itemized request.</p>
+        <ul style="list-style-position: inside;">
+          <li style="list-style-type: disc;">
+            As items are entered, the total of the request is updated
+          </li>
+          <li style="list-style-type: disc;">
+            To add a new row, press the add row button
+          </li>
+          <li style="list-style-type: disc;">
+            To remove a row press the delete icon next to the row
+          </li>
+          <li style="list-style-type: disc;">
+            If needed, you may identify a separate person for the item. &nbsp;You may search by name or directory id
+          </li>
+          <li style="list-style-type: disc;">
+            Items are required for a General Supply Request but not on the Purchase Request Form
+          </li>
+        </ul>
+        <p><img style="border-width: initial; border-image-width: initial;" src="https://lh5.googleusercontent.com/DCR96N7mIm5vvKcoUSx44uVmBDl12HIsKZgert8f9__U7h2I--R7H2zWtPlhfMAgmOIS6O8aiuZHBk_2KxYzoBOO_PrVNvaumo9xVfSJ_G-NlFgLV1aVicN7JAlNW0JkGPNEVK8f" width="624" height="179" /></p>
+        <p>Note: Once items are added in the Purchase Request Form the total price is locked and controlled via the items. &nbsp;If you want to enter a price manually, do not add items.</p>
+        <h3>Shipping Details Section</h3>
+        <p>The ship to person is defaulted based on who the request is for and the address is based on their LDAP profile. &nbsp;On update of the Ship to Person, the address will be updated. If needed, you may modify the address to a custom address.</p>
+        <p>Note: Set the Ship To Person first or it will be overwritten on person update.</p>
+        <p><img style="border-width: initial; border-image-width: initial;" src="https://lh3.googleusercontent.com/FpJ-t_15ukYIi_9AeX0IJPXtt640nBBzsyNpcWuTapBZjc9dh88LA0AdT9at-A1Wfe3aLa5nrO7kG5dHWC8vmX4fsX1WjKd6Q4SvCKOwOgCr__z-qtsGjRgnvhyL-PbhiRrWkD1e" width="624" height="104" /></p>
+      </div>
+    </div>
+  </div>
+  
+  
+  
+  
+  
+  <div class="card">
+    <div id="headingSeven" class="card-header" > 
+      <h5 class="mb-0"><button class="btn btn-link" data-toggle="collapse" data-target="#collapseSeven">Justification Section <i class="fa fa-angle-down rotate-icon"></i></button></h5>
+   </div>
+    <div id="collapseSeven" class="collapse" data-parent="#accordion">
+      <div class="card-body">
+        <p>The justification is the detailed reason of the request and is used for the approval decision. &nbsp;</p>
+        <p>The Justification field is a HTML field. &nbsp;You may use the formatting bar across the top to add simple HTML formatting. &nbsp;This includes:</p>
+        <ul style="list-style-position: inside;">
+          <li style="list-style-type: disc;">
+            Bold
+          </li>
+          <li style="list-style-type: disc;">
+            Ilalic
+          </li>
+          <li style="list-style-type: disc;">
+            Justification
+          </li>
+          <li style="list-style-type: disc;">
+            Bullet or Ordered list
+          </li>
+          <li style="list-style-type: disc;">
+            Indents
+          </li>
+          <li style="list-style-type: disc;">
+           HyperLinks
+          </li>
+          <li style="list-style-type: disc;">
+            Inline Pictures (you can also Copy/Paste to insert pictures)
+          </li>
+        </ul>
+        <p>The additional comments are not part of the official form but are noted in the item Activity Log. &nbsp;These can be used for extra clarification or other notes you want to share.</p>
+        <ul style="list-style-position: inside;">
+          <li style="list-style-type: disc;">
+            <p>Supports multi-line text and is plain text and does not support any formatting</p>
+          </li>
+        </ul>
+        <p><img style="border-width: initial; border-image-width: initial;" src="https://lh5.googleusercontent.com/di-6g4SOjeNeIt65npraOe03fMoGl_pPPvTexlShNGWg_fL3GB3UOW0LzoMh8slPwOIXRoM812dkNX25Z8qtwQ9HTldbQnlc_ZCBzRxm7NyixzdTB4aZ-w57SmiluwM-WMy0HTr2" width="624" height="281" /></p>
+      </div>
+    </div>
+  </div>
+  
+  
+  
+  
+  
+  
+  <div class="card">
+    <div id="headingEight" class="card-header" > 
+      <h5 class="mb-0"><button class="btn btn-link" data-toggle="collapse" data-target="#collapseEight">Required Fields <i class="fa fa-angle-down rotate-icon"></i></button></h5>
+      </div>
+    <div id="collapseEight" class="collapse" data-parent="#accordion">
+      <div class="card-body">
+        <p>Required fields are marked by a red asterisk and grey when satisfied. &nbsp;Any unsatisfied required fields are listed under the form submit buttons</p>
+        <p>&nbsp;</p>
+        <p><img style="border-width: initial; border-image-width: initial;" src="https://lh3.googleusercontent.com/KZ8OmXSykmJWcj0nbEf_pgs-gu2YspYZWnENLJaCAKtUlo-jZhPPeosVmbFIZwbtJUIL5AQwHbjav6ntBjT-QSwy6_ZznUnqPvw2z427VGHz-J_J_mFZ2puqchHiq0oRUpBOUYop" width="514" height="129" /></p>
+      </div>
+    </div>
+  </div>
+  
+  
+  
+  
+  
+  <div class="card">
+    <div id="headingNine" class="card-header" > 
+      <h5 class="mb-0"><button class="btn btn-link" data-toggle="collapse" data-target="#collapseNine">Request Submitted Screen <i class="fa fa-angle-down rotate-icon"></i></button></h5>
+      </div>
+    <div id="collapseNine" class="collapse" data-parent="#accordion">
+      <div class="card-body">
+        <p>After you submit your new request for approval or as a draft a screen summarizing your request is displayed. &nbsp;Press the 'Home' menu link to return to your dashboard or 'New Request' to enter another one. If needed for your records, you may print or pdf and save this page.</p>
+        <p><img style="border-width: initial; border-image-width: initial;" src="https://lh3.googleusercontent.com/nVdH-dxjsm3YpmZ10wJBHGK2Y5Z4uLl8aHNB_Bi8TjZ-zV_F5gyLSJdxNaCUceAU9Htw0c2aagJXOhNW1ybiIUg_bYolk6xFKRtcgysDUHcIHfO9_lJfjwSyYrk4HvML39xRgekZ" width="624" height="436" /></p>
+        <p>In this example above, I choose to submit as Draft. Our dashboard now shows 1 request</p>
+        <p><img style="border-width: initial; border-image-width: initial;" src="https://lh5.googleusercontent.com/Pc813OovWEI4De8Og6ZzpTZ0stHdMxZWMpQbI_XkNMJ3eMnYDPofzKCEnvKyc4HMeHYhdTiVL7IuG1TYDPzqsxmAhukLB_P8Njq4ot-j1SNpD_946NQFV87iDKpG-mvsCK4yzFn6" width="624" height="268" /></p>
+      </div>
+    </div>
+  </div>
+  
+  
+  
+  
+  
+  <div class="card">
+    <div id="headingTen" class="card-header" > 
+      <h5 class="mb-0"><button class="btn btn-link" data-toggle="collapse" data-target="#collapseTen">How to Edit and Submit My Draft Request <i class="fa fa-angle-down rotate-icon"></i></button></h5>
+</div>
+    <div id="collapseTen" class="collapse" data-parent="#accordion">
+      <div class="card-body">
+        <p>From the dashboard, click on the request in the list view</p>
+        <p><img style="border-width: initial; border-image-width: initial;" src="https://lh6.googleusercontent.com/P1tMrIgYsoC7Libi_Pm7_fx8lnZsZLJSLnYN3mOi6onUN5IrtLpHHsNdvl_7fzC0Iwtj55SSz8eRTK8p2tcVjCM2amhHvnkGj9YP-D8Cyl0xY0KR1_Z3qO9b7fob_XDOp5039l-k" width="624" height="225" /></p>
+        <p>This will open the form</p>
+        <p><img style="border-width: initial; border-image-width: initial;" src="https://lh5.googleusercontent.com/VlTXcbyoGdI49_Z6Pl1XLV7UXjm5V0hcX6JH2sKiK65Gq5ExJa2ATFknkuTPWYYh5HHsdNxQOrjwMWeT0UTY7ywxY6aty9ieqY-gUM28o2VZpR8VKrZ9FseumiZJm7n3qJ8JTtxC" width="624" height="408" /></p>
+        <p>&nbsp;</p>
+        <p>Across the top of all forms you will notice a flow formatter. &nbsp;This will allow you quickly see where the request is in the proces. &nbsp;Under certain fields you will also notice some blue boxes. These are additional details of use. &nbsp;To see further details some fields have an 'i' icon next to them. Click this to open a popup window with details of referenced field.</p>
+        <p>&nbsp;</p>
+        <p>To add additional items to your draft request scroll to the bottom of the form and press New. &nbsp;You may also click on an existing item to view it or edit it</p>
+        <p><img style="border-width: initial; border-image-width: initial;" src="https://lh4.googleusercontent.com/EP4QhsWHr_nxOgV2pR8E7LNv7pdKF9g48LAyeXrjIMrZUO90ZxuMgqClZZCev3Qt4TE5DjPsKx_NKgo5v_mmhiySClFYaxqkwtvntBLTocHf_DSoKGp9B0rwZ0ukymegXM50RcNZ" width="624" height="163" /></p>
+        <p>&nbsp;</p>
+        <p>After adding a new item, a message is displayed informing you of the new request total and a link to return to the request form</p>
+        <p><img style="border-width: initial; border-image-width: initial;" src="https://lh6.googleusercontent.com/LpjT2tAfwq7Kspp1_PepyhWN8StjN_uz9Me5eeR7KAdaIdejHfZcokrOYPYxSQ6VCf-25e1OjjKjw7Ys9ht3jj3xqpSC5QdOHzWex01_MgxBx5ChJ_rqqvp5tVv9myXAoKDVgy3M" width="624" height="120" /></p>
+        <p>&nbsp;</p>
+        <p>If you view an existing item, you may return to the request via the back button of your browser or by clicking the request number in the breadcrumbs above the form</p>
+        <p><img style="border-width: initial; border-image-width: initial;" src="https://lh3.googleusercontent.com/3nfG7BYyrckxyDQdlwVaYsppk0ZAXmDKDohVpP0NmZgSy_hrq9NJp8XeoKbXxCZR0nO-uwViemziY-6gBT8e5dl0Dx9jxzJUR3pF-D1Q76fwK0v7Iq8o1PutghkTWtA5il5zwVTT" width="624" height="181" /></p>
+        <p>&nbsp;</p>
+        <p>When you are ready to submit your form for review press the 'Process My Request' button. &nbsp;Also, at any time, you as the submitter may cancel your request</p>
+        <p>&nbsp;</p>
+        <p><img style="border-width: initial; border-image-width: initial;" src="https://lh6.googleusercontent.com/PJe9hU1zHCp2LIs7k5BDNBkzUSS8vgF1gi0-8XpWRpmJX8FZUd1APoaCvhepVQ4gqT6tPhludtwXf_4zxBXGkS3Z3ZlCDIkFjVSCPFJYD0WkHlmrRCTt1s9nT0osn__-TgK_HAYJ" width="624" height="128" /></p>
+        <p>The sample request has now been sent for approval. &nbsp;On your dashboard you can now see that it is in progress. &nbsp;This includes Budget Owner Approval and Business Office Review</p>
+        <p><img style="border-width: initial; border-image-width: initial;" src="https://lh6.googleusercontent.com/XP4oZtWsJ5p4hsxiikleFQ--TBElIvgYMwmt5jcDsQAuTC5mDlWtq-JF_fhUkSkfM4-p5CL_GNJgwTRZ4LSk1lKFNYOsfTwN2QZ2qLGRwPdXBiJzUtk3q3lxWsSW6cXf_PM53uPL" width="624" height="287" /></p>
+      </div>
+    </div>
+  </div>
+  
+  
+  
+  
+  
+  <div class="card">
+    <div id="headingEleven" class="card-header" > 
+      <h5 class="mb-0"><button class="btn btn-link" data-toggle="collapse" data-target="#collapseEleven">How to Add Comments Or Check On Request Status <i class="fa fa-angle-down rotate-icon"></i></button></h5>
+      </div>
+    <div id="collapseEleven" class="collapse" data-parent="#accordion">
+      <div class="card-body">
+        <p>&nbsp;</p>
+        <p>Viewing the form you will now notice that it is at the Budget Owner and the form is now read only for you as the submitter.</p>
+        <p><img style="border-width: initial; border-image-width: initial;" src="https://lh5.googleusercontent.com/2B5Nj743s8oTzLC07LR8FFYqGiLrMNIDjncc08cgjyaOejKNivNIHO-nuXZY_0xmomBEM32CcyTywwkK_GpBtmcb2o7cHOUi6MpGxxtsmut9SYTMBHkimVmswvWLK74hucq4uixl" width="624" height="281" /></p>
+        <p>&nbsp;</p>
+        <p>If you need to add comments to your request or answer a question click on the Activity Log tab to view the chat interface and past activity</p>
+        <ol style="list-style-position: inside;">
+          <li style="list-style-type: decimal;">
+            Click on the Activity Log Tab
+          </li>
+          <li style="list-style-type: decimal;">
+            Enter Your Message
+          </li>
+          <li style="list-style-type: decimal;">
+            Press Send
+          </li>
+        </ol>
+        <p><img style="border-width: initial; border-image-width: initial;" src="https://lh6.googleusercontent.com/bWTW-ybQqW6B9XU8ygycP7Bn2-j0GkPuXQ1Dh7I2XhRnMG3JhqB87I-HW3cr85if0K-o9FwdFKNAOvmTgEh5Kqn7WJJmbJrZhFM5u7kwirzGfdC30OjhFcwPHtqKZI-NE8BO6XVG" width="613" height="359" /></p>
+        <p>&nbsp;</p>
+        <p>On the tabs at the bottom off the form, you can view who has approved/rejected the request. &nbsp;A state of Requested is the current person who is acting on your request</p>
+        <p><img style="border-width: initial; border-image-width: initial;" src="https://lh3.googleusercontent.com/5YlN7RFj8L8GdJ-pkQKWLUcKCJ1Kv6IwqCRsoJeCeyhOiDr2ayghIGslxcwFZGZ5LQSlbTuuefNxN7Qddvqe3iyKrDf6s5qGW15H4NqSmTVBpQJgb1hXMaDd29s5e7Gx_deX6OuN" width="543" height="158" /></p>
+      </div>
+    </div>
+  </div>
+  
+  
+  
+  
+  <div class="card">
+    <div id="headingTwelve" class="card-header" > 
+      <h5 class="mb-0"><button class="btn btn-link" data-toggle="collapse" data-target="#collapseTwelve">Budget Owner Interface <i class="fa fa-angle-down rotate-icon"></i></button></h5>
+     </div>
+    <div id="collapseTwelve" class="collapse" data-parent="#accordion">
+      <div class="card-body">
+        <p>A user will visit <a href="https://umd.service-now.com/bots" rel="nofollow">https://umd.service-now.com/bots</a> and view their dashboard. As a Budget Owner, the Budget Owner dashboard will be displayed. &nbsp;This will show you what is pending your review and approval along with any approved / canceled request on your funding sources. &nbsp;In the event that you as a budget owner submits a request they will be displayed in the first tab 'Draft' if you have not submitted them for review yet to the Business Office. Across the top you can see how many requests on your budget(s) are at the business office or leadership. &nbsp;</p>
+        <p>Note: The counts displayed are clickable and the list will be displayed for your review</p>
+        <p><img style="border-width: initial; border-image-width: initial;" src="https://lh5.googleusercontent.com/RBTCN2yr9bvXnX7J-FEyetB78038BWCx3zoLkvIGLwZu0fxZGX4CfR49C8cID_vDBPL6UQOsS9obMTVFmdxqVNiTCu5cHbKnzrogrql1dSSsD3FfuC16187nwamgereSXnc-8K77" width="579" height="329" /></p>
+        <p>Note: Click on the blue button 'Show me my Funding Sources' to see a list of the funding sources you are the owner for.</p>
+        <p><img style="border-width: initial; border-image-width: initial;" src="https://lh5.googleusercontent.com/urZurGKw7Sj1uF_6U9xvhoSp9npdJZtuOqLVkeg_K5j7rc3whRZqOF6AHTxpLHUd-kYqdHRYGYWRcDunnfbexhXsAhlGK737Rfq6ZBYbI_LgK4v6hI0IUw1YkQ_DdLaL9cDWp0uP" width="427" height="261" /></p>
+        <h3>Budget Owner options on a request</h3>
+        <p>Update to a different funding Source</p>
+        <div>
+          <table>
+            <tbody>
+              <tr>
+                <td><p><img style="border-width: initial; border-image-width: initial;" src="https://lh3.googleusercontent.com/m-NTKnm_NQmlNahYwutoNI6mswagFFUXNEn9ue_adK2I3ZxgLQP211U9EMCb2x_ufAhyzpvw-yNdJ6uPHb47CqJ0uqIiYxCpfcrJJMUdsoFPLBg8uudwNmJ92iG0OhAG3YoAQf6_" width="408" height="271" /></p></td>
+                <td><p>As a Budget Owner, you may select a different funding source. &nbsp;You can view all the available funding sources to reroute the request. &nbsp;Selecting a different funding source and pressing SAVE will cancel your approval request and reroute the item</p></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Ask a question to the request submitter</p>
+        <p>Click on the 'Activity Tab' and enter a comment/question and press Send</p>
+        <p><img style="border-width: initial; border-image-width: initial;" src="https://lh5.googleusercontent.com/05Y1XzxHh42Rmj1sRILjPAsgD1DNv3RmMZLpYnT6tc21UYLG-sCuuGIM-6ZEmh4Cic70b_09Vzz-kRoa1qsuDGTUJGQ80K85qkUEbMsN5p3FNttsk-edMf-yvr2OzAsi3tS5iGn6" width="505" height="176" /></p>
+        <p>&nbsp;</p>
+        <p>Note: &nbsp;For fields that contain an 'i' icon you can click on it to view additional details</p>
+        <p><img style="border-width: initial; border-image-width: initial;" src="https://lh3.googleusercontent.com/VvCF37f9S74uExajcg2hVeSJbW0lC5jlxyIUs90ZbyM_j-3MOnta_hQYH4S2qSgOQvcKc9lZYJEJbf7m3eIPijcw6LgLtvPQaYzixE2RkCm2ZbSMm0A4MF4_nXo78Cz6xiNMvRFz" width="624" height="415" /></p>
+        <p><br />
+          <br />
+        </p>
+        <p>Note: If you are a user who has multiple responsibilities in the system, the system will default your 'Home' view to your highest role and you can switch via the 'Dashboard' menu link dropdown</p>
+        <p>&nbsp;</p>
+        <p><img style="border-width: initial; border-image-width: initial;" src="https://lh5.googleusercontent.com/QThVyHbG732m9d8eoVwwSrsu3rgotqBBa2tLv71N_7ZXF59Vo01Yvu8OMjDYJZso5Se7XpyspWAbbe8lrB3yddHF5A3SkD_k3BzJOnzWcPGqOzlgn4kn194l4IWkAIXEWXvFL2bK" width="624" height="211" /></p>
+      </div>
+    </div>
+  </div>
+  
+  
+  
+  <div class="card">
+    <div id="headingBudgetApprove" class="card-header" > 
+      <h5 class="mb-0"><button class="btn btn-link" data-toggle="collapse" data-target="#collapseBudgetApprove">Budget Owner Approval / Rejection <i class="fa fa-angle-down rotate-icon"></i></button></h5>
+     </div>
+    <div id="collapseBudgetApprove" class="collapse" data-parent="#accordion">
+      <div class="card-body">
+        <p>Open the request from your dashbord.  The 'Approve' and 'Reject' buttons are located at the bottom of the form</p>
+        <div>
+          <table>
+            <tbody>
+              <tr>
+                <td><p><img style="border-width: initial; border-image-width: initial;" src="https://lh3.googleusercontent.com/aPrYmTrtZUjVu2Fze9U-YVk8f4fWG4FexUS4fGMBUHYTGof7e8GrtpilzqYHXPAMIPuiWy_QiCH7njKaK40B0QAVfZXt9spNET8dfumCTmCfxj_7McSzedSebGIQSnRLlHhia2Lm" width="412" height="102" /><img style="border-width: initial; border-image-width: initial;" src="https://lh3.googleusercontent.com/ELYyieIS8DEyHTwPiQqkmFoCPOpXbisrT-pOiXnoB_ihxOYakcgVZaVxVFeKscjsNKcV06lZkt2uEPMYYnB7-U-F9oIAUQ3BY4_W-4M5536YlQMGSBxsjbYXx22sZvRfugedxWfU" width="406" height="103" /></p></td>
+                <td><p>If you approve the item, the request will be routed to the business office for review</p>
+                  <p>If rejected, the request will be re-routed to the submitter in a draft state for edit and re-submit for approval / cancel the request. &nbsp;</p>
+                  <p>On rejection comments are not required but is recommended.</p></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="card">
+    <div id="headingThirteen" class="card-header" > 
+      <h5 class="mb-0"><button class="btn btn-link" data-toggle="collapse" data-target="#collapseThirteen">Business Office Interface <i class="fa fa-angle-down rotate-icon"></i></button></h5>
+      </div>
+    <div id="collapseThirteen" class="collapse" data-parent="#accordion">
+      <div class="card-body">
+        <p>A user will visit <a href="https://umd.service-now.com/bots" rel="nofollow">https://umd.service-now.com/bots</a> and view their dashboard.</p>
+        <ul style="list-style-position: inside;">
+          <li style="list-style-type: disc;">
+            My Work is active requests pending your review for budgets that you oversee
+          </li>
+          <li style="list-style-type: disc;">
+            My Team are all requests at the business office step of the process
+          </li>
+          <li style="list-style-type: disc;">
+            You can also view all approved or canceled requests for the fiscal year
+          </li>
+          <li style="list-style-type: disc;">
+            If any issues (Incidents) are active they will be identified in the upper right.
+            <ul style="list-style-position: inside;">
+              <li style="list-style-type: square;">
+                A funding source is missing a group for request approval
+              </li>
+              <li style="list-style-type: square;">
+                A budget group has no members
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <p><img style="border-width: initial; border-image-width: initial;" src="https://lh5.googleusercontent.com/VECklA9c1C1JoAW2v8BwJkLvFLEMCeHZd8qr326YPzfARE-zeXnofAq2jfDrm8oTjhBHpejW5EE2eVz0aZSI3b7K-ketrTJ0l9Bh3EvI15mL-u0wjh8_KfiWSg2kJiWMgPLMoLaq" width="518" height="308" /></p>
+      </div>
+    </div>
+  </div>
+  
+  
+  <div class="card">
+    <div id="headingBusinessApprove" class="card-header" > 
+      <h5 class="mb-0"><button class="btn btn-link" data-toggle="collapse" data-target="#collapseBusinessApprove">Business Office Approval / Rejection <i class="fa fa-angle-down rotate-icon"></i></button></h5>
+     </div>
+    <div id="collapseBusinessApprove" class="collapse" data-parent="#accordion">
+      <div class="card-body">
+        <p>Open the request from your dashbord.  The 'Approve' and 'Reject' buttons are located at the bottom of the form</p>
+        <div>
+          <table>
+            <tbody>
+              <tr>
+                <td><p><img style="border-width: initial; border-image-width: initial;" src="https://lh3.googleusercontent.com/aPrYmTrtZUjVu2Fze9U-YVk8f4fWG4FexUS4fGMBUHYTGof7e8GrtpilzqYHXPAMIPuiWy_QiCH7njKaK40B0QAVfZXt9spNET8dfumCTmCfxj_7McSzedSebGIQSnRLlHhia2Lm" width="412" height="102" /><img style="border-width: initial; border-image-width: initial;" src="https://lh3.googleusercontent.com/ELYyieIS8DEyHTwPiQqkmFoCPOpXbisrT-pOiXnoB_ihxOYakcgVZaVxVFeKscjsNKcV06lZkt2uEPMYYnB7-U-F9oIAUQ3BY4_W-4M5536YlQMGSBxsjbYXx22sZvRfugedxWfU" width="406" height="103" /></p></td>
+                <td><p>If you approve the item, the request will marked as approved and the process is complete</p>
+                  <p>If rejecteded, the request will be canceled.  <strong>The submiter can not edit and resubmit</strong> and must submit a new request.</p>
+                  <p>On rejection comments are not required but is recommended.</p></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+  
+  <div class="card">
+    <div id="headingFourteen" class="card-header" > 
+      <h5 class="mb-0"><button class="btn btn-link" data-toggle="collapse" data-target="#collapseFourteen">Business Office BOTS Settings <i class="fa fa-angle-down rotate-icon"></i></button></h5>
+    </div>
+    <div id="collapseFourteen" class="collapse" data-parent="#accordion">
+      <div class="card-body">
+        <p>As a Business Office team member you can update most fields of the request per policy or comments in the activity log. You may also route to leadership if you need an opinion on it before your approval or rejection. Prior to approval, enter a Payment Type and Payment Method. Note: &nbsp;If you reject the request, it will become a cancelled request and cannot be re-submitted by the requestor. The Submitter must create a new request and submit for approval.</p>
+        <p>The sample request has now been processed through the workflow and is approved</p>
+        <p><img style="border-width: initial; border-image-width: initial;" src="https://lh3.googleusercontent.com/06gpSH2LBtgYOy7iECxPc5q6wBGgBQaAxech0rsSw_eH4goiRUIakujr7lA2ryuhqqxSGdtl4UzVLQGNdpfoxA4C8CDi4Jm3w3dfnXFSISOyaUNi0Yh693ROsCUNcZbvRr3SrHlB" width="532" height="139" /></p>
+        <h2>Business Office Interface For Settings</h2>
+        <p>The Business Office thought the BOTS portal can edit or create new Funding sources and Vendors.</p>
+        <p><img style="border-width: initial; border-image-width: initial;" src="https://lh4.googleusercontent.com/CuLPW1JCaAPTaKEVJCdfQyqZ-UAfCr6x1OCPSIYXWoaenMWNO9RasUopudBTdBbuWQZSs8XKuC8ha99PYJyoDvJMo1SHj59fCw-dnvhirG3mrFaX7mTHxScFfTmggNaaMIygzo1N" width="522" height="223" /></p>
+        <p>&nbsp;</p>
+        <p>Note: On the Funding Source Table (Crosswalk) the Budget Owner field is set by the corresponding grouper group automatically.</p>
+        <p><img style="border-width: initial; border-image-width: initial;" src="https://lh3.googleusercontent.com/VvGACZzCbdj6_HuEGcqTVnOsQxFA-n1qLYR-Z1IkAHaOeyQuRvCz8O5BAIBhRocQVWUMOUX6WuDNWpG_ss-qno8eBhNEROkVGd1cA1HX-1GqrPOE9Ho65rzeRpRznQqnpa_TZoJ4" width="624" height="277" /></p>
+      </div>
+    </div>
+  </div>
+  
+  
+  
+  
+  
+  <div class="card">
+    <div id="headingFifteen" class="card-header" > 
+      <h5 class="mb-0"><button class="btn btn-link" data-toggle="collapse" data-target="#collapseFifteen">Leadership Interface <i class="fa fa-angle-down rotate-icon"></i></button></h5>
+     </div>
+    <div id="collapseFifteen" class="collapse" data-parent="#accordion">
+      <div class="card-body">
+        <p>A user will visit <a href="https://umddev.service-now.com/bots" rel="nofollow">https://umddev.service-now.com/bots</a> and view their dashboard.</p>
+        <ul style="list-style-position: inside;">
+          <li style="list-style-type: disc;">
+            Here you can view requests that need your attention as leadership that have been sent to you from the Budget Owner step or the business office step. &nbsp;
+          </li>
+          <li style="list-style-type: disc;">
+            Select from a set of predefined reports to view a list of requests
+            <ol style="list-style-position: inside;">
+              <li style="list-style-type: lower-alpha;">
+                View the details of the request by clicking the row
+              </li>
+              <li style="list-style-type: lower-alpha;">
+               Export option is also available
+              </li>
+            </ol>
+          </li>
+          <li style="list-style-type: disc;">
+            View active requests per budget owner
+            <ol style="list-style-position: inside;">
+              <li style="list-style-type: lower-alpha;">
+               View the details of the request by clicking the row
+              </li>
+              <li style="list-style-type: lower-alpha;">
+                Export option is also available
+              </li>
+            </ol>
+          </li>
+        </ul>
+        <div>
+          <table>
+            <tbody>
+              <tr>
+                <td><p>Important Note:</p>
+                  <p>If you are a Budget Owner too, items needing your approval will be displayed on the budget owner dashboard and not here. To help we have added a menu item with count called 'My Work'</p></td>
+                <td><p><img style="border-width: initial; border-image-width: initial;" src="https://lh4.googleusercontent.com/Oi2o08g7MChEXmX-yZO-G7sBd7hLcgaaVCXEu-up0-PH7lWVvXkHNATvM7_P-YZiQ22LcGTTyQoi4BMPlDPOzdwhw9wRivD2UhYkkDMn3MzUUzTmEhQpmfvWjenLmU-UulckYqXl" width="298" height="64" /> This is a direct link to any request assigned to you for action and shows items across all dashboards.</p></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p><img style="border-width: initial; border-image-width: initial;" src="https://lh5.googleusercontent.com/9HESfvoEaEKRZlMIouuUPWVoUtmqp-D7ewgVO8hLI1UooU_o7De-iFT8rL1mouVgySpmgPCmtAZUqQpProV33EheSpuJ-HveODjoRZrcSlH9s9quQ5c-VxPrx_J5msG_azgi9_B1" width="624" height="431" /></p>
+      </div>
+    </div>
+  </div>
+  
+  
+    <div class="card">
+    <div id="headingLeadershipApprove" class="card-header" > 
+      <h5 class="mb-0"><button class="btn btn-link" data-toggle="collapse" data-target="#collapseLeadershipApprove">Leadership Approval / Rejection <i class="fa fa-angle-down rotate-icon"></i></button></h5>
+     </div>
+    <div id="collapseLeadershipApprove" class="collapse" data-parent="#accordion">
+      <div class="card-body">
+        <p>Open the request from your dashbord.  The 'Approve' and 'Reject' buttons are located at the bottom of the form</p>
+        <div>
+          <table>
+            <tbody>
+              <tr>
+                <td><p><img style="border-width: initial; border-image-width: initial;" src="https://lh3.googleusercontent.com/aPrYmTrtZUjVu2Fze9U-YVk8f4fWG4FexUS4fGMBUHYTGof7e8GrtpilzqYHXPAMIPuiWy_QiCH7njKaK40B0QAVfZXt9spNET8dfumCTmCfxj_7McSzedSebGIQSnRLlHhia2Lm" width="412" height="102" /><img style="border-width: initial; border-image-width: initial;" src="https://lh3.googleusercontent.com/ELYyieIS8DEyHTwPiQqkmFoCPOpXbisrT-pOiXnoB_ihxOYakcgVZaVxVFeKscjsNKcV06lZkt2uEPMYYnB7-U-F9oIAUQ3BY4_W-4M5536YlQMGSBxsjbYXx22sZvRfugedxWfU" width="406" height="103" /></p></td>
+                <td><p>If you approve the item, the request will returned to the budget owner or business manager who routed to your review</p>
+                  <p>If rejecteded, the request will be canceled.  <strong>The submiter can not edit and resubmit</strong> and must submit a new request.</p>
+                  <p>On rejection comments are not required but is recommended.</p></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+  
+  
+  <div class="card">
+    <div id="headingSixteen" class="card-header" > 
+      <h5 class="mb-0"><button class="btn btn-link" data-toggle="collapse" data-target="#collapseSixteen">Search / Filter / Export <i class="fa fa-angle-down rotate-icon"></i></button></h5>
+     </div>
+    <div id="collapseSixteen" class="collapse"  class="collapse" data-parent="#accordion">
+      <div class="card-body">
+        <h3>How To Search - Simple</h3>
+        <p>If needed, in the upper right corner you can click on the magnifying glass and type any text or request number to search your requests. The system will return those requests that you have access to.</p>
+        <p>&nbsp;</p>
+        <p><img style="border-width: initial; border-image-width: initial;" src="https://lh4.googleusercontent.com/8YlNp4zJ_AB4iObqhoa7jON8N3KEmoV62hGPRTIf80Tvm4Xpefb6LOjsTLGZDqgOVlwCF6rQuxo-Z3qFYWSjfpo1GXn8tT_Sg5eP5Q12rDfRX4LMZz4wopv7hZ55v2yAUax28Il0" width="624" height="141" /></p>
+        <h3>How To Search - Advance</h3>
+        <p>Clicking on the any of the box counts on your dashboard will open a list of record that generated that count on a new page</p>
+        <div>
+          <table>
+            <tbody>
+              <tr>
+                <td><p>This page view has the option for you to create a custom filter based on any condition of any field on the request. If you create a custom filter, we recommend that you bookmark the page.</p></td>
+                <td><p><img style="border-width: initial; border-image-width: initial;" src="https://lh5.googleusercontent.com/KsINMu47AVnGvb1AfxIWJI2beg6AIXVszXZNiF9pSmM5B8Gz63H4ImksxPxZWbARDGIXRA_jC0IxwoPbc7PJQOk-ZJ6yhJcUciG4n3RkJ04fYHZTHFLsKd_ylbOMZ49tBvAUjOs4" width="166" height="89" /></p></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p><img style="border-width: initial; border-image-width: initial;" src="https://lh4.googleusercontent.com/qLGN8fMI2l9uLNY54nylq9anpuqFN5JJ74rZyBlegfUiBQ8RId3oiA_JTvR2_Gs_eZxJ4sWZaBnZ5vFNjfSCYP76xpOb9rnOTyMeOExe8cC1hgP1sPZWaR5pl_R0lA9bLssUfqDR" width="624" height="311" /></p>
+        <h3>How To Export</h3>
+        <div>
+          <table>
+            <tbody>
+              <tr>
+                <td><p>The dashboard interface lets you export the list of records you are viewing. To do this, in the upper left click the hamburger icon (3 lines). A dropdown of choices will be displayed.</p></td>
+                <td><p><img style="border-width: initial; border-image-width: initial;" src="https://lh3.googleusercontent.com/SnzhtLLrzhjZTByfVAfcLGZUkxoY6A9NVH82TBT9725pQIL_fQXLN6aZA4iFC9IsG6eNK1nXagbYNY9HvGoaCZd3QIknrfu4g_2Ju8bhuWCrIhZHPwvrn2WR1QHT-FPp2bK6Mc1B" width="227" height="151" /></p></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <h4>PDF Sample</h4>
+        <p><img style="border-width: initial; border-image-width: initial;" src="https://lh5.googleusercontent.com/pxEtLBiHXmcbhdr4jZMdMyLsldhiDMkJSu2wUALLFu8I_4MJqkR_gysDvZ1KJbsiJ9BKyV7d9ddjrqtAR889KZGueg0yBlRqUBKdDWPnIiFoYQNdk_dABc_hlZ5UupgOH6seIvwb" width="624" height="307" /></p>
+        <p>&nbsp;</p>
+        <h4>XLS Sample</h4>
+        <p><img style="border-width: initial; border-image-width: initial;" src="https://lh4.googleusercontent.com/NK9npTNCEhnpdASraMcCHp9BdBOLRUqx7kE-UmGE_9n86yVarTaxmd2QG4rhPGvu3Wm75HyFBCjEktz-PPuIM-XSnm-JgM-wwucxY2RZLz3GkKl3plOrFc1Zn3zrHFswYd9TqNyQ" width="624" height="193" /></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+ 
+    </div>
+          
+          
+	
+    </div>
+		<div class="panel-footer text-right">
+			<button class="btn btn-primary" ng-click="closeUserGuide()">${Close}</button>
+    </div>
+    </div>]]></template>
+    </sp_ng_template>
+</record_update>

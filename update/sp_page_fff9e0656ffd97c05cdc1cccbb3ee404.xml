@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_page">
+    <sp_page action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <css>#x040ae4656ffd97c05cdc1cccbb3ee4ef { display: none; }&#13;
+#x0c0ae4656ffd97c05cdc1cccbb3ee4f2 { display: none; }&#13;
+#x400ae4656ffd97c05cdc1cccbb3ee4f1 { display: none; }&#13;
+&#13;
+#r2 { display: none; }&#13;
+#r3 { display: none; }&#13;
+#r4 { display: none; }&#13;
+&#13;
+&#13;
+.container {&#13;
+    width: 90% !important;&#13;
+}&#13;
+&#13;
+#mywork {&#13;
+  display:none;&#13;
+}&#13;
+#mygroup {&#13;
+  display:none;&#13;
+}&#13;
+#approved {&#13;
+  display:none;&#13;
+}&#13;
+#notapproved {&#13;
+  display:none;&#13;
+}&#13;
+#canceled {&#13;
+  display:none;&#13;
+}</css>
+        <draft>false</draft>
+        <dynamic_title_structure/>
+        <id>leadership</id>
+        <internal>false</internal>
+        <public>false</public>
+        <roles>x_63474_bots.budget-leadership,x_63474_bots.BOTS_admin</roles>
+        <short_description/>
+        <sys_class_name>sp_page</sys_class_name>
+        <sys_created_by>dyak</sys_created_by>
+        <sys_created_on>2018-04-30 17:09:15</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>fff9e0656ffd97c05cdc1cccbb3ee404</sys_id>
+        <sys_mod_count>16</sys_mod_count>
+        <sys_name>leadership</sys_name>
+        <sys_package display_value="BOTS - New" source="x_63474_bots">fca917c14f111300cb281b818110c713</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="BOTS - New">fca917c14f111300cb281b818110c713</sys_scope>
+        <sys_update_name>sp_page_fff9e0656ffd97c05cdc1cccbb3ee404</sys_update_name>
+        <sys_updated_by>sphelan</sys_updated_by>
+        <sys_updated_on>2018-08-14 18:52:23</sys_updated_on>
+        <title>Leadership</title>
+    </sp_page>
+    <sys_translated_text action="delete_multiple" query="documentkey=fff9e0656ffd97c05cdc1cccbb3ee404"/>
+</record_update>

@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_script">
+    <sys_script action="INSERT_OR_UPDATE">
+        <abort_action>false</abort_action>
+        <access>package_private</access>
+        <action_delete>false</action_delete>
+        <action_insert>false</action_insert>
+        <action_query>false</action_query>
+        <action_update>true</action_update>
+        <active>false</active>
+        <add_message>false</add_message>
+        <advanced>true</advanced>
+        <change_fields>false</change_fields>
+        <client_callable>false</client_callable>
+        <collection>x_63474_bots_bots_requests</collection>
+        <condition/>
+        <description/>
+        <execute_function>false</execute_function>
+        <filter_condition table="x_63474_bots_bots_requests">stateIN2,5^send_to_leadership=true^EQ<item endquery="false" field="state" goto="false" newquery="false" operator="IN" or="false" value="2,5"/>
+            <item endquery="false" field="send_to_leadership" goto="false" newquery="false" operator="=" or="false" value="true"/>
+            <item endquery="true" field="" goto="false" newquery="false" operator="=" or="false" value=""/>
+        </filter_condition>
+        <is_rest>false</is_rest>
+        <message/>
+        <name>SNC Approval -Reset approvals for leader</name>
+        <order>999</order>
+        <priority>100</priority>
+        <rest_method/>
+        <rest_method_text/>
+        <rest_service/>
+        <rest_service_text/>
+        <rest_variables/>
+        <role_conditions/>
+        <script><![CDATA[// these are the conditions under which the change request approvals need to be cancelled and reset
+// steps to activate
+// 1. enable this business rule
+// 2. add some comments so the reset will be noted in the approval history
+// 3. uncomment the code for restart or reset based on your requirements
+// 4. define the reset condition in checkResetConditions function below
+// 5. you must set doReset once you capture the change(s) you are interested in
+
+
+var comment = '';  //written to the approval_history
+if (checkResetConditions()) {
+	
+	// create a global variable lock on the current record
+	// this will prevent triggering a second reset while the first reset is still in progress
+	// lock will be release in a late running business rule called 'Workflow Release Lock'
+	chg_wf_lock = new GlideRecordLock(current);
+	chg_wf_lock.setSpinWait(50);  //wait for lock
+	if (chg_wf_lock.get()) {
+		gs.print('SNC Approval conditions business rule is locking the ' + current.getDisplayValue() + ' during the workflow reset');
+		gs.addInfoMessage('resetting apprvoals since tech teams added');
+		
+		// The following options are available for resetting the approvals:
+		//
+		// 1. Mark all existing approvals for the change as 'cancelled' and restart the workflow to create new approvals
+		//       new WorkflowApprovalUtils().cancelAll(current, comment);
+		//       new Workflow().restartWorkflow(current);
+		//
+// 		//2. Delete all of the existing approvals for the change and restart the workflow to create new approvals
+// 		new WorkflowApprovalUtils().reset(current, comment);
+// 		current.setValue('state','-4');
+// 		//new ChangeRequestStateHandler(current).disassociateApprovalsFromWorkflow();
+// 		// 	   gs.addInfoMessage(current.getValue('state'));
+// 		gs.addInfoMessage('Workflow has been reset since key fields have been modified');
+		//
+		// 3. Leave the approvals for the change in their current state and restart the workflow.
+		//    (so that any new approvals that are required will be created)
+		    //   if (comment)
+		     //    current.setDisplayValue('approval_history', comment);
+		    //   new Workflow().restartWorkflow(current, true);
+		//
+		
+		//Delete exisitng approvals
+		var approvals = new GlideRecord('sysapproval_group');
+		approvals.addQuery('parent',current.sys_id);
+		approvals.addQuery('approval','requested');
+		approvals.addActiveQuery();
+		approvals.query();
+		if(approvals.next()){
+			approvals.deleteRecord();
+			current.work_notes = 'Deleting approvals since Leadership tasked to approve';
+			current.send_to_leadership = false;
+		}
+		
+	}
+}
+
+
+// var currentTime = new GlideDateTime();
+// var dayOfWeek = currentTime.getDayOfWeekLocalTime();
+// gs.log(dayOfWeek+'test4');
+// var meetingDay = gs.getProperty('change_request.meeting_day');
+// gs.log(meetingDay+'test5');
+
+
+function checkResetConditions() {
+	
+	var doReset = true;  //default to no reset
+	//add reset conditions here such as:
+	//gs.log('state is'+current.getValue('state'));
+// 	if ((current.u_manager.changes() || current.cmdb_ci.changes() || current.start_date.changes() || current.end_date.changes() || current.priority.changes())){
+		
+// 		var currentTime = new GlideDateTime();
+// 		var dayOfWeek = currentTime.getDayOfWeekLocalTime();
+// 		//gs.log(dayOfWeek+'test4');
+// 		var meetingDay = gs.getProperty('change_request.meeting_day');
+// 		//gs.log(meetingDay+'test5');
+		
+		
+// 		if((gs.getUser().isMemberOf('servicenow-itil-dit-change-managers')) &&(current.getValue('state') == "-3")){
+// 			if(current.u_manager.changes()){
+// 				doReset = true;
+// 			}
+// 			else{
+// 				doReset = false;
+// 			}
+// 		}
+		
+// 		else{
+// 			//gs.log('setting true');
+// 			doReset = true;  //enable the reset
+// 		}
+// 	}
+	
+	return doReset;
+}]]></script>
+        <sys_class_name>sys_script</sys_class_name>
+        <sys_created_by>sdepally</sys_created_by>
+        <sys_created_on>2018-04-20 16:55:28</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_domain>global</sys_domain>
+        <sys_id>10f6c15a6f6d1f8051281ecbbb3ee48a</sys_id>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_name>SNC Approval -Reset approvals for leader</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="BOTS - New" source="x_63474_bots">fca917c14f111300cb281b818110c713</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="BOTS - New">fca917c14f111300cb281b818110c713</sys_scope>
+        <sys_update_name>sys_script_10f6c15a6f6d1f8051281ecbbb3ee48a</sys_update_name>
+        <sys_updated_by>sdepally</sys_updated_by>
+        <sys_updated_on>2018-04-23 18:09:45</sys_updated_on>
+        <template/>
+        <when>before</when>
+    </sys_script>
+</record_update>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_script_client">
+    <sys_script_client action="INSERT_OR_UPDATE">
+        <active>false</active>
+        <applies_extended>false</applies_extended>
+        <condition/>
+        <description/>
+        <field>u_action</field>
+        <global>true</global>
+        <isolate_script>false</isolate_script>
+        <messages/>
+        <name>BOTS approve or reject request</name>
+        <order/>
+        <script><![CDATA[function onLoad() {
+    var areYouSure;
+    //Get the sysparm_input value, save it to var appInput
+    var appInput = getParameter('sysparm_input');
+//alert('appInput='+appInput);
+    //If the variable has a value (if the URL contains the correct sysparm)
+    if(appInput){
+        //Check if the parameter input is "approved".
+        if (appInput.toUpperCase() == 'APPROVED') {
+            //Check if the user is the approver. 
+            if (checkApprover()) {
+                //Check if the record is already approved. 
+                //If so, alert the user and return and stop execution.
+                if (g_form.getValue('state') == 'Approve') {
+                    alert(g_form.getDisplayValue('sys_id') + ' has already been approved.');
+                    return;
+                }
+                areYouSure = confirm('Are you sure you want to APPROVE ' + g_form.getDisplayValue('sysapproval') + '?\nClick OK to approve, or cancel to go back.');
+                //If the user confirms that they want to approve, set the value and save the record.
+                if (areYouSure) {
+                    //g_form.setValue('comments', 'Updated by clicking \'Approve\' link in approval email.');
+                    g_form.setValue('state', 'Approve');
+                    g_form.save();
+                }
+            }
+        } 
+        //If the parameter is rejected, set state to rejected. 
+        else if (appInput.toUpperCase() == 'REJECTED') {
+            if (checkApprover()) {
+                if (g_form.getValue('state') == 'Canceled') {
+                    alert(g_form.getDisplayValue('sys_id') + ' has already been rejected.');
+                    return;
+                }
+                areYouSure = confirm('Are you sure you want to REJECT ' + g_form.getDisplayValue('sys_id') + '?\nClick OK to reject, or cancel to go back.');
+                if (areYouSure) {
+                    //g_form.setValue('comments', 'Updated by clicking \'Reject\' link in approval email.');
+                    g_form.setValue('state', 'Canceled');
+                    g_form.save();
+                }
+            }
+            else {
+                return;
+            }
+        } 
+        else {
+            //return, stopping execution if the value isn't correct. 
+            return;
+        }
+    }
+    else {
+        //return, stopping execution if the value isn't set.
+        return;
+    }
+}
+//get and return the specified URL parameter. If non-existant, return false. 
+function getParameter(parm){
+    var gUrl = new GlideURL();
+    gUrl.setFromCurrent();   
+    var par = gUrl.getParam(parm);  
+    if(par){
+        var parameter = decodeURI(par);
+        return parameter;
+    }
+    else{
+        return false;
+    }
+}
+//Check if the current user is the approver for this record. If not, alert and return false. 
+function checkApprover() {
+return true;
+// for correct function, add a hidden field assigned_to to the form
+/*
+    var currentUserID = g_user.userID;
+    var approver = g_form.getValue('assigned_to');
+//alert('currentUserID ='+currentUserID +' approver ='+approver );
+    if (currentUserID == approver) {
+        return true;
+    } 
+    else {
+        alert('If looks like you aren\'t the approver for this record. \nIf you have the necessary permissions, you can approve the record manually below.');
+        return false;
+    }
+*/
+}   ]]></script>
+        <sys_class_name>sys_script_client</sys_class_name>
+        <sys_created_by>sphelan</sys_created_by>
+        <sys_created_on>2018-04-06 22:49:50</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_domain>global</sys_domain>
+        <sys_id>24b19e356f19db4051281ecbbb3ee446</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>BOTS approve or reject request</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="BOTS - New" source="x_63474_bots">fca917c14f111300cb281b818110c713</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="BOTS - New">fca917c14f111300cb281b818110c713</sys_scope>
+        <sys_update_name>sys_script_client_24b19e356f19db4051281ecbbb3ee446</sys_update_name>
+        <sys_updated_by>sphelan</sys_updated_by>
+        <sys_updated_on>2018-04-11 17:38:34</sys_updated_on>
+        <table>x_63474_bots_bots_travel</table>
+        <type>onLoad</type>
+        <ui_type>0</ui_type>
+        <view/>
+    </sys_script_client>
+</record_update>

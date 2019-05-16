@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="m2m_sp_ng_pro_sp_widget">
+    <m2m_sp_ng_pro_sp_widget action="INSERT_OR_UPDATE">
+        <sp_angular_provider display_value="csmUnifiedDeviceType">8cc4efbec330320034d2d44d81d3ae36</sp_angular_provider>
+        <sp_widget display_value="BOTS Portal Footer">07868abd6fb11bc05cdc1cccbb3ee4d8</sp_widget>
+        <sys_class_name>m2m_sp_ng_pro_sp_widget</sys_class_name>
+        <sys_created_by>sphelan</sys_created_by>
+        <sys_created_on>2018-05-01 18:32:06</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>878686fd6fb11bc05cdc1cccbb3ee4d0</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>csmUnifiedDeviceType.Copy of CSM Unified Portal Footer</sys_name>
+        <sys_package display_value="BOTS - New" source="x_63474_bots">fca917c14f111300cb281b818110c713</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="BOTS - New">fca917c14f111300cb281b818110c713</sys_scope>
+        <sys_update_name>m2m_sp_ng_pro_sp_widget_878686fd6fb11bc05cdc1cccbb3ee4d0</sys_update_name>
+        <sys_updated_by>sphelan</sys_updated_by>
+        <sys_updated_on>2018-05-01 18:32:06</sys_updated_on>
+    </m2m_sp_ng_pro_sp_widget>
+</record_update>

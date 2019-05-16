@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_63474_bots.MyBOTSGroups</api_name>
+        <client_callable>true</client_callable>
+        <description/>
+        <name>MyBOTSGroups</name>
+        <script><![CDATA[function MyBOTSGroups(uID){
+	var groupArr = [];
+	
+	if (uID == '' || typeof uID == 'undefined')
+		{
+		uID = gs.getUserID();
+	}
+	else
+		{
+		var finduser = new GlideRecord('sys_user');
+		finduser.addQuery('user_name', uID);
+		finduser.addQuery('active', true);
+		finduser.query();
+		while(finduser.next()){
+			uID = finduser.sys_id;
+		}
+	}
+	
+	//Get all active groups where user is a member
+	var asmember = new GlideRecord('sys_user_grmember');
+	asmember.addQuery('user', uID);
+	asmember.addQuery('group.typeLIKE8e52aa356fd51f405cdc1cccbb3ee469');
+	asmember.query();
+	while(asmember.next()){
+		//Push the group sys_id values into the group array
+		groupArr.push(asmember.group.toString());
+	}
+
+	//Return the array of group IDs
+	return groupArr;
+}
+
+]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>sphelan</sys_created_by>
+        <sys_created_on>2018-04-07 23:45:54</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>f138a3c26f955f405cdc1cccbb3ee4bb</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>MyBOTSGroups</sys_name>
+        <sys_package display_value="BOTS - New" source="x_63474_bots">fca917c14f111300cb281b818110c713</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="BOTS - New">fca917c14f111300cb281b818110c713</sys_scope>
+        <sys_update_name>sys_script_include_f138a3c26f955f405cdc1cccbb3ee4bb</sys_update_name>
+        <sys_updated_by>sphelan</sys_updated_by>
+        <sys_updated_on>2018-04-08 00:08:37</sys_updated_on>
+    </sys_script_include>
+</record_update>

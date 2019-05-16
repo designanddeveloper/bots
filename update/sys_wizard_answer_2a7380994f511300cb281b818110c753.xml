@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_wizard_answer">
+    <sys_wizard_answer action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <answer>Use this request for travel expenses/orders</answer>
+        <button_label/>
+        <dependent_value/>
+        <element/>
+        <name>New Travel Request</name>
+        <next_question/>
+        <order>100</order>
+        <payload_name/>
+        <question display_value="BOTS New Request Selection" name="BOTS New Request Selection">e60e7f3a6f7497005cdc1cccbb3ee433</question>
+        <roles/>
+        <script/>
+        <sys_class_name>sys_wizard_answer</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2018-04-04 23:11:05</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>2a7380994f511300cb281b818110c753</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>New Travel Request</sys_name>
+        <sys_package display_value="BOTS - New" source="x_63474_bots">fca917c14f111300cb281b818110c713</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="BOTS - New">fca917c14f111300cb281b818110c713</sys_scope>
+        <sys_update_name>sys_wizard_answer_2a7380994f511300cb281b818110c753</sys_update_name>
+        <sys_updated_by>sphelan</sys_updated_by>
+        <sys_updated_on>2018-04-09 21:12:05</sys_updated_on>
+        <table/>
+        <target_url>x_63474_bots_bots_travel.do</target_url>
+        <type>1</type>
+    </sys_wizard_answer>
+</record_update>

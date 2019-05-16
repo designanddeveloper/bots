@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_report_users_groups">
+    <sys_report_users_groups action="INSERT_OR_UPDATE">
+        <group_id display_value="BOTS-Admin" name="Application_Roles:Division_of_Information_Technology:ServiceNow:BOTS:BOTS-Admin">3985a6f96fd51f405cdc1cccbb3ee460</group_id>
+        <report_id display_value="My Last 12 Months Trend">0436463f6fa193c051281ecbbb3ee483</report_id>
+        <sys_class_name>sys_report_users_groups</sys_class_name>
+        <sys_created_by>sphelan</sys_created_by>
+        <sys_created_on>2018-04-25 13:37:26</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>9c998eb36fe193c051281ecbbb3ee432</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>0436463f6fa193c051281ecbbb3ee483</sys_name>
+        <sys_package display_value="BOTS - New" source="x_63474_bots">fca917c14f111300cb281b818110c713</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="BOTS - New">fca917c14f111300cb281b818110c713</sys_scope>
+        <sys_update_name>sys_report_users_groups_9c998eb36fe193c051281ecbbb3ee432</sys_update_name>
+        <sys_updated_by>sphelan</sys_updated_by>
+        <sys_updated_on>2018-04-25 13:37:26</sys_updated_on>
+        <user_id/>
+    </sys_report_users_groups>
+</record_update>

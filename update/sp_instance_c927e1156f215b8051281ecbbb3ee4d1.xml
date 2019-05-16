@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_instance">
+    <sp_instance action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <class_name/>
+        <color>default</color>
+        <css/>
+        <glyph/>
+        <id/>
+        <order>1</order>
+        <roles/>
+        <short_description/>
+        <size>md</size>
+        <sp_column display_value="1">c927e1156f215b8051281ecbbb3ee4cf</sp_column>
+        <sp_widget display_value="HTML">8679ef89cb21120000f8d856634c9c4f</sp_widget>
+        <sys_class_name>sp_instance</sys_class_name>
+        <sys_created_by>sdepally</sys_created_by>
+        <sys_created_on>2018-04-17 16:42:13</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>c927e1156f215b8051281ecbbb3ee4d1</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>404 message</sys_name>
+        <sys_package display_value="BOTS - New" source="x_63474_bots">fca917c14f111300cb281b818110c713</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="BOTS - New">fca917c14f111300cb281b818110c713</sys_scope>
+        <sys_update_name>sp_instance_c927e1156f215b8051281ecbbb3ee4d1</sys_update_name>
+        <sys_updated_by>sdepally</sys_updated_by>
+        <sys_updated_on>2018-04-17 16:46:18</sys_updated_on>
+        <title>404 message</title>
+        <url/>
+        <widget_parameters><![CDATA[{
+	"html": {
+		"value": "<div class=\"alert alert-info\">\n<p><strong>${Sorry, the page you requested was not found.}</strong></p>\n<p>${This page you were trying to reach at this address doesn't seem to exist.&nbsp;This is usually the result of a bad or outdated link <strong>OR</strong> you do not have proper roles assigned to view this page. Please create an <a href=\"?id=report_issue&amp;sys_id=3f1dd0320a0a0b99000a53f7604a2ef9\">incident</a>&nbsp;to get assistance on your issue . We apologize for any inconvenience.}</p>\n<p>${While you are here, see if you can beat the \"404\" in a game of Breakout.}</p>\n</div>",
+		"displayValue": "<div class=\"alert alert-info\">\n<p><strong>${Sorry, the page you requested was not found.}</strong></p>\n<p>${This page you were trying to reach at this address doesn't seem to exist.&nbsp;This is usually the result of a bad or outdated link <strong>OR</strong> you do not have proper roles assigned to view this page. Please create an <a href=\"?id=report_issue&amp;sys_id=3f1dd0320a0a0b99000a53f7604a2ef9\">incident</a>&nbsp;to get assistance on your issue . We apologize for any inconvenience.}</p>\n<p>${While you are here, see if you can beat the \"404\" in a game of Breakout.}</p>\n</div>"
+	}
+}]]></widget_parameters>
+    </sp_instance>
+    <sys_translated_text action="delete_multiple" query="documentkey=c927e1156f215b8051281ecbbb3ee4d1"/>
+</record_update>

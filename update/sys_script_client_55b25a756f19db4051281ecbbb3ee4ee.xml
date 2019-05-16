@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_script_client">
+    <sys_script_client action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <applies_extended>true</applies_extended>
+        <condition/>
+        <description/>
+        <field>funding_source</field>
+        <global>true</global>
+        <isolate_script>false</isolate_script>
+        <messages/>
+        <name>FundingSourceCheck-onupdate</name>
+        <order/>
+        <script><![CDATA[function onChange(control, oldValue, newValue, isLoading, isTemplate) {
+   if (isLoading || newValue === '') {
+	   g_form.hideFieldMsg('funding_source');
+	   g_form.hideFieldMsg('funding_source');
+      return;
+   }
+
+var ga = new GlideAjax('FundingSource');
+	ga.addParam('sysparm_name','initialize'); 
+	ga.addParam('sysparm_name','FundingDetails');
+	ga.addParam('fundingsource',newValue);
+	ga.getXML(budgetdetails);
+	
+}
+
+function budgetdetails(response)
+{
+	g_form.hideFieldMsg('funding_source');
+	g_form.hideFieldMsg('funding_source');
+	var answer = response.responseXML.documentElement.getAttribute("answer");
+	answer = answer.split('|');
+	g_form.showFieldMsg('funding_source','Budget Owner: '+answer[0],'info');
+	if (g_form.getValue('state') != '1')
+		{
+		g_form.showFieldMsg('funding_source','A new approval request will be routed to '+answer[0]+' when this record is saved. Comments are not required but recommended for this update.','error');	
+		}
+	
+	
+	//var kfsgood = new GlideAjax('FundingSource');
+	//kfsgood.addParam('sysparm_name','initialize'); 
+	//kfsgood.addParam('sysparm_name','KFSCheck');
+	//kfsgood.addParam('kfsnumber',answer[1]);
+	//kfsgood.getXML(kfsdetails);
+	
+	
+}
+
+function kfsdetails(response)
+{
+	var answer = response.responseXML.documentElement.getAttribute("answer");
+	answer = answer.split('|');
+	g_form.showFieldMsg('funding_source','KFS#'+answer[0]+' is '+answer[1], 'info');
+}]]></script>
+        <sys_class_name>sys_script_client</sys_class_name>
+        <sys_created_by>sphelan</sys_created_by>
+        <sys_created_on>2018-04-06 22:53:49</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_domain>global</sys_domain>
+        <sys_id>55b25a756f19db4051281ecbbb3ee4ee</sys_id>
+        <sys_mod_count>13</sys_mod_count>
+        <sys_name>FundingSourceCheck-onupdate</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="BOTS - New" source="x_63474_bots">fca917c14f111300cb281b818110c713</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="BOTS - New">fca917c14f111300cb281b818110c713</sys_scope>
+        <sys_update_name>sys_script_client_55b25a756f19db4051281ecbbb3ee4ee</sys_update_name>
+        <sys_updated_by>joshua.ortonio@crossfuze.com</sys_updated_by>
+        <sys_updated_on>2018-06-26 14:06:04</sys_updated_on>
+        <table>x_63474_bots_bots_requests</table>
+        <type>onChange</type>
+        <ui_type>10</ui_type>
+        <view/>
+    </sys_script_client>
+</record_update>

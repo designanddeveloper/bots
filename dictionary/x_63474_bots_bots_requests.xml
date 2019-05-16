@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element extends="task" label="BOTS Requests" max_length="40" name="x_63474_bots_bots_requests" type="collection">
+        <element attributes="ref_auto_completer=AJAXTableCompleter,ref_ac_columns=u_budget_owner;u_kfs_number,ref_ac_columns_search=true,ref_contributions=x_63474_bots_show_funding_request" label="Funding Source" max_length="32" name="funding_source" reference="x_63474_bots_bots_crosswalk" text_index="true" type="reference"/>
+        <element choice="3" default="No Vendor" label="Is New Vendor?" max_length="10" name="is_new_vendor" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="No" value="No"/>
+                <element inactive_on_update="false" label="No Vendor" value="No Vendor"/>
+                <element inactive_on_update="false" label="Yes" value="Yes"/>
+            </choice>
+        </element>
+        <element calculation="(function calculatedFieldValue(current) {&#10;&#10;&#9;// Add your code here&#10;&#9;return current.funding_source.u_kfs_number;  // return the calculated value&#10;&#10;})(current);" label="KFS# of Request" max_length="10" name="kfs_of_request" read_only="true" text_index="true" type="string" virtual="true"/>
+        <element label="Vendor - Address" max_length="200" name="new_vendor_address" type="string"/>
+        <element label="Vendor - Email" max_length="30" name="new_vendor_email" type="string"/>
+        <element label="Vendor - Name" max_length="100" name="new_vendor_name" text_index="true" type="string"/>
+        <element label="Vendor - Notes" max_length="500" name="new_vendor_notes" type="string"/>
+        <element label="Vendor - Phone" max_length="30" name="new_vendor_phone" type="string"/>
+        <element label="Vendor - Website" max_length="200" name="new_vendor_website" type="string"/>
+        <element choice="1" label="Payment Method" max_length="40" name="payment_method" text_index="true" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="PO" sequence="0" value="PO"/>
+                <element inactive_on_update="false" label="APO" sequence="1" value="APO"/>
+                <element inactive_on_update="false" label="POA" sequence="2" value="POA"/>
+                <element inactive_on_update="false" label="DV" sequence="3" value="DV"/>
+                <element inactive_on_update="false" label="JV" sequence="4" value="JV"/>
+                <element inactive_on_update="false" label="RSTARS" sequence="5" value="RSTARS"/>
+            </choice>
+        </element>
+        <element choice="1" default="KFS" label="Payment Type" max_length="40" name="payment_type" text_index="true" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="Credit Card" value="Credit Card"/>
+                <element inactive_on_update="false" label="KFS" value="KFS"/>
+            </choice>
+        </element>
+        <element calculation="(function calculatedFieldValue(current) {&#10;&#10;&#9;// Add your code here&#10;&#9;if (current.type == '')&#10;&#9;&#9;{&#10;&#9;&#9;&#9;//new request so dont set this value yet&#10;&#9;&#9;&#9;return &quot;&quot;;&#10;&#9;&#9;}&#10;&#9;else&#10;&#9;&#9;{&#10;&#9;&#9;&#9;//I have type set&#10;&#9;return current.number + &quot; (&quot;+current.type.getDisplayValue()+&quot;)&quot;;  // return the calculated value&#10;&#9;&#9;}&#10;&#10;})(current);" display="true" label="Request Identification" max_length="100" name="request_identification" read_only="true" type="string" virtual="true"/>
+        <element label="Required By Date" max_length="40" name="required_by_date" type="glide_date"/>
+        <element label="Send to Leadership" max_length="40" name="send_to_leadership" type="boolean"/>
+        <element label="Ship To Address" max_length="400" name="ship_to_address" text_index="true" type="string"/>
+        <element label="Ship To Person" max_length="32" name="ship_to_person" reference="sys_user" text_index="true" type="reference"/>
+        <element label="Total Cost" max_length="20" name="total_cost" text_index="true" type="price"/>
+        <element choice="1" label="Type" max_length="40" name="type" text_index="true" type="choice">
+            <choice>
+                <element inactive="true" inactive_on_update="true" label="Travel" sequence="100" value="Travel"/>
+                <element inactive="true" inactive_on_update="true" label="Supply" sequence="200" value="Supply"/>
+                <element inactive_on_update="false" label="General Office Supply Request" sequence="300" value="General Office Supply Request"/>
+                <element inactive="true" inactive_on_update="true" label="PO" sequence="300" value="PO"/>
+                <element inactive_on_update="false" label="Purchase Request" sequence="300" value="Purchase Request"/>
+                <element inactive_on_update="false" label="Travel Request" sequence="300" value="Travel Request"/>
+            </choice>
+        </element>
+        <element label="Vendor" max_length="32" name="vendor" reference="core_company" reference_qual="vendor_typeLIKE4c4da8366f19df4051281ecbbb3ee445^vendor=true^EQ" reference_qual_condition="vendor_typeLIKE4c4da8366f19df4051281ecbbb3ee445^vendor=true^EQ" text_index="true" type="reference"/>
+        <element label="Ignore New Vendor For Addition" max_length="40" name="vendorignored" type="boolean"/>
+    </element>
+</database>
